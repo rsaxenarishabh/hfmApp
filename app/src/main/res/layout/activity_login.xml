@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_btn_default">
+    <TextView
+        android:gravity="center"
+        android:textAlignment="center"
+        android:layout_centerHorizontal="true"
+        android:text="SignIn"
+        android:textSize="@dimen/sp_30"
+        android:textColor="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <!--toolbar-->
+    <ScrollView
+        android:layout_centerInParent="true"
+        android:fillViewport="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:background="@drawable/sd_signup_shape"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_margin="@dimen/margin_20"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <EditText
+                        android:id="@+id/ed_user_id"
+                        android:maxLength="100"
+                        android:textSize="@dimen/sp_edit_text_size"
+                        android:textColor="@color/black"
+                        android:inputType="textEmailAddress"
+                        android:hint="UserId"
+                        android:text="hindustanfundscarrier@gmail.com"
+                        android:paddingStart="@dimen/dp_5"
+                        android:paddingEnd="@dimen/dp_5"
+                        android:background="@drawable/sd_edit_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dp_edit_text_height" />
+
+                    <!--password layout-->
+
+                    <EditText
+                        android:id="@+id/ed_password"
+                        android:maxLength="15"
+                        android:layout_marginTop="@dimen/margin_10"
+                        android:inputType="textPassword"
+                        android:hint="@string/text_password"
+                        android:paddingStart="@dimen/dp_5"
+                        android:paddingEnd="@dimen/dp_5"
+                        android:text="pass@123"
+                        android:textSize="@dimen/sp_edit_text_size"
+                        android:textColor="@color/black"
+                        android:background="@drawable/sd_edit_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dp_edit_text_height"/>
+
+                    <TextView
+                        android:layout_gravity="end"
+                        android:layout_marginTop="@dimen/margin_10"
+                        android:id="@+id/tv_forgot_password"
+                        android:text="@string/text_forgot_password"
+                        android:layout_width="wrap_content"
+                        android:textSize="@dimen/sp_hint_text_size"
+                        android:textColor="@color/colorAccent"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+            </LinearLayout>
+            <Button
+                android:layout_gravity="center"
+                android:id="@+id/btn_login"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/sd_btn"
+                android:layout_width="@dimen/dp_button_width"
+                android:text="@string/text_login"
+                android:textColor="@color/colorPrimary"
+                android:layout_height="@dimen/dp_button_height" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <TextView
+        android:layout_marginBottom="@dimen/margin_10"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/margin_10"
+        android:id="@+id/tv_new_user"
+        android:text="@string/text_login_don_t_have_link_i_have_referral_code"
+        android:layout_width="wrap_content"
+        android:textSize="18sp"
+        android:textColor="@color/white"
+        android:layout_height="wrap_content" />
+</RelativeLayout>
