@@ -23,116 +23,312 @@
 
     </FrameLayout>
 
+
     <LinearLayout
+
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="wrap_content"
+        >
+
+
 
         <LinearLayout
+            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:gravity="center"
-            android:layout_weight="1">
-            <RelativeLayout
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_weight="1"
-                android:background="@drawable/bg_offer"
-                >
-            <ImageView
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10dp"
+            >
+            <LinearLayout
+                android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:padding="@dimen/_10dp"
-                android:src="@drawable/ic_airplane" />
-            </RelativeLayout>
-            <RelativeLayout
-                android:layout_width="100dp"
-                android:layout_height="100dp"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@drawable/bg_offer"
+
+                android:gravity="start"
                 >
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:padding="@dimen/_10dp"
-                    android:src="@drawable/ic_airplane" />
-            </RelativeLayout>
-            <RelativeLayout
-                android:layout_width="100dp"
-                android:layout_height="100dp"
+
+                <Button
+                    android:textSize="@dimen/_15dp"
+                    android:textColor="@color/white"
+                    android:text="Offers Tie-Ups"
+                    android:textStyle="bold"
+                    android:layout_width="170dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/margin_20"
+                    android:layout_marginStart="@dimen/margin_20"
+                    android:background="@drawable/btn_top"
+
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_weight="1"
-                android:background="@drawable/bg_offer"
+                android:gravity="end"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 >
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:padding="@dimen/_10dp"
-                    android:src="@drawable/ic_airplane" />
-            </RelativeLayout>
+                <Button
+                    android:textSize="@dimen/_15dp"
+                    android:text="QR Code"
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    android:layout_marginStart="@dimen/margin_20"
+                    android:layout_marginLeft="@dimen/margin_20"
+                    android:background="@drawable/btn_top"
+                    android:layout_width="170dp"
+                    android:layout_height="wrap_content"
+
+                    />
+
+            </LinearLayout>
+
+
+
         </LinearLayout>
 
         <LinearLayout
+            android:layout_marginTop="7dp"
+            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:gravity="center"
-            android:layout_weight="1">
-            <RelativeLayout
-                android:layout_width="100dp"
-                android:layout_height="100dp"
+            android:layout_height="wrap_content"
+            >
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@drawable/bg_offer"
+
+                android:gravity="center_horizontal"
                 >
                 <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:padding="@dimen/_10dp"
-                    android:src="@drawable/ic_airplane" />
-            </RelativeLayout>
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_marginStart="@dimen/margin_20"
+                    android:layout_marginLeft="@dimen/margin_20"
+                    android:src="@drawable/bike"
+                    android:background="@drawable/btn_bg"/>
 
-            <ImageView
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_weight="1"
-                android:src="@drawable/logo" />
+            </LinearLayout>
 
-            <RelativeLayout
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_weight="1"
-                android:background="@drawable/bg_offer"
-                >
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:padding="@dimen/_10dp"
-                    android:src="@drawable/ic_airplane" />
-            </RelativeLayout>
+
+
         </LinearLayout>
+
 
         <LinearLayout
+            android:layout_marginTop="7dp"
+            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:gravity="center"
-            android:layout_weight="1">
-            <ImageView
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:src="@drawable/ic_motorcycle"
+            android:layout_height="wrap_content"
+            >
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
-                />
 
-            <ImageView
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_weight="1"
-                android:src="@drawable/logo" />
+                android:gravity="start"
+                >
+                <ImageView
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_marginStart="45dp"
+                    android:layout_marginLeft="45dp"
+                    android:src="@drawable/car"
+                    android:background="@drawable/btn_bg"/>
 
-            <ImageView
-                android:layout_width="100dp"
-                android:layout_height="100dp"
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_marginTop="7dp"
                 android:layout_weight="1"
-                android:src="@drawable/ic_motorcycle"/>
+                android:gravity="end"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                >
+               <!-- <Button
+                    android:layout_marginStart="@dimen/margin_20"
+                    android:layout_marginLeft="@dimen/margin_20"
+                    android:background="@drawable/circlebutton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    />
+                -->
+                <ImageView
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_marginEnd="@dimen/sp45"
+                    android:layout_marginRight="@dimen/sp45"
+                    android:src="@drawable/gift"
+
+                    android:background="@drawable/btn_bg"/>
+
+            </LinearLayout>
+
+
+
         </LinearLayout>
-    </LinearLayout>
 
-</LinearLayout>
+
+
+        <LinearLayout
+            android:layout_marginTop="7dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+
+                android:gravity="center_horizontal"
+                >
+                <ImageView
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_marginStart="@dimen/margin_20"
+                    android:layout_marginLeft="@dimen/margin_20"
+                    android:src="@drawable/logo"
+                    android:background="@drawable/btn_bg"/>
+
+
+            </LinearLayout>
+
+
+
+
+        </LinearLayout>
+
+
+
+
+        <LinearLayout
+            android:layout_marginTop="7dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+
+                android:gravity="start"
+                >
+                <ImageView
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_marginStart="@dimen/sp45"
+                    android:layout_marginLeft="@dimen/sp45"
+                    android:src="@drawable/dollar"
+                    android:background="@drawable/btn_bg"/>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_marginTop="7dp"
+                android:layout_weight="1"
+                android:gravity="end"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                >
+                <ImageView
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_marginEnd="45dp"
+                    android:layout_marginRight="@dimen/sp45"
+                    android:src="@drawable/money"
+                    android:background="@drawable/btn_bg"/>
+
+
+            </LinearLayout>
+
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_marginTop="7dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+
+                android:gravity="center"
+                >
+
+                <ImageView
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_marginLeft="@dimen/margin_20"
+                    android:layout_marginStart="@dimen/margin_20"
+                    android:src="@drawable/laptop"
+                    android:background="@drawable/btn_bg" />
+
+
+            </LinearLayout>
+        </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_10dp"
+                >
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+
+                    android:gravity="start"
+                    >
+                    <Button
+                        android:text="SMS"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"
+                        android:textSize="@dimen/_15dp"
+                        android:layout_marginStart="@dimen/margin_20"
+                        android:layout_marginLeft="@dimen/margin_20"
+                        android:background="@drawable/btn_red"
+                        android:layout_width="180dp"
+                        android:layout_height="wrap_content"
+
+                        />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+
+
+
+
+
+
+
+
+
+        </LinearLayout>
+
+
+        </LinearLayout>

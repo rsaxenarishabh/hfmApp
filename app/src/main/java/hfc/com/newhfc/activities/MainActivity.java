@@ -1,5 +1,6 @@
 package hfc.com.newhfc.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -17,8 +18,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import hfc.com.newhfc.R;
+import hfc.com.newhfc.fragments.AboutFragment;
+import hfc.com.newhfc.fragments.AddUserFragment;
 import hfc.com.newhfc.fragments.BankDetailsFragment;
 import hfc.com.newhfc.fragments.DashboardFragment;
+import hfc.com.newhfc.fragments.ProfileFragment;
 
 
 public class MainActivity extends AppCompatActivity
@@ -28,7 +32,7 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+       Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
        Fragment  fragment =  DashboardFragment.newInstance();
         replaceFragment(fragment);
@@ -94,15 +98,39 @@ public class MainActivity extends AppCompatActivity
                 fragment =  DashboardFragment.newInstance();
                 replaceFragment(fragment);
                 break;
-            case R.id.myProfile:
+            case R.id.addUser:
+                fragment=AddUserFragment.newInstance();
+                replaceFragment(fragment);
+
                 break;
             case R.id.myContacts:
+
 
                 break;
             case R.id.bankDetails:
                 fragment =  BankDetailsFragment.newInstance();
                 replaceFragment(fragment);
                 break;
+
+            case R.id.myProfile:
+                fragment = ProfileFragment.newInstance();
+                replaceFragment(fragment);
+                break;
+
+            case R.id.nav_share:
+
+                Intent share=new Intent(Intent.ACTION_SEND);
+                share.setType("text/plain");
+                String text="This is Service application ,click below to download\nhttp://www.mediafire.com/file/oan96lui4k7423w/handicraft.apk";
+                share.putExtra(Intent.EXTRA_SUBJECT,"Services");
+                share.putExtra(Intent.EXTRA_TEXT,text);
+                startActivity(Intent.createChooser(share,"share via"));
+
+            case R.id.nav_about:
+               fragment= AboutFragment.newInstance();
+               replaceFragment(fragment);
+               break;
+
         }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
