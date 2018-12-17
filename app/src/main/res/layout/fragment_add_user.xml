@@ -69,7 +69,7 @@
 
 
                     <android.support.design.widget.TextInputEditText
-                        android:id="@+id/edittext_name"
+                        android:id="@+id/edittext_liccode"
                         android:layout_width="match_parent"
                         android:inputType="text"
                         android:layout_height="wrap_content"
@@ -88,6 +88,9 @@
 
 
             <android.support.design.widget.TextInputEditText
+
+
+               android:id="@+id/edittext_firstname"
 
                 android:layout_width="match_parent"
                 android:inputType="text"
@@ -109,6 +112,7 @@
 
             <android.support.design.widget.TextInputEditText
 
+                android:id="@+id/edittext_lastname"
                 android:layout_width="match_parent"
                 android:inputType="text"
                 android:layout_height="wrap_content"
@@ -128,8 +132,9 @@
 
             <android.support.design.widget.TextInputEditText
 
+                android:id="@+id/edittext_phonenumber"
                 android:layout_width="match_parent"
-                android:inputType="text"
+                android:inputType="phone"
                 android:layout_height="wrap_content"
 
                 android:hint="Phone Number"/>
@@ -147,8 +152,9 @@
 
             <android.support.design.widget.TextInputEditText
 
+                android:id="@+id/edittext_email"
                 android:layout_width="match_parent"
-                android:inputType="text"
+                android:inputType="textEmailAddress"
                 android:layout_height="wrap_content"
 
                 android:hint="Email Address"/>
@@ -165,9 +171,9 @@
 
 
             <android.support.design.widget.TextInputEditText
-
+                    android:id="@+id/edittext_date"
                 android:layout_width="match_parent"
-                android:inputType="text"
+                android:inputType="date"
                 android:layout_height="wrap_content"
 
                 android:hint="dd-mm-yyyy"/>
@@ -185,8 +191,9 @@
 
             <android.support.design.widget.TextInputEditText
 
+                android:id="@+id/edittext_address"
                 android:layout_width="match_parent"
-                android:inputType="text"
+                android:inputType="textPostalAddress"
                 android:layout_height="wrap_content"
 
                 android:hint="Address"/>
@@ -204,9 +211,9 @@
 
 
             <android.support.design.widget.TextInputEditText
-
+                android:id="@+id/edittext_pincode"
                 android:layout_width="match_parent"
-                android:inputType="text"
+                android:inputType="number"
                 android:layout_height="wrap_content"
 
                 android:hint="Pincode"/>
@@ -246,9 +253,9 @@
 
 
             <android.support.design.widget.TextInputEditText
-
+                android:id="@+id/edittext_aadharno"
                 android:layout_width="match_parent"
-                android:inputType="text"
+                android:inputType="number"
                 android:layout_height="wrap_content"
 
                 android:hint="Aadhar Card Number"/>
@@ -267,8 +274,9 @@
 
             <android.support.design.widget.TextInputEditText
 
+                android:id="@+id/editext_pancard"
                 android:layout_width="match_parent"
-                android:inputType="text"
+                android:inputType="number"
                 android:layout_height="wrap_content"
 
                 android:hint="Pan Card Number"/>
@@ -289,8 +297,10 @@
 
             <android.support.design.widget.TextInputEditText
 
+
+                android:id="@+id/edittext_accountnumber"
                 android:layout_width="match_parent"
-                android:inputType="text"
+                android:inputType="number"
                 android:layout_height="wrap_content"
 
                 android:hint="Account Number"/>
@@ -309,6 +319,7 @@
 
             <android.support.design.widget.TextInputEditText
 
+                android:id="@+id/editext_ifsc"
                 android:layout_width="match_parent"
                 android:inputType="text"
                 android:layout_height="wrap_content"
@@ -328,6 +339,7 @@
 
             <android.support.design.widget.TextInputEditText
 
+                android:id="@+id/edittext_accountholder"
                 android:layout_width="match_parent"
                 android:inputType="text"
                 android:layout_height="wrap_content"
@@ -347,6 +359,7 @@
 
             <android.support.design.widget.TextInputEditText
 
+                android:id="@+id/edittext_branch_name"
                 android:layout_width="match_parent"
                 android:inputType="text"
                 android:layout_height="wrap_content"
@@ -395,8 +408,10 @@
 
             <android.support.design.widget.TextInputEditText
 
+
+                android:id="@+id/edittext_aadharcard"
                 android:layout_width="match_parent"
-                android:inputType="text"
+                android:inputType="number"
                 android:layout_height="wrap_content"
 
                 android:hint="Aadhar Card Number"/>
@@ -414,8 +429,9 @@
 
             <android.support.design.widget.TextInputEditText
 
+                android:id="@+id/edittext_date1"
                 android:layout_width="match_parent"
-                android:inputType="text"
+                android:inputType="date"
                 android:layout_height="wrap_content"
 
                 android:hint="dd-mm-yyyy"/>
@@ -434,6 +450,7 @@
 
             <android.support.design.widget.TextInputEditText
 
+                android:id="@+id/edittext_nominee"
                 android:layout_width="match_parent"
                 android:inputType="text"
                 android:layout_height="wrap_content"
@@ -480,8 +497,9 @@
 
             <android.support.design.widget.TextInputEditText
 
+                android:id="@+id/edittext_joiningfee"
                 android:layout_width="match_parent"
-                android:inputType="text"
+                android:inputType="number"
                 android:layout_height="wrap_content"
                 android:hint="Joining Fee"/>
 
@@ -491,6 +509,7 @@
 
 
            <Button
+               android:id="@+id/button"
                android:layout_marginLeft="@dimen/_15dp"
                android:layout_marginRight="@dimen/_15dp"
                android:layout_marginTop="7dp"
