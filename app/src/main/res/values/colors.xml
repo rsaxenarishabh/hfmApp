@@ -29,7 +29,8 @@
     <color name="bright_foreground_light_disabled">#80000000</color>
     <color name="bright_foreground_light_disabled_red">#80FF0000</color>
     <color name="bright_foreground_light_disabled_green">#8000FF00</color>
-
+    <color name="gradStart">#19AA8B</color>
+    <color name="gradStop">#23A7D8</color>
     <color name="theme_black">@color/black</color>
     <color name="theme_blue">@color/black</color>
     <color name="geo_fence_circle">#332196F3</color>
@@ -38,6 +39,9 @@
     <color name="media_bg">#F6F8F7</color>
     <color name="light_blue">#2587ef</color>
     <color name="date_container_bg">#e7e7ea</color>
+
+    <color name="tabtextcolor">#fff</color>
+    <color name="tabindiacatorcolor">#2d2d2d</color>
 
 
 </resources>

@@ -1,11 +1,172 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 xmlns:tools="http://schemas.android.com/tools"
 android:layout_width="match_parent"
 android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/colorPrimary"
 tools:context=".fragments.BankDetailsFragment">
 
 <!-- TODO: Update blank fragment layout -->
+    
+    <RelativeLayout
+        android:layout_marginLeft="@dimen/_10dp"
+        android:layout_marginRight="@dimen/_10dp"
+        android:layout_marginTop="@dimen/_10dp"
+        android:layout_marginBottom="@dimen/_10dp"
+        android:id="@+id/relative1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        
+        <LinearLayout
+            android:layout_marginTop="@dimen/sp_30"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
 
 
-</FrameLayout>
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:background="@drawable/logo"
+
+                />
+        </LinearLayout>
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+
+        android:layout_marginTop="40dp"
+        android:layout_gravity="center"
+
+        android:gravity="center"
+
+        android:layout_marginLeft="@dimen/_10dp"
+        android:id="@+id/relative2"
+        android:layout_below="@id/relative1"
+        android:layout_marginRight="@dimen/_10dp"
+
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <LinearLayout
+
+            android:orientation="horizontal"
+            android:background="@drawable/box"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <LinearLayout
+                android:layout_marginBottom="@dimen/_10dp"
+                android:layout_marginLeft="@dimen/_10dp"
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_marginTop="@dimen/_10dp"
+                    android:textSize="15dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="ACCOUNT NAME: "/>
+                <TextView
+                    android:textSize="15dp"
+                    android:textStyle="bold"
+                    android:layout_marginTop="@dimen/_10dp"
+                    android:textColor="@color/white"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="ACCOUNT NUMBER: "/>
+
+                <TextView
+                    android:textSize="15dp"
+                    android:textStyle="bold"
+                    android:layout_marginTop="@dimen/_10dp"
+                    android:textColor="@color/white"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="BANK NAME:"/>
+                <TextView
+                    android:textSize="15dp"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="@dimen/_10dp"
+                    android:layout_marginTop="@dimen/_10dp"
+                    android:textColor="@color/white"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="IFSC CODE:   "/>
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_marginBottom="@dimen/_10dp"
+                android:layout_marginLeft="@dimen/_10dp"
+                android:layout_marginRight="@dimen/_2dp"
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:textStyle="bold"
+                    android:layout_marginTop="@dimen/_10dp"
+                    android:textSize="15dp"
+                    android:textColor="@color/white"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="HINDUSTAN FUNDS CARRIER"/>
+                <TextView
+                    android:layout_marginTop="@dimen/_10dp"
+                    android:textSize="15dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="268311100001422"/>
+
+                <TextView
+                    android:layout_marginTop="@dimen/_10dp"
+                    android:textSize="15dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="ANDHRA BANK"/>
+                <TextView
+                    android:textStyle="bold"
+                    android:layout_marginTop="@dimen/_10dp"
+                    android:textSize="15dp"
+                    android:textColor="@color/white"
+                    android:layout_width="wrap_content"
+                    android:layout_marginBottom="@dimen/_10dp"
+                    android:layout_height="wrap_content"
+                    android:text="ANDB0002683"/>
+
+            </LinearLayout>
+
+
+
+
+
+
+        </LinearLayout>
+
+
+
+
+
+
+
+
+
+
+
+    </RelativeLayout>
+
+
+</LinearLayout>
