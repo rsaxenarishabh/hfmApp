@@ -33,10 +33,7 @@ public class ProfileFragment extends Fragment {
     }
 
     public static ProfileFragment newInstance() {
-
         ProfileFragment profileFragment=new ProfileFragment();
-
-
         return  profileFragment;
     }
 

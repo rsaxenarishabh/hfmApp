@@ -44,11 +44,7 @@
 
         <!-- AccountDetailsActivity  Theme -->
 
-        <activity
-            android:name=".activities.UserListActivity"
-            android:label="@string/title_activity_user_list"
-            android:theme="@style/AppTheme1" />
-        <activity android:name=".activities.UserListActiviti"
+               <activity android:name=".activities.UserListActiviti"
             android:theme="@style/AppTheme1"
             android:label="USER LIST"
             android:parentActivityName=".activities.MainActivity"></activity>

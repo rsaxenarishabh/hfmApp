@@ -12,8 +12,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitClient {
 
-    public static hfc.com.hfcnew.retrofit.ApiInterface getClient() {
-        return retrofitBuilder().create(hfc.com.hfcnew.retrofit.ApiInterface.class);
+    public static ApiInterface getClient() {
+        return retrofitBuilder().create(ApiInterface.class);
     }
 
 

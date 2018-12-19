@@ -23,6 +23,7 @@ import hfc.com.newhfc.fragments.AddUserFragment;
 import hfc.com.newhfc.fragments.BankDetailsFragment;
 import hfc.com.newhfc.fragments.DashboardFragment;
 import hfc.com.newhfc.fragments.ProfileFragment;
+import hfc.com.newhfc.fragments.UserListFragment;
 
 
 public class MainActivity extends AppCompatActivity
@@ -103,9 +104,9 @@ public class MainActivity extends AppCompatActivity
                 replaceFragment(fragment);
 
                 break;
-            case R.id.myUserlist:
-
-                startActivity(new Intent(this,UserListActiviti.class));
+            case R.id.myContacts:
+                fragment =  UserListFragment.newInstance();
+                replaceFragment(fragment);
                 break;
             case R.id.bankDetails:
                 fragment =  BankDetailsFragment.newInstance();
@@ -125,7 +126,7 @@ public class MainActivity extends AppCompatActivity
                 share.putExtra(Intent.EXTRA_SUBJECT,"Services");
                 share.putExtra(Intent.EXTRA_TEXT,text);
                 startActivity(Intent.createChooser(share,"share via"));
-
+break;
             case R.id.nav_about:
                fragment= AboutFragment.newInstance();
                replaceFragment(fragment);
