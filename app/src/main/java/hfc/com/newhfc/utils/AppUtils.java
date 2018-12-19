@@ -10,6 +10,7 @@ public class AppUtils {
 
     public static boolean hideKeyBoard(Activity activity) {
         try {
+
             InputMethodManager inputMethodManager = ((InputMethodManager) activity.getSystemService(Context.INPUT_METHOD_SERVICE));
             return inputMethodManager.hideSoftInputFromWindow(activity.getCurrentFocus().getWindowToken(), 0);
         } catch (Exception e) {

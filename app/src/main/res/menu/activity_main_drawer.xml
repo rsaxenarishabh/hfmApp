@@ -13,9 +13,9 @@
             android:icon="@drawable/ic_menu_camera"
             android:title="Add User" />
         <item
-            android:id="@+id/myContacts"
+            android:id="@+id/myUserlist"
             android:icon="@drawable/ic_menu_gallery"
-            android:title="My Contacts" />
+            android:title="User List" />
         <item
             android:id="@+id/bankDetails"
             android:icon="@drawable/ic_menu_slideshow"

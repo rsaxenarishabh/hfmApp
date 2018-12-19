@@ -103,9 +103,9 @@ public class MainActivity extends AppCompatActivity
                 replaceFragment(fragment);
 
                 break;
-            case R.id.myContacts:
+            case R.id.myUserlist:
 
-
+                startActivity(new Intent(this,UserListActiviti.class));
                 break;
             case R.id.bankDetails:
                 fragment =  BankDetailsFragment.newInstance();
