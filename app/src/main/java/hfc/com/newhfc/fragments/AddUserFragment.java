@@ -14,6 +14,16 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import hfc.com.newhfc.R;
+import hfc.com.newhfc.model.adduser.AccountDetail;
+import hfc.com.newhfc.model.adduser.AddUser;
+import hfc.com.newhfc.retrofit.RestClient;
+import hfc.com.newhfc.utils.AppUtils;
+import hfc.com.newhfc.utils.Constants;
+import hfc.com.newhfc.utils.HFCPrefs;
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -208,9 +218,46 @@ public class AddUserFragment extends Fragment {
 
         if(check==true)
         {
-            //startActivity(new Intent(getContext(),));
-            Toast.makeText(getContext(), "Data Saved Successfully", Toast.LENGTH_SHORT).show();
+           //TODO add user request
 
+            AddUser addUser = new AddUser();
+            addUser.setFirstName(firstname+"Test");
+            addUser.setLastName(lastname+"test");
+            addUser.setPhoneNumber("57634876538747");
+            addUser.setEmailAddress("test12@gmail.com");
+            addUser.setAddress("test");
+            addUser.setPinCode("656463");
+            addUser.setNomineeName("test");
+//            addUser.setNomineeAadhar(etNomeneeAdhar.getEditText().getText().toString().trim());
+//            addUser.setNomineeDOB(etdob.getEditText().getText().toString().trim());
+//            addUser.setReferalCode(HFCPrefs.getString(getActivity(), Constants.REFERRAL_CODE));
+            AccountDetail accountDetail= new AccountDetail();
+//            accountDetail.setAadharNumber(etAdhaar.getEditText().getText().toString().trim());
+//            accountDetail.setPancardNumber(etPanNumber.getEditText().getText().toString().trim());
+//            accountDetail.setAccountNumber(etAcountNumber.getEditText().getText().toString().trim());
+//            accountDetail.setIFSCCode(etIFSC.getEditText().getText().toString().trim());
+//            accountDetail.setAccountHolderName(etAcountHolderName.getEditText().getText().toString().trim());
+//            accountDetail.setBranchName(etBranchName.getEditText().getText().toString().trim());
+//
+//            accountDetail.setCVV(Integer.parseInt(etCVV.getEditText().getText().toString().trim()));
+
+            addUser.setAccountDetail(accountDetail);
+
+
+            String access_token= HFCPrefs.getString(getActivity(),Constants.ACCESS_TOKEN);
+                    AppUtils.showProgressDialog(getActivity());
+            RestClient.addUser(access_token, addUser, new Callback<ResponseBody>() {
+                @Override
+                public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+
+
+                }
+
+                @Override
+                public void onFailure(Call<ResponseBody> call, Throwable t) {
+
+                }
+            });
 
         }
         else

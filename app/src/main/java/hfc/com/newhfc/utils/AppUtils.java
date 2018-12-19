@@ -3,8 +3,13 @@ package hfc.com.newhfc.utils;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Toast;
+
+import static android.content.Context.CONNECTIVITY_SERVICE;
 
 public class AppUtils {
 
@@ -46,4 +51,27 @@ public class AppUtils {
         }
     }
 
+    /**
+     * @param context Application Context
+     * @return true if connected with active internet else false
+     */
+    public static boolean isInternetConnected(Context context) {
+        try {
+            if (context != null) {
+                ConnectivityManager connectivityManager =
+                        (ConnectivityManager) context
+                                .getSystemService(CONNECTIVITY_SERVICE);
+                NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
+                return networkInfo != null && networkInfo.isConnected();
+            }
+            return false;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    public static void showMessage(Context context, String message) {
+        Toast.makeText(context, message, Toast.LENGTH_LONG).show();
+    }
 }
