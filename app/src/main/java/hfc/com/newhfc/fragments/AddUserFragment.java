@@ -231,7 +231,7 @@ public class AddUserFragment extends Fragment {
 //            addUser.setNomineeAadhar(etNomeneeAdhar.getEditText().getText().toString().trim());
 //            addUser.setNomineeDOB(etdob.getEditText().getText().toString().trim());
 //            addUser.setReferalCode(HFCPrefs.getString(getActivity(), Constants.REFERRAL_CODE));
-            AccountDetail accountDetail= new AccountDetail();
+             AccountDetail accountDetail= new AccountDetail();
 //            accountDetail.setAadharNumber(etAdhaar.getEditText().getText().toString().trim());
 //            accountDetail.setPancardNumber(etPanNumber.getEditText().getText().toString().trim());
 //            accountDetail.setAccountNumber(etAcountNumber.getEditText().getText().toString().trim());

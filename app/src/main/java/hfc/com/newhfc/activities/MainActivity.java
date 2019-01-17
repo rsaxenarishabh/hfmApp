@@ -143,7 +143,6 @@ break;
 
         if (fragmentManager != null) {
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-
             fragmentTransaction.replace(R.id.fragment_container, fragment, "");
             fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
             fragmentTransaction.commit();
