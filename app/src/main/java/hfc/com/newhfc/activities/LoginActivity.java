@@ -160,7 +160,7 @@ public class LoginActivity extends AppCompatActivity {
                             } else {
                                 intent = new Intent(LoginActivity.this, AccountNotActivatedActivity.class);
                             }
-                            LoginActivity.this.startActivity(intent);
+                            startActivity(intent);
                             LoginActivity.this.finish();
                             return;
                         }

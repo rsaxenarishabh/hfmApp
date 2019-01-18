@@ -62,17 +62,17 @@ public class DashboardFragment extends Fragment implements BaseSliderView.OnSlid
         View view= inflater.inflate(R.layout.fragment_dashboard, container, false);
         mDemoSlider = (SliderLayout)view.findViewById(R.id.slider);
 
-        HashMap<String,String> url_maps = new HashMap<String, String>();
-        url_maps.put("Hannibal", "http://static2.hypable.com/wp-content/uploads/2013/12/hannibal-season-2-release-date.jpg");
-        url_maps.put("Big Bang Theory", "http://tvfiles.alphacoders.com/100/hdclearart-10.png");
-        url_maps.put("House of Cards", "http://cdn3.nflximg.net/images/3093/2043093.jpg");
-        url_maps.put("Game of Thrones", "http://images.boomsbeat.com/data/images/full/19640/game-of-thrones-season-4-jpg.jpg");
+//        HashMap<String,String> url_maps = new HashMap<String, String>();
+//        url_maps.put("Hannibal", "http://static2.hypable.com/wp-content/uploads/2013/12/hannibal-season-2-release-date.jpg");
+//        url_maps.put("Big Bang Theory", "http://tvfiles.alphacoders.com/100/hdclearart-10.png");
+//        url_maps.put("House of Cards", "http://cdn3.nflximg.net/images/3093/2043093.jpg");
+//        url_maps.put("Game of Thrones", "http://images.boomsbeat.com/data/images/full/19640/game-of-thrones-season-4-jpg.jpg");
 
         HashMap<String,Integer> file_maps = new HashMap<String, Integer>();
-        file_maps.put("Hannibal",R.drawable.b1);
-        file_maps.put("Big Bang Theory",R.drawable.b2);
-        file_maps.put("House of Cards",R.drawable.b3);
-        file_maps.put("Game of Thrones", R.drawable.b4);
+        file_maps.put("HFC Flight",R.drawable.banner1);
+        file_maps.put("HFC Wealth",R.drawable.banner2);
+        file_maps.put("HFC Customer Care",R.drawable.banner3);
+        file_maps.put("HFC BUS", R.drawable.banner5);
 
         for(String name : file_maps.keySet()){
             TextSliderView textSliderView = new TextSliderView(getActivity());

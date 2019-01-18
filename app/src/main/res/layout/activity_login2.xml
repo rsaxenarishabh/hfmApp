@@ -52,7 +52,7 @@
                 android:layout_marginRight="@dimen/_10dp"
                 android:layout_marginEnd="@dimen/_10dp"
                 android:singleLine="true"
-                android:text="hindustanfundscarrier@gmail.com" />
+                android:text="hindustanfundscarrier1@gmail.com" />
 
         </android.support.design.widget.TextInputLayout>
 
