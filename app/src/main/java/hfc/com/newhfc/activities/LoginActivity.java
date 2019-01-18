@@ -62,6 +62,8 @@ public class LoginActivity extends AppCompatActivity {
     private static final int REQUEST_READ_CONTACTS = 0;
 
 
+
+
     // UI references.
     private AutoCompleteTextView mEmailView;
     private EditText mPasswordView;
