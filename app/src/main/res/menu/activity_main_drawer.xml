@@ -6,24 +6,19 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/home"
-            android:icon="@drawable/ic_menu_slideshow"
             android:title="Home" />
         <item
             android:id="@+id/addUser"
-            android:icon="@drawable/ic_menu_camera"
             android:title="Add User" />
         <item
             android:id="@+id/myContacts"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="User List" />
+            android:title="My Contacts" />
         <item
             android:id="@+id/bankDetails"
-            android:icon="@drawable/ic_menu_slideshow"
             android:title="Bank Dteails" />
 
         <item
             android:id="@+id/myProfile"
-            android:icon="@drawable/ic_menu_slideshow"
             android:title="My Profile" />
 
     </group>
@@ -36,12 +31,10 @@
                 android:title="Share" />
             <item
                 android:id="@+id/nav_send"
-                android:icon="@drawable/ic_menu_send"
                 android:title="Send" />
 
             <item
                 android:id="@+id/nav_about"
-                android:icon="@drawable/ic_menu_send"
                 android:title="About" />
         </menu>
     </item>

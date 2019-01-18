@@ -67,7 +67,6 @@ public class LoginActivity extends AppCompatActivity {
     // UI references.
     private AutoCompleteTextView mEmailView;
     private EditText mPasswordView;
-    private View mLoginFormView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,7 +93,6 @@ public class LoginActivity extends AppCompatActivity {
                 attemptLogin();
             }
         });
-        mLoginFormView = findViewById(R.id.login_form);
     }
 
 
@@ -165,7 +163,7 @@ public class LoginActivity extends AppCompatActivity {
                             } else {
                                 intent = new Intent(LoginActivity.this, AccountNotActivatedActivity.class);
                             }
-                            LoginActivity.this.startActivity(intent);
+                            startActivity(intent);
                             LoginActivity.this.finish();
                             return;
                         }
