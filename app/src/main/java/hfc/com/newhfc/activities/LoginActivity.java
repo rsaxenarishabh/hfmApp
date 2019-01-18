@@ -149,13 +149,14 @@ public class LoginActivity extends AppCompatActivity {
                 public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
                     if (response.isSuccessful()) {
                         LoginResponse responseModel = response.body();
+
                         AppUtils.dismissProgressDialog();
                         if (response.code() == 200) {
                             Toast.makeText(LoginActivity.this, "Logged in succesfully", Toast.LENGTH_LONG).show();
                             HFCPrefs.putBoolean(LoginActivity.this, Constants.USER_LOGGED_IN, true);
                             HFCPrefs.putString(LoginActivity.this, Constants.ACCESS_TOKEN, responseModel.getAccessToken());
                             HFCPrefs.putString(LoginActivity.this, Constants.USER_NAME, responseModel.getUser().getFirstName());
-                            HFCPrefs.putInt(LoginActivity.this, Constants.LOGGED_IN_USER_ID, responseModel.getUser().getId().intValue());
+                            //HFCPrefs.putInt(LoginActivity.this, Constants.LOGGED_IN_USER_ID, responseModel.getUser().getId().intValue());
                             HFCPrefs.putString(LoginActivity.this, Constants.REFERRAL_CODE, responseModel.getUser().getReferalCode());
                             HFCPrefs.putString(LoginActivity.this, Constants.LOGIN_DATA, new Gson().toJson(responseModel));
                             Intent intent = null;

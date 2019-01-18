@@ -32,6 +32,7 @@
         >
 
 
+<!--
 
         <LinearLayout
             android:orientation="horizontal"
@@ -88,6 +89,7 @@
 
 
         </LinearLayout>
+-->
 
         <LinearLayout
             android:layout_marginTop="7dp"
@@ -288,7 +290,7 @@
         </LinearLayout>
 
 
-            <LinearLayout
+           <!-- <LinearLayout
                 android:layout_marginTop="10dp"
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
@@ -316,7 +318,7 @@
 
                         />
 
-                </LinearLayout>
+                </LinearLayout>-->
 
             </LinearLayout>
 
@@ -333,4 +335,3 @@
         </LinearLayout>
 
 
-        </LinearLayout>

@@ -30,10 +30,9 @@ import retrofit2.Response;
  */
 public class AddUserFragment extends Fragment {
 
-    private EditText editTextLIC,editTextFirstname,editTextLastname,editTextPhone,editTextEmail,editTextDate,editTextAddress,editTextPincode
-            ,editTextAadharcard,editTextPancard,editTextAccountnum,editTextIfsccode,editTextAccountholder,editTextBranchname,editTextAdharNominee
-            ,editTextDateNominee
-            ,editTextNomineename,editTextJoiningfee;
+    private EditText editTextFirstname,editTextLastname,editTextPhone,editTextReferalcode,editTextEmail,editTextPassword,editTextAddress,editTextPincode
+            ,editTextAadharcard,editTextPancard,editTextAccountnum,editTextIfsccode,editTextAccountholder,editTextBranchname,editTextCVV;
+
     private Button buttonSubmit;
 
 
@@ -54,12 +53,13 @@ public class AddUserFragment extends Fragment {
         // Inflate the layout for this fragment
         View view= inflater.inflate(R.layout.fragment_add_user, container, false);
 
-        editTextLIC=view.findViewById(R.id.edittext_liccode);
+
         editTextFirstname=view.findViewById(R.id.edittext_firstname);
         editTextLastname=view.findViewById(R.id.edittext_lastname);
         editTextPhone=view.findViewById(R.id.edittext_phonenumber);
         editTextEmail=view.findViewById(R.id.edittext_email);
-        editTextDate=view.findViewById(R.id.edittext_date);
+        editTextReferalcode=view.findViewById(R.id.edittext_referalcode);
+        editTextPassword=view.findViewById(R.id.edittext_password);
         editTextAddress=view.findViewById(R.id.edittext_address);
         editTextPincode=view.findViewById(R.id.edittext_pincode);
         editTextAadharcard=view.findViewById(R.id.edittext_aadharcard);
@@ -67,10 +67,7 @@ public class AddUserFragment extends Fragment {
         editTextAccountnum=view.findViewById(R.id.edittext_accountnumber);
         editTextIfsccode=view.findViewById(R.id.editext_ifsc);
         editTextBranchname=view.findViewById(R.id.edittext_branch_name);
-        editTextDateNominee=view.findViewById(R.id.edittext_date1);
-        editTextNomineename=view.findViewById(R.id.edittext_nominee);
-        editTextJoiningfee=view.findViewById(R.id.edittext_joiningfee);
-        editTextAdharNominee=view.findViewById(R.id.edittext_aadharno);
+        editTextCVV=view.findViewById(R.id.edittext_CVV);
         editTextAccountholder=view.findViewById(R.id.edittext_accountholder);
         buttonSubmit=view.findViewById(R.id.button);
 
@@ -90,12 +87,13 @@ public class AddUserFragment extends Fragment {
     {
 
         boolean check=true;
-        String Licreg=editTextLIC.getText().toString().trim();
+
         String firstname=editTextFirstname.getText().toString().trim();
         String lastname=editTextLastname.getText().toString().trim();
         String phone=editTextPhone.getText().toString().trim();
         String email=editTextEmail.getText().toString().trim();
-        String date=editTextDate.getText().toString().trim();
+        String Password=editTextPassword.getText().toString().trim();
+       String refaralCode=editTextReferalcode.getText().toString().trim();
         String address=editTextAddress.getText().toString().trim();
         String pincode=editTextPincode.getText().toString().trim();
         String aadharNumber=editTextAadharcard.getText().toString().trim();
@@ -104,45 +102,35 @@ public class AddUserFragment extends Fragment {
         String ifsccode=editTextIfsccode.getText().toString().trim();
         String accountholdername=editTextAccountholder.getText().toString().trim();
         String branchname=editTextBranchname.getText().toString().trim();
-        String aadharcardnumber=editTextAdharNominee.getText().toString().trim();
-        String nomineedate=editTextDateNominee.getText().toString().trim();
-        String nomineename=editTextNomineename.getText().toString().trim();
-        String joiningfees=editTextJoiningfee.getText().toString().trim();
+        Integer CVV=Integer.parseInt(editTextCVV.getText().toString().trim());
 
-        if(Licreg.isEmpty())
-        {
-            editTextLIC.setError("Field can't be empty");
-            check=false;
-        }
+
+
         if(firstname.isEmpty())
         {
             editTextFirstname.setError("Field can't be empty");
             check=false;
-
         }
-
         if(lastname.isEmpty())
         {
             editTextLastname.setError("Field can't be empty");
             check=false;
-
         }
 
+        if(Password.isEmpty())
+        {
+            editTextPassword.setError("Field can't be empty");
+        }
         if(phone.isEmpty())
         {
             editTextPhone.setError("Field can't be empty");
             check=false;
 
         }
-
-
-        if(date.isEmpty())
+        if(refaralCode.isEmpty())
         {
-            editTextDate.setError("Field can't be empty");
-            check=false;
-
+            editTextReferalcode.setError("Field can't be empty");
         }
-
         if(address.isEmpty())
         {
             editTextAddress.setError("Field can't be empty");
@@ -191,56 +179,53 @@ public class AddUserFragment extends Fragment {
             check=false;
 
         }
-        if(aadharcardnumber.isEmpty())
-        {
-            editTextAdharNominee.setError("Field can't be empty");
-            check=false;
-
-        }
-        if(nomineedate.isEmpty())
-        {
-            editTextDateNominee.setError("Field can't be empty");
-            check=false;
-
-        }
-        if(nomineename.isEmpty())
-        {
-            editTextNomineename.setError("Field can't be empty");
-            check=false;
-
-        }
-        if(joiningfees.isEmpty())
-        {
-            editTextJoiningfee.setError("Field can't be empty");
-            check=false;
-
-        }
 
         if(check==true)
         {
            //TODO add user request
 
             AddUser addUser = new AddUser();
-            addUser.setFirstName(firstname+"Test");
+
+            addUser.setFirstName(firstname);
+            addUser.setLastName(lastname);
+            addUser.setEmailAddress(email);
+            addUser.setPassword(Password);
+            addUser.setPhoneNumber(phone);
+            addUser.setPinCode(pincode);
+            addUser.setReferalCode(refaralCode);
+            addUser.setAddress(address);
+
+
+          /*  *//*addUser.setFirstName(firstname+"Tes);
             addUser.setLastName(lastname+"test");
             addUser.setPhoneNumber("57634876538747");
             addUser.setEmailAddress("test12@gmail.com");
             addUser.setAddress("test");
             addUser.setPinCode("656463");
-            addUser.setNomineeName("test");
+            addUser.setNomineeName("test");*//*
 //            addUser.setNomineeAadhar(etNomeneeAdhar.getEditText().getText().toString().trim());
 //            addUser.setNomineeDOB(etdob.getEditText().getText().toString().trim());
 //            addUser.setReferalCode(HFCPrefs.getString(getActivity(), Constants.REFERRAL_CODE));
+*/
             AccountDetail accountDetail= new AccountDetail();
-//            accountDetail.setAadharNumber(etAdhaar.getEditText().getText().toString().trim());
-//            accountDetail.setPancardNumber(etPanNumber.getEditText().getText().toString().trim());
-//            accountDetail.setAccountNumber(etAcountNumber.getEditText().getText().toString().trim());
-//            accountDetail.setIFSCCode(etIFSC.getEditText().getText().toString().trim());
-//            accountDetail.setAccountHolderName(etAcountHolderName.getEditText().getText().toString().trim());
-//            accountDetail.setBranchName(etBranchName.getEditText().getText().toString().trim());
-//
-//            accountDetail.setCVV(Integer.parseInt(etCVV.getEditText().getText().toString().trim()));
 
+               accountDetail.setAadharNumber(aadharNumber);
+               accountDetail.setAccountNumber(accountnum);
+               accountDetail.setAccountHolderName(accountholdername);
+               accountDetail.setIFSCCode(ifsccode);
+               accountDetail.setBranchName(branchname);
+               accountDetail.setCVV(CVV);
+               accountDetail.setPancardNumber(pancard);
+
+           /*
+            accountDetail.setAadharNumber(etAdhaar.getEditText().getText().toString().trim());
+            accountDetail.setPancardNumber(etPanNumber.getEditText().getText().toString().trim());
+            accountDetail.setAccountNumber(etAcountNumber.getEditText().getText().toString().trim());
+            accountDetail.setIFSCCode(etIFSC.getEditText().getText().toString().trim());
+            accountDetail.setAccountHolderName(etAcountHolderName.getEditText().getText().toString().trim());
+            accountDetail.setBranchName(etBranchName.getEditText().getText().toString().trim());
+            accountDetail.setCVV(Integer.parseInt(etCVV.getEditText().getText().toString().trim()));
+*/
             addUser.setAccountDetail(accountDetail);
 
 
