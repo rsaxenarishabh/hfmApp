@@ -9,9 +9,13 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
+import hfc.com.newhfc.R;
+
 import static android.content.Context.CONNECTIVITY_SERVICE;
 
 public class AppUtils {
+
+
 
     public static boolean hideKeyBoard(Activity activity) {
         try {

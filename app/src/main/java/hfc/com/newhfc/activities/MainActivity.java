@@ -1,7 +1,9 @@
 package hfc.com.newhfc.activities;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
@@ -16,7 +18,19 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.DataSource;
+import com.bumptech.glide.load.engine.GlideException;
+import com.bumptech.glide.request.RequestListener;
+import com.bumptech.glide.request.RequestOptions;
+import com.bumptech.glide.request.target.Target;
+import com.google.gson.Gson;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import de.hdodenhof.circleimageview.CircleImageView;
 import hfc.com.newhfc.R;
 import hfc.com.newhfc.fragments.AboutFragment;
 import hfc.com.newhfc.fragments.AddUserFragment;
@@ -24,28 +38,61 @@ import hfc.com.newhfc.fragments.BankDetailsFragment;
 import hfc.com.newhfc.fragments.DashboardFragment;
 import hfc.com.newhfc.fragments.ProfileFragment;
 import hfc.com.newhfc.fragments.UserListFragment;
+import hfc.com.newhfc.model.LoginResponse;
+import hfc.com.newhfc.utils.Constants;
+import hfc.com.newhfc.utils.HFCPrefs;
 
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    NavigationView navigationView;
+
+    CircleImageView circleImageView;
+    TextView tvName;
+    TextView tvEmail;
+
+    LoginResponse loginResponse;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-       Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-       Fragment  fragment =  DashboardFragment.newInstance();
+        Fragment fragment = DashboardFragment.newInstance();
         replaceFragment(fragment);
-        /*FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
+
+        String data = HFCPrefs.getString(getApplicationContext(), Constants.LOGIN_DATA);
+        loginResponse = new Gson().fromJson(data, LoginResponse.class);
+
+         navigationView = findViewById(R.id.nav_view);
+
+         View headerView = navigationView.inflateHeaderView(R.layout.nav_header_main);
+         tvName = headerView.findViewById(R.id.userName);
+        tvEmail = headerView.findViewById(R.id.email);
+        circleImageView = headerView.findViewById(R.id.profile_header_image);
+
+        tvName.setText(loginResponse.getUser().getFirstName() + " " + loginResponse.getUser().getLastName());
+        tvEmail.setText(loginResponse.getUser().getEmailAddress());
+
+        RequestOptions requestOptions = RequestOptions.circleCropTransform().placeholder(R.drawable.user).error(R.drawable.user);
+
+        Glide.with(this).load(loginResponse.getUser().getImage()).apply(requestOptions).listener(new RequestListener<Drawable>() {
             @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+            public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
+
+                return false;
             }
-        });
-*/
+
+            @Override
+            public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
+
+                return true;
+            }
+        }).into(circleImageView);
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -75,20 +122,20 @@ public class MainActivity extends AppCompatActivity
         Fragment fragment = null;
         switch (id) {
             case R.id.home:
-                fragment =  DashboardFragment.newInstance();
+                fragment = DashboardFragment.newInstance();
                 replaceFragment(fragment);
                 break;
             case R.id.addUser:
-                fragment=AddUserFragment.newInstance();
+                fragment = AddUserFragment.newInstance();
                 replaceFragment(fragment);
 
                 break;
             case R.id.myContacts:
-                fragment =  UserListFragment.newInstance();
+                fragment = UserListFragment.newInstance();
                 replaceFragment(fragment);
                 break;
             case R.id.bankDetails:
-                fragment =  BankDetailsFragment.newInstance();
+                fragment = BankDetailsFragment.newInstance();
                 replaceFragment(fragment);
                 break;
 
@@ -99,17 +146,17 @@ public class MainActivity extends AppCompatActivity
 
             case R.id.nav_share:
 
-                Intent share=new Intent(Intent.ACTION_SEND);
+                Intent share = new Intent(Intent.ACTION_SEND);
                 share.setType("text/plain");
-                String text="This is Service application ,click below to download\nhttp://www.mediafire.com/file/oan96lui4k7423w/handicraft.apk";
-                share.putExtra(Intent.EXTRA_SUBJECT,"Services");
-                share.putExtra(Intent.EXTRA_TEXT,text);
-                startActivity(Intent.createChooser(share,"share via"));
-break;
+                String text = "This is Service application ,click below to download\nhttp://www.mediafire.com/file/oan96lui4k7423w/handicraft.apk";
+                share.putExtra(Intent.EXTRA_SUBJECT, "Services");
+                share.putExtra(Intent.EXTRA_TEXT, text);
+                startActivity(Intent.createChooser(share, "share via"));
+                break;
             case R.id.nav_about:
-               fragment= AboutFragment.newInstance();
-               replaceFragment(fragment);
-               break;
+                fragment = AboutFragment.newInstance();
+                replaceFragment(fragment);
+                break;
 
         }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

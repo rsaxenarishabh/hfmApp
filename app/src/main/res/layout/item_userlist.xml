@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/swipe"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <android.support.v7.widget.CardView
+        android:id="@+id/deviceInfoView"
+        android:layout_width="match_parent"
+        android:layout_height="110dp"
+        android:visibility="visible"
+        app:cardCornerRadius="@dimen/card_radius"
+        app:cardElevation="@dimen/card_elevation"
+        app:cardUseCompatPadding="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- Top View,  Row itemView of RecyclerView -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:padding="15dp">
+
+                <hfc.com.newhfc.views.CircleImageView
+                    android:id="@+id/image"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:padding="@dimen/_5dp"/>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/margin_15dp"
+                    android:layout_marginStart="@dimen/margin_15dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/tvName"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:ellipsize="end"
+                            android:maxLines="1"
+                            android:paddingEnd="@dimen/_70sdp"
+                            android:paddingRight="@dimen/_70sdp"
+                            android:text="gdjdj fdhdf jfdjf"
+                            android:textColor="@color/black" />
+
+                    </RelativeLayout>
+
+
+                    <TextView
+                        android:id="@+id/tvDesc"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="tetdb"
+                        android:textColor="@color/color_hint" />
+
+
+                </LinearLayout>
+
+
+                <ImageView
+                    android:id="@+id/tvDelete"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginEnd="@dimen/_20dp"
+                    android:layout_marginRight="@dimen/_20dp"
+                    android:padding="2dp"
+                    android:src="@drawable/ic_activated"
+                    android:tint="#757575" />
+
+            </LinearLayout>
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+</LinearLayout>
+

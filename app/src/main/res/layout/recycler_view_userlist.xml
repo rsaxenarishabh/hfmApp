@@ -29,7 +29,7 @@
                 android:id="@+id/profile_header_image"
                 android:layout_width="90dp"
                 android:layout_height="90dp"
-                android:src="@drawable/ownerpic" />
+                android:src="@drawable/user" />
             <LinearLayout
                 android:id="@+id/linear_Userlist"
                 android:layout_width="match_parent"
