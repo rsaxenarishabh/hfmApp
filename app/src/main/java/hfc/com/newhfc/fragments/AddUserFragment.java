@@ -1,18 +1,32 @@
 package hfc.com.newhfc.fragments;
 
 
+import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
+import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
+import java.io.ByteArrayOutputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
+
+import butterknife.internal.Utils;
 import hfc.com.newhfc.R;
 import hfc.com.newhfc.model.adduser.AccountDetail;
 import hfc.com.newhfc.model.adduser.AddUser;
@@ -25,14 +39,21 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static android.app.Activity.RESULT_OK;
+
 /**
  * A simple {@link Fragment} subclass.
  */
 public class AddUserFragment extends Fragment {
 
-    private EditText editTextLIC,editTextFirstname,editTextLastname,editTextPhone,editTextEmail,editTextDate,editTextAddress,editTextPincode
-            ,editTextAadharcard,editTextPancard,editTextAccountnum,editTextIfsccode,editTextAccountholder,editTextBranchname,editTextAdharNominee
-            ,editTextDateNominee
+    private static final int TAKE_PHOTO_CODE = 101;
+    ImageView img_profile;
+    private EditText editTextLIC,editTextFirstname,editTextLastname,
+            editTextPhone,editTextEmail,editTextDate,
+            editTextAddress,editTextPincode
+            ,editTextAadharcard,editTextPancard,
+            editTextAccountnum,editTextIfsccode,editTextAccountholder,
+            editTextBranchname,editTextAdharNominee
             ,editTextNomineename,editTextJoiningfee;
     private Button buttonSubmit;
 
@@ -53,7 +74,7 @@ public class AddUserFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view= inflater.inflate(R.layout.fragment_add_user, container, false);
-
+        img_profile = view.findViewById(R.id.img_profile);
         editTextFirstname=view.findViewById(R.id.edittext_firstname);
         editTextLastname=view.findViewById(R.id.edittext_lastname);
         editTextPhone=view.findViewById(R.id.edittext_phonenumber);
@@ -75,16 +96,35 @@ public class AddUserFragment extends Fragment {
             }
         });
 
-
+        img_profile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
+                    Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+                    startActivityForResult(cameraIntent, TAKE_PHOTO_CODE);
+                } else {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
+                        requestPermissions(new String[]{Manifest.permission.CAMERA}, 100);
+                }
+            }
+        });
         return view;
     }
 
+    private String encodeImage(Bitmap bm)
+    {
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        bm.compress(Bitmap.CompressFormat.JPEG,100,baos);
+        byte[] b = baos.toByteArray();
+        String encImage = Base64.encodeToString(b, Base64.DEFAULT);
 
+        return encImage;
+    }
     private void Validation()
     {
 
         boolean check=true;
-        String Licreg=editTextLIC.getText().toString().trim();
+        String Licreg="434";
         String firstname=editTextFirstname.getText().toString().trim();
         String lastname=editTextLastname.getText().toString().trim();
         String phone=editTextPhone.getText().toString().trim();
@@ -99,15 +139,13 @@ public class AddUserFragment extends Fragment {
         String accountholdername=editTextAccountholder.getText().toString().trim();
         String branchname=editTextBranchname.getText().toString().trim();
         String aadharcardnumber=editTextAdharNominee.getText().toString().trim();
-        String nomineedate=editTextDateNominee.getText().toString().trim();
+        String nomineedate="N/A";
         String nomineename=editTextNomineename.getText().toString().trim();
-        String joiningfees=editTextJoiningfee.getText().toString().trim();
+        //String joiningfees=editTextJoiningfee.getText().toString().trim();
 
-        if(Licreg.isEmpty())
-        {
-            editTextLIC.setError("Field can't be empty");
-            check=false;
-        }
+
+
+
         if(firstname.isEmpty())
         {
             editTextFirstname.setError("Field can't be empty");
@@ -191,48 +229,38 @@ public class AddUserFragment extends Fragment {
             check=false;
 
         }
-        if(nomineedate.isEmpty())
-        {
-            editTextDateNominee.setError("Field can't be empty");
-            check=false;
 
-        }
         if(nomineename.isEmpty())
         {
             editTextNomineename.setError("Field can't be empty");
             check=false;
 
         }
-        if(joiningfees.isEmpty())
-        {
-            editTextJoiningfee.setError("Field can't be empty");
-            check=false;
 
-        }
 
         if(check==true)
         {
            //TODO add user request
 
             AddUser addUser = new AddUser();
-            addUser.setFirstName(firstname+"Test");
-            addUser.setLastName(lastname+"test");
-            addUser.setPhoneNumber("57634876538747");
-            addUser.setEmailAddress("test12@gmail.com");
-            addUser.setAddress("test");
-            addUser.setPinCode("656463");
-            addUser.setNomineeName("test");
-//            addUser.setNomineeAadhar(etNomeneeAdhar.getEditText().getText().toString().trim());
-//            addUser.setNomineeDOB(etdob.getEditText().getText().toString().trim());
-//            addUser.setReferalCode(HFCPrefs.getString(getActivity(), Constants.REFERRAL_CODE));
+            addUser.setFirstName(firstname);
+            addUser.setLastName(lastname);
+            addUser.setPhoneNumber(phone);
+            addUser.setEmailAddress(email);
+            addUser.setAddress(address);
+            addUser.setPinCode(pincode);
+            addUser.setNomineeName(nomineename);
+            addUser.setNomineeAadhar(editTextAdharNominee.getText().toString().trim());
+            addUser.setNomineeDOB("01-01-1988");
+            addUser.setReferalCode(HFCPrefs.getString(getActivity(), Constants.REFERRAL_CODE));
              AccountDetail accountDetail= new AccountDetail();
-//            accountDetail.setAadharNumber(etAdhaar.getEditText().getText().toString().trim());
-//            accountDetail.setPancardNumber(etPanNumber.getEditText().getText().toString().trim());
-//            accountDetail.setAccountNumber(etAcountNumber.getEditText().getText().toString().trim());
-//            accountDetail.setIFSCCode(etIFSC.getEditText().getText().toString().trim());
-//            accountDetail.setAccountHolderName(etAcountHolderName.getEditText().getText().toString().trim());
-//            accountDetail.setBranchName(etBranchName.getEditText().getText().toString().trim());
-//
+            accountDetail.setAadharNumber(editTextAadharcard.getText().toString().trim());
+            accountDetail.setPancardNumber(editTextPancard.getText().toString().trim());
+            accountDetail.setAccountNumber(editTextAccountnum.getText().toString().trim());
+            accountDetail.setIFSCCode(editTextIfsccode.getText().toString().trim());
+            accountDetail.setAccountHolderName(editTextAccountholder.getText().toString().trim());
+            accountDetail.setBranchName(editTextBranchname.getText().toString().trim());
+
 //            accountDetail.setCVV(Integer.parseInt(etCVV.getEditText().getText().toString().trim()));
 
             addUser.setAccountDetail(accountDetail);
@@ -272,7 +300,34 @@ public class AddUserFragment extends Fragment {
 
 
     }
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == 100) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+                startActivityForResult(cameraIntent, TAKE_PHOTO_CODE);
+            }
+        }
+    }
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == TAKE_PHOTO_CODE && resultCode == RESULT_OK) {
+            final Uri imageUri = data.getData();
+            final InputStream imageStream;
+            try {
+                imageStream = getActivity().getContentResolver().openInputStream(imageUri);
+                final Bitmap selectedImage = BitmapFactory.decodeStream(imageStream);
+                String encodedImage = encodeImage(selectedImage);
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+
+        }
+
+    }
 
     @Override
     public void onAttach(Context context) {
