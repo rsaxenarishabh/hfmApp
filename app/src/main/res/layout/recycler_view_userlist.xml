@@ -1,89 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:layout_marginTop="@dimen/_15dp"
-    android:layout_marginLeft="@dimen/_10dp"
-    android:layout_marginRight="@dimen/_10dp"
     android:layout_height="wrap_content"
     android:id="@+id/recycler_userlist">
 
-    <LinearLayout
-        android:id="@+id/linearUserlist"
+    <android.support.v7.widget.CardView
+        app:cardBackgroundColor="@color/skyblue"
+        app:cardElevation="@dimen/_10dp"
+        android:elevation="@dimen/_10dp"
+        android:layout_marginTop="@dimen/_15dp"
+        android:layout_marginLeft="@dimen/_15dp"
+        android:layout_marginRight="@dimen/_15dp"
+        android:layout_marginBottom="@dimen/_15dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-
-        <ImageView
-            android:layout_width="80dp"
-            android:layout_height="70dp"
-            android:background="@drawable/btn_bg"
-            android:id="@+id/image_userlist"
+        android:layout_height="wrap_content">
+        <LinearLayout
             android:layout_marginLeft="@dimen/_10dp"
-            android:layout_marginBottom="@dimen/_10dp"
-            android:layout_marginTop="@dimen/_10dp"/>
-
-
-
-    <LinearLayout
-        android:id="@+id/linear_Userlist"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-
-
-
-        <TextView
-            android:layout_marginTop="@dimen/_15dp"
-            android:layout_marginLeft="@dimen/_10dp"
-            android:textSize="@dimen/_15dp"
+            android:id="@+id/linearUserlist"
+            android:layout_gravity="center"
             android:gravity="center"
-            android:text="Rishabh Saxena"
-            android:textStyle="bold"
-            android:textColor="@color/black"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/textview_userlist_name"/>
-
-        <TextView
-           android:layout_marginTop="@dimen/_5dp"
-            android:layout_marginLeft="@dimen/_10dp"
-            android:textSize="@dimen/_15dp"
-            android:gravity="center"
-            android:text="rishabhs.bhumca15@gmail.com"
-            android:textStyle="bold"
-            android:textColor="@color/black"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/textview_userlist_gmail"/>
-
-
-        <TextView
-            android:layout_marginTop="3dp"
-            android:layout_marginLeft="@dimen/_10dp"
-            android:textSize="@dimen/_15dp"
-            android:gravity="center"
-            android:text="Active"
-            android:textStyle="bold"
-            android:textColor="@color/black"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/textview_userlist_active"/>
-
-
-
-
-
-
-
-
-    </LinearLayout>
-
-
-
-    </LinearLayout>
-
-</android.support.v7.widget.CardView>
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:orientation="horizontal">
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:layout_marginTop="@dimen/margin_8"
+                android:id="@+id/profile_header_image"
+                android:layout_width="90dp"
+                android:layout_height="90dp"
+                android:src="@drawable/ownerpic" />
+            <LinearLayout
+                android:id="@+id/linear_Userlist"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_marginTop="@dimen/_15dp"
+                    android:layout_marginLeft="@dimen/_10dp"
+                    android:textSize="@dimen/_15dp"
+                    android:text="Rishabh Saxena"
+                    android:textStyle="bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textview_userlist_name"/>
+                <TextView
+                    android:layout_marginTop="@dimen/_5dp"
+                    android:layout_marginLeft="@dimen/_10dp"
+                    android:textSize="@dimen/_15dp"
+                    android:text="rishabhs.bhumca15@gmail.com"
+                    android:textStyle="bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textview_userlist_gmail"/>
+            </LinearLayout>
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+</LinearLayout>

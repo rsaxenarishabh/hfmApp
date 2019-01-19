@@ -17,11 +17,10 @@
             android:layout_height="wrap_content">
             <de.hdodenhof.circleimageview.CircleImageView
                 android:layout_marginTop="@dimen/margin_20"
-                xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:id="@+id/profile_header_image"
                 android:layout_width="106dp"
                 android:layout_height="106dp"
-                android:src="@drawable/ic_default_image" />
+                android:src="@drawable/ownerpic" />
         </LinearLayout>
 
         <TextView
