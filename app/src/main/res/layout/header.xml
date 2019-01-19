@@ -20,7 +20,7 @@
                 android:id="@+id/profile_header_image"
                 android:layout_width="106dp"
                 android:layout_height="106dp"
-                android:src="@drawable/ownerpic" />
+                android:src="@drawable/user" />
         </LinearLayout>
 
         <TextView

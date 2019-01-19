@@ -2,8 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@color/white">
+    android:background="@color/white"
+    android:orientation="vertical">
 
 
     <FrameLayout
@@ -26,342 +26,332 @@
     <RelativeLayout
         android:id="@+id/relative1"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-           <LinearLayout
-               android:id="@+id/linear1"
-               android:orientation="vertical"
-               android:layout_width="match_parent"
-               android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
 
-               <ImageView
-                   android:background="@drawable/bike_button"
-                   android:layout_gravity="center"
-                   android:layout_width="70dp"
-                   android:layout_height="@dimen/_70dp"
-                   android:src="@drawable/bike"
-                />
-           </LinearLayout>
-        <LinearLayout
-            android:layout_below="@id/linear1"
-            android:id="@+id/linear2"
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <ImageView
-                android:background="@drawable/car_button"
-
-                android:layout_width="@dimen/_70dp"
-                android:layout_height="@dimen/_70dp"
-                android:src="@drawable/car"/>
-
-            <ImageView
-                android:background="@drawable/gift_button"
-            android:layout_width="@dimen/_70dp"
-
+        <ImageView
+            android:id="@+id/bike"
+            android:layout_width="70dp"
             android:layout_height="@dimen/_70dp"
-            android:src="@drawable/gift"/>
-        </LinearLayout>
+            android:layout_alignParentStart="true"
+            android:layout_alignTop="@+id/money"
+            android:layout_gravity="center"
+            android:layout_marginStart="26dp"
+            android:background="@drawable/bike_button"
+            android:src="@drawable/bike" />
 
-        <LinearLayout
-            android:layout_below="@id/linear2"
-            android:id="@+id/linear3"
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <ImageView
-                android:layout_gravity="center"
-                android:layout_width="@dimen/_70dp"
-                android:layout_height="@dimen/_70dp"
-                android:src="@drawable/hfmlogo"/>
-        </LinearLayout>
-
-
-
-        <LinearLayout
-            android:layout_below="@id/linear3"
-            android:id="@+id/linear4"
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <ImageView
-                android:background="@drawable/money_button"
-                android:layout_width="@dimen/_70dp"
-                android:layout_height="@dimen/_70dp"
-                android:src="@drawable/money"/>
-
-            <ImageView
-                android:background="@drawable/dollar_button"
+        <ImageView
+            android:id="@+id/car"
             android:layout_width="@dimen/_70dp"
             android:layout_height="@dimen/_70dp"
-            android:src="@drawable/dollar"/>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_below="@id/linear4"
-            android:id="@+id/linear5"
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <ImageView
-                android:background="@drawable/laptop_button"
-                android:layout_gravity="center"
-                android:layout_width="@dimen/_70dp"
-                android:layout_height="@dimen/_70dp"
-                android:src="@drawable/laptop"/>
-        </LinearLayout>
+            android:layout_alignParentBottom="true"
+            android:layout_alignStart="@+id/money"
+            android:layout_marginBottom="95dp"
+            android:background="@drawable/car_button"
+            android:src="@drawable/car" />
+
+        <ImageView
+            android:id="@+id/gift"
+            android:layout_width="68dp"
+            android:layout_height="@dimen/_70dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="41dp"
+            android:background="@drawable/gift_button"
+            android:src="@drawable/gift" />
+
+
+        <ImageView
+            android:layout_width="@dimen/_70dp"
+            android:layout_height="@dimen/_70dp"
+            android:layout_above="@+id/dooler"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center"
+            android:src="@drawable/hfmlogo" />
+
+
+        <ImageView
+            android:id="@+id/money"
+            android:layout_width="@dimen/_70dp"
+            android:layout_height="@dimen/_70dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginEnd="20dp"
+
+            android:layout_marginTop="89dp"
+            android:background="@drawable/money_button"
+            android:src="@drawable/money" />
+
+        <ImageView
+            android:id="@+id/dooler"
+            android:layout_width="@dimen/_70dp"
+            android:layout_height="@dimen/_70dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginBottom="120dp"
+            android:layout_marginStart="47dp"
+            android:layout_marginLeft="47dp"
+            android:background="@drawable/dollar_button"
+            android:src="@drawable/dollar" />
+
+        <ImageView
+            android:layout_width="@dimen/_70dp"
+            android:layout_height="@dimen/_70dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_gravity="center"
+            android:layout_marginBottom="39dp"
+            android:layout_marginEnd="152dp"
+            android:layout_marginRight="152dp"
+            android:background="@drawable/laptop_button"
+            android:src="@drawable/laptop" />
     </RelativeLayout>
 
-<!--
-    <LinearLayout
-
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        >
-
-
-
+    <!--
         <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_10dp"
-            >
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
 
-                android:gravity="start"
-                >
-
-
-            </LinearLayout>
-
-
-
-
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_marginTop="7dp"
-            android:orientation="horizontal"
+            android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             >
 
+
+
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-
-
-                android:gravity="center_horizontal"
+                android:layout_marginTop="@dimen/_10dp"
                 >
-                <ImageView
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:layout_marginStart="@dimen/margin_20"
-                    android:layout_marginLeft="@dimen/margin_20"
-                    android:src="@drawable/bike"
-                    android:background="@drawable/btn_bg"/>
-
-            </LinearLayout>
-
-
-
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:layout_marginTop="7dp"
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            >
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-
-                android:gravity="start"
-                >
-                <ImageView
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:layout_marginStart="45dp"
-                    android:layout_marginLeft="45dp"
-
-                    android:src="@drawable/car"
-                    android:background="@drawable/btn_bg"/>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_marginTop="7dp"
-                android:layout_weight="1"
-                android:gravity="end"
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                >
-               &lt;!&ndash; <Button
-                    android:layout_marginStart="@dimen/margin_20"
-                    android:layout_marginLeft="@dimen/margin_20"
-                    android:background="@drawable/circlebutton"
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
 
-                    />
-                &ndash;&gt;
-                <ImageView
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:layout_marginEnd="@dimen/sp45"
-                    android:layout_marginRight="@dimen/sp45"
-                    android:src="@drawable/gift"
+                    android:gravity="start"
+                    >
 
-                    android:background="@drawable/btn_bg"/>
 
-            </LinearLayout>
+                </LinearLayout>
 
 
 
-        </LinearLayout>
-
-
-
-        <LinearLayout
-            android:layout_marginTop="7dp"
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            >
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-
-                android:gravity="center_horizontal"
-                >
-                <ImageView
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:layout_marginStart="@dimen/margin_20"
-                    android:layout_marginLeft="@dimen/margin_20"
-                    android:src="@drawable/logo"
-                    android:background="@drawable/btn_bg"/>
-
-
-            </LinearLayout>
-
-
-
-
-        </LinearLayout>
-
-
-
-
-        <LinearLayout
-            android:layout_marginTop="7dp"
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            >
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-
-                android:gravity="start"
-                >
-                <ImageView
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:layout_marginStart="@dimen/sp35"
-                    android:layout_marginLeft="@dimen/sp35"
-                    android:src="@drawable/dollar"
-                    android:background="@drawable/btn_bg"/>
 
 
             </LinearLayout>
 
             <LinearLayout
                 android:layout_marginTop="7dp"
-                android:layout_weight="1"
-                android:gravity="end"
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 >
-                <ImageView
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:layout_marginEnd="45dp"
-                    android:layout_marginRight="@dimen/sp45"
-                    android:src="@drawable/money"
-                    android:background="@drawable/btn_bg"/>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
 
 
-            </LinearLayout>
+                    android:gravity="center_horizontal"
+                    >
+                    <ImageView
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_marginStart="@dimen/margin_20"
+                        android:layout_marginLeft="@dimen/margin_20"
+                        android:src="@drawable/bike"
+                        android:background="@drawable/btn_bg"/>
 
+                </LinearLayout>
 
-
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:layout_marginTop="7dp"
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            >
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-
-                android:gravity="center"
-                >
-
-                <ImageView
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:layout_marginLeft="@dimen/margin_20"
-                    android:layout_marginStart="@dimen/margin_20"
-                    android:src="@drawable/laptop"
-                    android:background="@drawable/btn_bg" />
 
 
             </LinearLayout>
-        </LinearLayout>
 
 
             <LinearLayout
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="7dp"
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/_10dp"
                 >
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+
+                    android:gravity="start"
+                    >
+                    <ImageView
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_marginStart="45dp"
+                        android:layout_marginLeft="45dp"
+
+                        android:src="@drawable/car"
+                        android:background="@drawable/btn_bg"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_marginTop="7dp"
+                    android:layout_weight="1"
+                    android:gravity="end"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    >
+                   &lt;!&ndash; <Button
+                        android:layout_marginStart="@dimen/margin_20"
+                        android:layout_marginLeft="@dimen/margin_20"
+                        android:background="@drawable/circlebutton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+
+                        />
+                    &ndash;&gt;
+                    <ImageView
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_marginEnd="@dimen/sp45"
+                        android:layout_marginRight="@dimen/sp45"
+                        android:src="@drawable/gift"
+
+                        android:background="@drawable/btn_bg"/>
+
+                </LinearLayout>
+
+
+
+            </LinearLayout>
+
+
+
+            <LinearLayout
+                android:layout_marginTop="7dp"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                >
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+
+                    android:gravity="center_horizontal"
+                    >
+                    <ImageView
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_marginStart="@dimen/margin_20"
+                        android:layout_marginLeft="@dimen/margin_20"
+                        android:src="@drawable/logo"
+                        android:background="@drawable/btn_bg"/>
+
+
+                </LinearLayout>
+
+
+
 
             </LinearLayout>
 
 
 
 
+            <LinearLayout
+                android:layout_marginTop="7dp"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                >
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+
+                    android:gravity="start"
+                    >
+                    <ImageView
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_marginStart="@dimen/sp35"
+                        android:layout_marginLeft="@dimen/sp35"
+                        android:src="@drawable/dollar"
+                        android:background="@drawable/btn_bg"/>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_marginTop="7dp"
+                    android:layout_weight="1"
+                    android:gravity="end"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    >
+                    <ImageView
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_marginEnd="45dp"
+                        android:layout_marginRight="@dimen/sp45"
+                        android:src="@drawable/money"
+                        android:background="@drawable/btn_bg"/>
+
+
+                </LinearLayout>
+
+
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_marginTop="7dp"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                >
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+
+                    android:gravity="center"
+                    >
+
+                    <ImageView
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_marginLeft="@dimen/margin_20"
+                        android:layout_marginStart="@dimen/margin_20"
+                        android:src="@drawable/laptop"
+                        android:background="@drawable/btn_bg" />
+
+
+                </LinearLayout>
+            </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/_10dp"
+                    >
+
+                </LinearLayout>
 
 
 
@@ -370,8 +360,12 @@
 
 
 
-        </LinearLayout>
 
 
--->
-        </LinearLayout>
+
+
+            </LinearLayout>
+
+
+    -->
+</LinearLayout>
