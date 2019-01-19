@@ -54,12 +54,10 @@ public class AddUserFragment extends Fragment {
         // Inflate the layout for this fragment
         View view= inflater.inflate(R.layout.fragment_add_user, container, false);
 
-        editTextLIC=view.findViewById(R.id.edittext_liccode);
         editTextFirstname=view.findViewById(R.id.edittext_firstname);
         editTextLastname=view.findViewById(R.id.edittext_lastname);
         editTextPhone=view.findViewById(R.id.edittext_phonenumber);
         editTextEmail=view.findViewById(R.id.edittext_email);
-        editTextDate=view.findViewById(R.id.edittext_date);
         editTextAddress=view.findViewById(R.id.edittext_address);
         editTextPincode=view.findViewById(R.id.edittext_pincode);
         editTextAadharcard=view.findViewById(R.id.edittext_aadharcard);
@@ -67,10 +65,7 @@ public class AddUserFragment extends Fragment {
         editTextAccountnum=view.findViewById(R.id.edittext_accountnumber);
         editTextIfsccode=view.findViewById(R.id.editext_ifsc);
         editTextBranchname=view.findViewById(R.id.edittext_branch_name);
-        editTextDateNominee=view.findViewById(R.id.edittext_date1);
-        editTextNomineename=view.findViewById(R.id.edittext_nominee);
-        editTextJoiningfee=view.findViewById(R.id.edittext_joiningfee);
-        editTextAdharNominee=view.findViewById(R.id.edittext_aadharno);
+
         editTextAccountholder=view.findViewById(R.id.edittext_accountholder);
         buttonSubmit=view.findViewById(R.id.button);
 
