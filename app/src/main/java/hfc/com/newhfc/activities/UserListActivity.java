@@ -8,20 +8,17 @@ import android.view.MenuItem;
 
 import hfc.com.newhfc.R;
 
-public class UserListActiviti extends AppCompatActivity {
+public class UserListActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_list_activiti);
-
-
        /* RecyclerView recyclerView=findViewById(R.id.recycler_userlist);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 */
 
         if (getSupportActionBar() != null) {
-
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setDisplayShowHomeEnabled(true);
         }
@@ -29,16 +26,12 @@ public class UserListActiviti extends AppCompatActivity {
     }
 
 
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
-        int id=item.getItemId();
-        if(id==R.id.home)
-        {
+        int id = item.getItemId();
+        if (id == R.id.home) {
             finish();
-
-
         }
         return super.onOptionsItemSelected(item);
     }
