@@ -46,6 +46,7 @@ public class AppUtils {
         }
     }
 
+
     public static void dismissProgressDialog() {
         try {
             if (pDialog != null && pDialog.isShowing()) {

@@ -6,6 +6,7 @@ public class LoginRequestModel {
 
     public String getEmailAddress() {
         return this.EmailAddress;
+
     }
 
     public void setEmailAddress(String str) {

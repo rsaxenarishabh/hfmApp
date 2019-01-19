@@ -15,6 +15,7 @@ public class RestClient {
 
     public static void login(LoginRequestModel loginRequestModel, Callback<LoginResponse> callback) {
         RetrofitClient.getClient().login(loginRequestModel).enqueue(callback);
+
     }
 
     public static void getUserList(String access_token, Callback<List<UserList>> callback) {
