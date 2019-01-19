@@ -20,16 +20,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.DataSource;
-import com.bumptech.glide.load.engine.GlideException;
-import com.bumptech.glide.request.RequestListener;
-import com.bumptech.glide.request.RequestOptions;
-import com.bumptech.glide.request.target.Target;
 import com.google.gson.Gson;
+import com.squareup.picasso.Picasso;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
+import javax.sql.DataSource;
+
 import de.hdodenhof.circleimageview.CircleImageView;
 import hfc.com.newhfc.R;
 import hfc.com.newhfc.fragments.AboutFragment;
@@ -77,7 +72,8 @@ public class MainActivity extends AppCompatActivity
 
         tvName.setText(loginResponse.getUser().getFirstName() + " " + loginResponse.getUser().getLastName());
         tvEmail.setText(loginResponse.getUser().getEmailAddress());
-
+        Picasso.with(this).load(loginResponse.getUser().getImage()).into(circleImageView);
+       /*
         RequestOptions requestOptions = RequestOptions.circleCropTransform().placeholder(R.drawable.user).error(R.drawable.user);
 
         Glide.with(this).load(loginResponse.getUser().getImage()).apply(requestOptions).listener(new RequestListener<Drawable>() {
@@ -92,7 +88,7 @@ public class MainActivity extends AppCompatActivity
 
                 return true;
             }
-        }).into(circleImageView);
+        }).into(circleImageView);*/
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);

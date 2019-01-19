@@ -79,7 +79,6 @@
                 android:text="HFC9001" />
 
         </android.support.design.widget.TextInputLayout>
-
         <android.support.v7.widget.AppCompatButton
             android:id="@+id/email_sign_in_button"
             style="?android:textAppearanceSmall"
@@ -87,9 +86,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="100dp"
             android:textColor="@color/white"
-            android:background="@color/colorPrimary"
+            android:background="@drawable/login_background_button"
             android:text="@string/action_sign_in"
             android:textStyle="bold" />
-
     </LinearLayout>
 </LinearLayout>

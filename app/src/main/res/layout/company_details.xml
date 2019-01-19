@@ -170,7 +170,7 @@ tools:context=".fragments.BankDetailsFragment">
 
 
             <LinearLayout
-                android:layout_marginBottom="@dimen/_20dp"
+
                 android:layout_marginLeft="@dimen/_10dp"
                 android:orientation="horizontal"
                 android:gravity="center"
@@ -183,6 +183,7 @@ tools:context=".fragments.BankDetailsFragment">
                     android:textSize="15dp"
                     android:textStyle="bold"
                     android:textColor="@color/white"
+                    android:layout_marginBottom="@dimen/_20dp"
 
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
