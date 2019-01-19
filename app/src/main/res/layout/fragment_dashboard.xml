@@ -23,7 +23,99 @@
 
     </FrameLayout>
 
+    <RelativeLayout
+        android:id="@+id/relative1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
+           <LinearLayout
+               android:id="@+id/linear1"
+               android:orientation="vertical"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content">
+
+
+               <ImageView
+                   android:background="@drawable/bike_button"
+                   android:layout_gravity="center"
+                   android:layout_width="70dp"
+                   android:layout_height="@dimen/_70dp"
+                   android:src="@drawable/bike"
+                />
+           </LinearLayout>
+        <LinearLayout
+            android:layout_below="@id/linear1"
+            android:id="@+id/linear2"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:background="@drawable/car_button"
+
+                android:layout_width="@dimen/_70dp"
+                android:layout_height="@dimen/_70dp"
+                android:src="@drawable/car"/>
+
+            <ImageView
+                android:background="@drawable/gift_button"
+            android:layout_width="@dimen/_70dp"
+
+            android:layout_height="@dimen/_70dp"
+            android:src="@drawable/gift"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_below="@id/linear2"
+            android:id="@+id/linear3"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_gravity="center"
+                android:layout_width="@dimen/_70dp"
+                android:layout_height="@dimen/_70dp"
+                android:src="@drawable/hfmlogo"/>
+        </LinearLayout>
+
+
+
+        <LinearLayout
+            android:layout_below="@id/linear3"
+            android:id="@+id/linear4"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:background="@drawable/money_button"
+                android:layout_width="@dimen/_70dp"
+                android:layout_height="@dimen/_70dp"
+                android:src="@drawable/money"/>
+
+            <ImageView
+                android:background="@drawable/dollar_button"
+            android:layout_width="@dimen/_70dp"
+            android:layout_height="@dimen/_70dp"
+            android:src="@drawable/dollar"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_below="@id/linear4"
+            android:id="@+id/linear5"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:background="@drawable/laptop_button"
+                android:layout_gravity="center"
+                android:layout_width="@dimen/_70dp"
+                android:layout_height="@dimen/_70dp"
+                android:src="@drawable/laptop"/>
+        </LinearLayout>
+    </RelativeLayout>
+
+<!--
     <LinearLayout
 
         android:orientation="vertical"
@@ -121,7 +213,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 >
-               <!-- <Button
+               &lt;!&ndash; <Button
                     android:layout_marginStart="@dimen/margin_20"
                     android:layout_marginLeft="@dimen/margin_20"
                     android:background="@drawable/circlebutton"
@@ -129,7 +221,7 @@
                     android:layout_height="wrap_content"
 
                     />
-                -->
+                &ndash;&gt;
                 <ImageView
                     android:layout_width="60dp"
                     android:layout_height="60dp"
@@ -277,7 +369,9 @@
 
 
 
+
         </LinearLayout>
 
 
+-->
         </LinearLayout>

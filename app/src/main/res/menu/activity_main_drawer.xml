@@ -6,7 +6,8 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/home"
-            android:title="Home" />
+            android:title="Home"
+            />
         <item
             android:id="@+id/addUser"
             android:title="Add User" />
@@ -15,7 +16,7 @@
             android:title="My Contacts" />
         <item
             android:id="@+id/bankDetails"
-            android:title="Bank Dteails" />
+            android:title="Company Dteails" />
 
         <item
             android:id="@+id/myProfile"
@@ -31,7 +32,8 @@
                 android:title="Share" />
             <item
                 android:id="@+id/nav_send"
-                android:title="Send" />
+                android:title="Send"
+                android:icon="@drawable/ic_menu_send"/>
 
             <item
                 android:id="@+id/nav_about"

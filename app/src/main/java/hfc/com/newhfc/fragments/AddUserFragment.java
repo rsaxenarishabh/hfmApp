@@ -65,7 +65,6 @@ public class AddUserFragment extends Fragment {
         editTextAccountnum=view.findViewById(R.id.edittext_accountnumber);
         editTextIfsccode=view.findViewById(R.id.editext_ifsc);
         editTextBranchname=view.findViewById(R.id.edittext_branch_name);
-
         editTextAccountholder=view.findViewById(R.id.edittext_accountholder);
         buttonSubmit=view.findViewById(R.id.button);
 

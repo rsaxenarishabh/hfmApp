@@ -1,4 +1,4 @@
-package hfc.com.newhfc.activities;
+ package hfc.com.newhfc.activities;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -130,6 +130,10 @@ public class LoginActivity extends AppCompatActivity {
             focusView = mEmailView;
             cancel = true;
         }
+
+
+
+
 
         if (cancel) {
             // There was an error; don't attempt login and focus the first

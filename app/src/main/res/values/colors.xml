@@ -17,6 +17,7 @@
     <color name="red">#ff0000</color>
     <color name="dim_white">#F5F5F5</color>
     <color name="black">#000000</color>
+    <color name="skyblue">#cbf2fe</color>
 
     <color name="black_primary">#212121</color>
     <color name="black_secondary">#757575</color>
@@ -43,5 +44,12 @@
     <color name="tabtextcolor">#fff</color>
     <color name="tabindiacatorcolor">#2d2d2d</color>
 
+    <color name="bike_color">#3ab77f</color>
+    <color name="car_color">#f88a00</color>
+    <color name="dashboard3">#24418d</color>
+    <color name="money_color">#a723cc</color>
+    <color name="laptop_color">#007aff</color>
+    <color name="dollar_color">#d51b5c</color>
+    <color name="gift_color">#1670b0</color>
 
 </resources>
