@@ -13,14 +13,14 @@ import hfc.com.newhfc.R;
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link BankDetailsFragment.OnFragmentInteractionListener} interface
+ * {@link CompanyDetail.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link BankDetailsFragment#newInstance} factory method to
+ * Use the {@link CompanyDetail#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class BankDetailsFragment extends Fragment {
+public class CompanyDetail extends Fragment {
 
-    public BankDetailsFragment() {
+    public CompanyDetail() {
         // Required empty public constructor
     }
 
@@ -28,11 +28,11 @@ public class BankDetailsFragment extends Fragment {
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
      *
-     * @return A new instance of fragment BankDetailsFragment.
+     * @return A new instance of fragment CompanyDetail.
      */
     // TODO: Rename and change types and number of parameters
-    public static BankDetailsFragment newInstance() {
-        BankDetailsFragment fragment = new BankDetailsFragment();
+    public static CompanyDetail newInstance() {
+        CompanyDetail fragment = new CompanyDetail();
 
         return fragment;
     }
@@ -46,7 +46,10 @@ public class BankDetailsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        getActivity().setTitle("Company Detail");
         // Inflate the layout for this fragment
+
         return inflater.inflate(R.layout.company_details, container, false);
     }
 

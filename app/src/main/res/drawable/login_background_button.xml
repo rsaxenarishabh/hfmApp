@@ -3,20 +3,12 @@
     <stroke android:color="#c9c1d2"
         android:width="0dp"
         >
-
-
     </stroke>
     <solid android:color="@color/green">
-
     </solid>
-
-
    <corners android:topLeftRadius="@dimen/_10dp"
              android:topRightRadius="@dimen/_10dp"
               android:bottomRightRadius="@dimen/_10dp"
                android:bottomLeftRadius="@dimen/_10dp"
        />
-
-
-
 </shape>

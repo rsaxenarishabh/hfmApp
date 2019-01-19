@@ -54,6 +54,9 @@ public class AddUserFragment extends Fragment {
         // Inflate the layout for this fragment
         View view= inflater.inflate(R.layout.fragment_add_user, container, false);
 
+
+        getActivity().setTitle("Add User");
+
         editTextFirstname=view.findViewById(R.id.edittext_firstname);
         editTextLastname=view.findViewById(R.id.edittext_lastname);
         editTextPhone=view.findViewById(R.id.edittext_phonenumber);
