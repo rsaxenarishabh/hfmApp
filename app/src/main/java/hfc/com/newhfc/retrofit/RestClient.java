@@ -18,8 +18,8 @@ public class RestClient {
 
     }
 
-    public static void getUserList(String access_token, Callback<List<UserList>> callback) {
-        RetrofitClient.getClient().getUserList(access_token).enqueue(callback);
+    public static void getUserList( UserById user ,String access_token, Callback<List<UserList>> callback) {
+        RetrofitClient.getClient().getUserList(user,access_token).enqueue(callback);
     }
 
     public static void addUser(String access_token, AddUser addUser, Callback<ResponseBody> callback) {
