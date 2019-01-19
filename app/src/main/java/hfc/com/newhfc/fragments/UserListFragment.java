@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +16,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import hfc.com.newhfc.R;
+import hfc.com.newhfc.activities.UserListActiviti;
+import hfc.com.newhfc.adapter.UserListAdaptor;
 import hfc.com.newhfc.model.UserList;
 import hfc.com.newhfc.retrofit.RestClient;
 import hfc.com.newhfc.utils.AppUtils;
@@ -31,6 +34,7 @@ import retrofit2.Response;
  */
 public class UserListFragment extends Fragment {
     List<UserList> userLists = new ArrayList<>();
+    RecyclerView recyclerView;
 
     public UserListFragment() {
         // Required empty public constructor
@@ -51,7 +55,10 @@ public class UserListFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_user_list, container, false);
+
+        View view = inflater.inflate(R.layout.fragment_user_list, container, false);
+        recyclerView = view.findViewById(R.id.recyclerView);
+        return view;
     }
 
     @Override
@@ -68,13 +75,20 @@ public class UserListFragment extends Fragment {
     private void getUserListApiCall() {
         if (AppUtils.isInternetConnected(getActivity())) {
             AppUtils.showProgressDialog(getActivity());
-            RestClient.getUserList(getString(R.string.bearer)+" "+HFCPrefs.getString(getActivity(), Constants.ACCESS_TOKEN), new Callback<List<UserList>>() {
+            RestClient.getUserList(getString(R.string.bearer) + " " + HFCPrefs.getString(getActivity(), Constants.ACCESS_TOKEN), new Callback<List<UserList>>() {
                 @Override
                 public void onResponse(Call<List<UserList>> call, Response<List<UserList>> response) {
-                  AppUtils.dismissProgressDialog();
-                    if (response.body()!=null){
+                    AppUtils.dismissProgressDialog();
+                    if (response.body() != null) {
                         Log.e("UserList Api Response", "" + response.body().size());
+                        if (userLists != null) {
+                            userLists.clear();
+                        }
                         userLists = response.body();
+
+                        UserListAdaptor userListAdaptor = new UserListAdaptor(userLists, getActivity());
+
+                        recyclerView.setAdapter(userListAdaptor);
                         //TODO implement Recycler view
                     }
 
