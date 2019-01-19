@@ -189,27 +189,6 @@ tools:context=".fragments.BankDetailsFragment">
                     android:text="Android version 1.0"/>
 
             </LinearLayout>
-
-
-
-
-
-
-
-
         </LinearLayout>
-
-
-
-
-
-
-
-
-
-
-
     </RelativeLayout>
-
-
 </LinearLayout>
