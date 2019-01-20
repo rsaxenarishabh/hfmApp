@@ -138,25 +138,6 @@
 
             </android.support.design.widget.TextInputLayout>
 
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/_5dp"
-                android:layout_marginRight="@dimen/_5dp"
-
-                >
-
-
-                <android.support.design.widget.TextInputEditText
-
-                    android:id="@+id/edittext_password"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Password"
-
-                    android:inputType="textEmailAddress" />
-
-            </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
@@ -168,11 +149,10 @@
 
 
                 <android.support.design.widget.TextInputEditText
-                    android:id="@+id/edittext_referalcode"
+                    android:id="@+id/dob"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Referal Code"
-
+                    android:hint="DD-MM-YYYY"
                     android:inputType="text" />
 
             </android.support.design.widget.TextInputLayout>
@@ -212,8 +192,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Pincode"
-
-                    android:inputType="number" />
+                    android:inputType="number"
+                    android:maxLength="6" />
 
             </android.support.design.widget.TextInputLayout>
 
@@ -253,8 +233,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Aadhar Card Number"
-
-                    android:inputType="number" />
+                    android:inputType="number"
+                    android:maxLength="16" />
 
             </android.support.design.widget.TextInputLayout>
 
@@ -274,8 +254,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Pan Card Number"
-
-                    android:inputType="number" />
+                    android:inputType="text" />
 
             </android.support.design.widget.TextInputLayout>
 
@@ -285,13 +264,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/_5dp"
                 android:layout_marginRight="@dimen/_5dp"
-
                 >
 
 
                 <android.support.design.widget.TextInputEditText
-
-
                     android:id="@+id/edittext_accountnumber"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -357,7 +333,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Branch Name"
-
                     android:inputType="text" />
 
             </android.support.design.widget.TextInputLayout>
@@ -374,14 +349,15 @@
 
                 <android.support.design.widget.TextInputEditText
 
-                    android:id="@+id/edittext_CVV"
+                    android:id="@+id/edittext_nomineeAdhar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Enter CVV"
-
-                    android:inputType="text" />
+                    android:hint="Nominee Adhar"
+                    android:inputType="number" />
 
             </android.support.design.widget.TextInputLayout>
+
+
 
 
             <Button

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,7 @@ import android.widget.TextView;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
+
 import hfc.com.newhfc.R;
 import hfc.com.newhfc.activities.UserListActivity;
 import hfc.com.newhfc.model.User;
@@ -30,6 +32,7 @@ public class UserListAdaptor extends RecyclerView.Adapter<UserListAdaptor.ViewHo
     boolean isUserSelected;
     private String color;
     private List<UserList> userLists;
+    OnUserClickCallback onUserClickCallback;
 
     public UserListAdaptor(List<UserList> userLists, Context context) {
         this.userLists = userLists;
@@ -58,29 +61,33 @@ public class UserListAdaptor extends RecyclerView.Adapter<UserListAdaptor.ViewHo
                 return false;
             }
         }).into(holder.imageView);*/
-       Picasso.with(context).load(userLists.get(holder.getAdapterPosition()).getImage()).into(holder.imageView);
+       if (!TextUtils.isEmpty(userLists.get(holder.getAdapterPosition()).getImage())){
+           Picasso.with(context)
+                   .load(""+userLists.get(holder.getAdapterPosition()).getImage())
+                   .error(R.drawable.ic_default_image)
+                   .into(holder.imageView);
 
-       isUserSelected=userLists.get(holder.getAdapterPosition()).getIsActive();
-       if(isUserSelected)
-       {
-           holder.activeImage.setImageResource(R.drawable.ic_activated);
+       }else{
+           holder.imageView.setImageResource(R.drawable.ic_default_image);
        }
-       else
-       {
-           holder.activeImage.setImageResource(R.drawable.ic_blocked);
-       }
-        holder.tvName.setText(userLists.get(holder.getAdapterPosition()).getFirstName() );
-       holder.tvDesc.setText(userLists.get(holder.getAdapterPosition()).getCreatedOn());
-       holder.cardViewList.setOnClickListener(new View.OnClickListener() {
-           @Override
-           public void onClick(View v) {
 
-               Intent intent=new Intent(context,UserListActivity.class);
-               intent.putExtra("id",userLists.get(holder.getAdapterPosition()).getId());
-               context.startActivity(intent);
+        isUserSelected = userLists.get(holder.getAdapterPosition()).getIsActive();
+        if (isUserSelected) {
+            holder.activeImage.setImageResource(R.drawable.ic_activated);
+        } else {
+            holder.activeImage.setImageResource(R.drawable.ic_blocked);
+        }
+        holder.tvName.setText(userLists.get(holder.getAdapterPosition()).getFirstName());
+        holder.tvDesc.setText(userLists.get(holder.getAdapterPosition()).getCreatedOn());
+        holder.cardViewList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (onUserClickCallback != null)
+                    onUserClickCallback.onUserClick(userLists.get(holder.getAdapterPosition()).getId(),userLists.get(holder.getAdapterPosition()).getReferalCode());
 
-           }
-       });
+
+            }
+        });
 
 
     }
@@ -89,6 +96,10 @@ public class UserListAdaptor extends RecyclerView.Adapter<UserListAdaptor.ViewHo
     @Override
     public int getItemCount() {
         return userLists.size();
+    }
+
+    public void setListener(OnUserClickCallback userListActivity) {
+        this.onUserClickCallback = userListActivity;
     }
 
 
@@ -104,8 +115,12 @@ public class UserListAdaptor extends RecyclerView.Adapter<UserListAdaptor.ViewHo
             imageView = view.findViewById(R.id.image);
             tvName = view.findViewById(R.id.tvName);
             tvDesc = view.findViewById(R.id.tvDesc);
-            activeImage=view.findViewById(R.id.tvDelete);
-            cardViewList=view.findViewById(R.id.deviceInfoView);
+            activeImage = view.findViewById(R.id.tvDelete);
+            cardViewList = view.findViewById(R.id.deviceInfoView);
         }
+    }
+
+    public interface OnUserClickCallback {
+        public void onUserClick(int id,String referalCode);
     }
 }

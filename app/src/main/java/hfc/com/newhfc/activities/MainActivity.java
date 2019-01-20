@@ -137,8 +137,8 @@ public class MainActivity extends AppCompatActivity
 
                 Intent share = new Intent(Intent.ACTION_SEND);
                 share.setType("text/plain");
-                String text = "This is Service application ,click below to download\nhttp://www.mediafire.com/file/oan96lui4k7423w/handicraft.apk";
-                share.putExtra(Intent.EXTRA_SUBJECT, "Services");
+                String text = "Join Hurry Future Marketing Private Limited ,click below to download\nhttps://play.google.com/store/apps/details?id=hfc.com.newhfc&hl=en";
+                share.putExtra(Intent.EXTRA_SUBJECT, "HFM");
                 share.putExtra(Intent.EXTRA_TEXT, text);
                 startActivity(Intent.createChooser(share, "share via"));
                 break;
@@ -153,7 +153,7 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
-    private void replaceFragment(Fragment fragment) {
+    public void replaceFragment(Fragment fragment) {
         FragmentManager fragmentManager = getSupportFragmentManager();
 
         if (fragmentManager != null) {
