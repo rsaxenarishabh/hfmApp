@@ -1,10 +1,8 @@
 package hfc.com.newhfc.adapter;
 
 import android.content.Context;
-import android.graphics.Color;
-import android.graphics.drawable.Drawable;
-import android.graphics.drawable.GradientDrawable;
-import android.support.annotation.Nullable;
+import android.content.Intent;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,16 +10,12 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.DataSource;
-import com.bumptech.glide.load.engine.GlideException;
-import com.bumptech.glide.request.RequestListener;
-import com.bumptech.glide.request.target.Target;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
-
 import hfc.com.newhfc.R;
+import hfc.com.newhfc.activities.UserListActivity;
+import hfc.com.newhfc.model.User;
 import hfc.com.newhfc.model.UserList;
 import hfc.com.newhfc.views.CircleImageView;
 
@@ -53,7 +47,7 @@ public class UserListAdaptor extends RecyclerView.Adapter<UserListAdaptor.ViewHo
 
     @Override
     public void onBindViewHolder(final UserListAdaptor.ViewHolder holder, int position) {
-        Glide.with(context.getApplicationContext()).load(userLists.get(holder.getAdapterPosition()).getImage()).listener(new RequestListener<Drawable>() {
+       /* Glide.with(context.getApplicationContext()).load(userLists.get(holder.getAdapterPosition()).getImage()).listener(new RequestListener<Drawable>() {
             @Override
             public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
                 return false;
@@ -63,8 +57,30 @@ public class UserListAdaptor extends RecyclerView.Adapter<UserListAdaptor.ViewHo
             public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
                 return false;
             }
-        }).into(holder.imageView);
-        holder.tvName.setText(userLists.get(holder.getAdapterPosition()).getFirstName()+" "+userLists.get(holder.getAdapterPosition()).getLastName() );
+        }).into(holder.imageView);*/
+       Picasso.with(context).load(userLists.get(holder.getAdapterPosition()).getImage()).into(holder.imageView);
+
+       isUserSelected=userLists.get(holder.getAdapterPosition()).getIsActive();
+       if(isUserSelected)
+       {
+           holder.activeImage.setImageResource(R.drawable.ic_activated);
+       }
+       else
+       {
+           holder.activeImage.setImageResource(R.drawable.ic_blocked);
+       }
+        holder.tvName.setText(userLists.get(holder.getAdapterPosition()).getFirstName() );
+       holder.tvDesc.setText(userLists.get(holder.getAdapterPosition()).getCreatedOn());
+       holder.cardViewList.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+
+               Intent intent=new Intent(context,UserListActivity.class);
+               intent.putExtra("id",userLists.get(holder.getAdapterPosition()).getId());
+               context.startActivity(intent);
+
+           }
+       });
 
 
     }
@@ -80,12 +96,16 @@ public class UserListAdaptor extends RecyclerView.Adapter<UserListAdaptor.ViewHo
         private CircleImageView imageView;
         private TextView tvName;
         private TextView tvDesc;
+        private ImageView activeImage;
+        private CardView cardViewList;
 
         public ViewHolder(View view) {
             super(view);
             imageView = view.findViewById(R.id.image);
             tvName = view.findViewById(R.id.tvName);
             tvDesc = view.findViewById(R.id.tvDesc);
+            activeImage=view.findViewById(R.id.tvDelete);
+            cardViewList=view.findViewById(R.id.deviceInfoView);
         }
     }
 }

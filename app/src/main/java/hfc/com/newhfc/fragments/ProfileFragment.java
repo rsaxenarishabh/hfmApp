@@ -45,25 +45,15 @@ public class ProfileFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v= inflater.inflate(R.layout.fragment_profile, container, false);
-
+        getActivity().setTitle("Profile Detail");
         tableLayout=v.findViewById(R.id.tabmode);
         appBarLayout=v.findViewById(R.id.appbarid);
         viewPager=v.findViewById(R.id.viewpager);
-
-
-
-
-
         ViewPagerAdapter adapter=new ViewPagerAdapter(getFragmentManager());
         adapter.AddFragment(new PersonalDetailsFragment(),"Personal Detail");
         adapter.AddFragment(new ProfileAccountDetail(),"Account Detail");
-
-
         viewPager.setAdapter(adapter);
         tableLayout.setupWithViewPager(viewPager);
-
-
-
         return v;
     }
 

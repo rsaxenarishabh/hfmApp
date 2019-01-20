@@ -40,7 +40,7 @@ public class DashboardFragment extends Fragment implements BaseSliderView.OnSlid
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
      *
-     * @return A new instance of fragment BankDetailsFragment.
+     * @return A new instance of fragment CompanyDetail.
      */
     // TODO: Rename and change types and number of parameters
     public static DashboardFragment newInstance() {
@@ -58,6 +58,8 @@ public class DashboardFragment extends Fragment implements BaseSliderView.OnSlid
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        getActivity().setTitle("Dashboard");
         // Inflate the layout for this fragment
         View view= inflater.inflate(R.layout.fragment_dashboard, container, false);
         mDemoSlider = (SliderLayout)view.findViewById(R.id.slider);

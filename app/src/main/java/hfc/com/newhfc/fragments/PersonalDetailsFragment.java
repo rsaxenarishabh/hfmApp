@@ -26,7 +26,7 @@ public class PersonalDetailsFragment extends Fragment {
         // Inflate the layout for this fragment
         View v= inflater.inflate(R.layout.fragment_personal_details, container, false);
 
-
+          getActivity().setTitle("Detail");
         return v;
 
     }

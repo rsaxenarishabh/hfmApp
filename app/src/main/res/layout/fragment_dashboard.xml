@@ -33,10 +33,9 @@
             android:id="@+id/bike"
             android:layout_width="70dp"
             android:layout_height="@dimen/_70dp"
-            android:layout_alignParentStart="true"
+            android:layout_alignStart="@+id/dooler"
             android:layout_alignTop="@+id/money"
             android:layout_gravity="center"
-            android:layout_marginStart="26dp"
             android:background="@drawable/bike_button"
             android:src="@drawable/bike" />
 
@@ -76,9 +75,9 @@
             android:layout_height="@dimen/_70dp"
             android:layout_alignParentEnd="true"
             android:layout_alignParentTop="true"
-            android:layout_marginEnd="20dp"
+            android:layout_marginEnd="36dp"
 
-            android:layout_marginTop="89dp"
+            android:layout_marginTop="119dp"
             android:background="@drawable/money_button"
             android:src="@drawable/money" />
 
@@ -87,11 +86,11 @@
             android:layout_width="@dimen/_70dp"
             android:layout_height="@dimen/_70dp"
             android:layout_alignParentBottom="true"
-            android:layout_alignParentStart="true"
             android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
             android:layout_marginBottom="120dp"
-            android:layout_marginStart="47dp"
             android:layout_marginLeft="47dp"
+            android:layout_marginStart="47dp"
             android:background="@drawable/dollar_button"
             android:src="@drawable/dollar" />
 
