@@ -1,5 +1,10 @@
 apply plugin: 'com.android.application'
 
+
+def uatKeystorePropertiesFile = rootProject.file("uat_signing.properties")
+def uatKeystoreProperties = new Properties()
+uatKeystoreProperties.load(new FileInputStream(uatKeystorePropertiesFile))
+
 android {
     compileSdkVersion 28
     defaultConfig {
@@ -10,9 +15,27 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
+    lintOptions {
+        checkReleaseBuilds false
+
+    }
+    signingConfigs {
+        uat {
+            keyAlias uatKeystoreProperties['KEY_ALIAS']
+            keyPassword uatKeystoreProperties['KEY_PASSWORD']
+            storeFile file(uatKeystoreProperties['STORE_FILE'])
+            storePassword uatKeystoreProperties['STORE_PASSWORD']
+            v2SigningEnabled false
+        }
+
+
+    }
     buildTypes {
         release {
+            def uatSigningKey = signingConfigs.uat
+
             minifyEnabled false
+            signingConfig uatSigningKey
             buildConfigField "String", "API_BASEURL", "\"http://api.hindustanfundscarrier.com/\""
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
@@ -26,6 +49,8 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+
 }
 
 dependencies {

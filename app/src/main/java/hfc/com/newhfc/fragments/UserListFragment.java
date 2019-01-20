@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import hfc.com.newhfc.R;
+import hfc.com.newhfc.activities.UserListActivity;
 import hfc.com.newhfc.adapter.UserListAdaptor;
 import hfc.com.newhfc.model.UserList;
 import hfc.com.newhfc.retrofit.RestClient;
@@ -36,7 +37,7 @@ import static android.content.Intent.getIntentOld;
  * Activities that contain this fragment must implement the
  * create an instance of this fragment.
  */
-public class UserListFragment extends Fragment {
+public class UserListFragment extends Fragment implements UserListAdaptor.OnUserClickCallback{
     List<UserList> userLists = new ArrayList<>();
     RecyclerView recyclerView;
 
@@ -95,6 +96,7 @@ public class UserListFragment extends Fragment {
                                 userLists = response.body();
                                 UserListAdaptor userListAdaptor = new UserListAdaptor(userLists, getActivity());
                                 recyclerView.setHasFixedSize(true);
+                                userListAdaptor.setListener(UserListFragment.this);
                                 RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity().getApplicationContext());
                                 recyclerView.setLayoutManager(layoutManager);
                                 recyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL));
@@ -115,6 +117,15 @@ public class UserListFragment extends Fragment {
         } else {
             AppUtils.showMessage(getActivity(), "Please check internet conection");
         }
+    }
+
+    @Override
+    public void onUserClick(int id,String referalCode) {
+        Intent intent=new Intent(getActivity(),UserListActivity.class);
+        intent.putExtra("id",id);
+        intent.putExtra("referalCode",referalCode);
+
+        startActivity(intent);
     }
 
 }

@@ -46,4 +46,6 @@
     <string name="title_activity_user_list">UserListActivity</string>
     <string name="unable_to_get_user">unable to get user list,please try again later!</string>
     <string name="bearer">bearer</string>
+    <string name="no_internet">no iternet connection</string>
+    <string name="text_add_user">Add User</string>
 </resources>

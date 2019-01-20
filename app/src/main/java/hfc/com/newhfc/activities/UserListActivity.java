@@ -8,6 +8,7 @@ import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
 
 import java.util.ArrayList;
@@ -25,11 +26,13 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class UserListActivity extends AppCompatActivity {
+public class UserListActivity extends AppCompatActivity implements UserListAdaptor.OnUserClickCallback {
 
     List<UserList> userLists = new ArrayList<>();
     RecyclerView recyclerView;
     UserListAdaptor userListAdaptor;
+
+   public String referalCode;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,8 +40,30 @@ public class UserListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_user_list_activiti);
          recyclerView = findViewById(R.id.recyclerview_userlist);
 
+         if (getIntent().hasExtra("referalCode")){
+             referalCode = getIntent().getStringExtra("referalCode");
+         }
 
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.addUser:
+                Intent intent = new Intent(this,AddUserActivity.class);
+                intent.putExtra("referalCode",referalCode);
+                startActivity(intent);
+                return true;
+        }
+        return false;
+    }
+
     @Override
     protected void onResume() {
         super.onResume();
@@ -58,7 +83,8 @@ public class UserListActivity extends AppCompatActivity {
                             userLists.clear();
                         }
                         userLists = response.body();
-                        UserListAdaptor userListAdaptor = new UserListAdaptor(userLists, getApplicationContext());
+                        userListAdaptor = new UserListAdaptor(userLists, getApplicationContext());
+                        userListAdaptor.setListener(UserListActivity.this);
                         recyclerView.setHasFixedSize(true);
                         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext().getApplicationContext());
                         recyclerView.setLayoutManager(layoutManager);
@@ -81,5 +107,13 @@ public class UserListActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    public void onUserClick(int id,String referalCode) {
+        Intent intent=new Intent(this,UserListActivity.class);
+        intent.putExtra("id",id);
+        intent.putExtra("referalCode",referalCode);
+
+        startActivity(intent);
+    }
 }
 
