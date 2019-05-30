@@ -16,7 +16,8 @@
         android:roundIcon="@drawable/logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.UpdateActivity"></activity>
+        <activity android:name=".activities.AccountDetailUpdateActivity"></activity>
+        <activity android:name=".activities.UpdateActivity" />
         <activity
             android:name=".activities.ProfileActivity"
             android:label="Profile"
