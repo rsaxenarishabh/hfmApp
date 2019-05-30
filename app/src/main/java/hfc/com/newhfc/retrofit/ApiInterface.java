@@ -10,6 +10,8 @@ import hfc.com.newhfc.model.bankDetail.BankDetailRequest;
 import hfc.com.newhfc.model.bankDetail.BankDetailResponse;
 import hfc.com.newhfc.model.login.LoginRequest;
 import hfc.com.newhfc.model.login.LoginResponse;
+import hfc.com.newhfc.model.updateUser.UpdateUserDetail;
+import hfc.com.newhfc.model.updateUser.UpdateUserResponse;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -38,6 +40,10 @@ public interface ApiInterface {
 
     @POST("http://vrok.in/hfm_api/add_bank")
     Call<BankDetailResponse> bankDetailSave(@Body BankDetailRequest bankDetailRequest);
+
+
+    @POST("http://vrok.in/hfm_api/update")
+    Call<UpdateUserResponse> updateUser(@Body UpdateUserDetail updateUserDetail);
 
 
 
