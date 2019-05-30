@@ -3,7 +3,6 @@ package hfc.com.newhfc.activities;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -21,7 +20,7 @@ import hfc.com.newhfc.retrofit.RestClient;
 import hfc.com.newhfc.retrofit.UserById;
 import hfc.com.newhfc.utils.AppUtils;
 import hfc.com.newhfc.utils.Constants;
-import hfc.com.newhfc.utils.HFCPrefs;
+import hfc.com.newhfc.utils.HFMPrefs;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -73,7 +72,7 @@ public class UserListActivity extends AppCompatActivity implements UserListAdapt
             int userId=intent.getIntExtra("id",0);
             UserById userById = new UserById();
             userById.setUserId(userId);
-            RestClient.getUserList(userById,getString(R.string.bearer) + " " + HFCPrefs.getString(getApplicationContext(), Constants.ACCESS_TOKEN), new Callback<List<UserList>>() {
+            RestClient.getUserList(userById,getString(R.string.bearer) + " " + HFMPrefs.getString(getApplicationContext(), Constants.ACCESS_TOKEN), new Callback<List<UserList>>() {
                 @Override
                 public void onResponse(Call<List<UserList>> call, Response<List<UserList>> response) {
                     AppUtils.dismissProgressDialog();

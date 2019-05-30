@@ -37,8 +37,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/_5dp"
-                android:layout_marginRight="@dimen/_5dp"
                 android:layout_marginTop="8dp"
+                android:layout_marginRight="@dimen/_5dp"
                 android:background="@color/black_divider_rgb">
 
 
@@ -47,8 +47,8 @@
                     android:layout_height="40dp"
                     android:gravity="center"
 
-                    android:paddingBottom="@dimen/_5dp"
                     android:paddingTop="4dp"
+                    android:paddingBottom="@dimen/_5dp"
                     android:text="Personal Details"
                     android:textSize="@dimen/margin_20"
                     android:textStyle="bold" />
@@ -113,7 +113,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Phone Number"
-
+                    android:maxLength="10"
                     android:inputType="phone" />
 
             </android.support.design.widget.TextInputLayout>
@@ -133,7 +133,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Email Address"
-
                     android:inputType="textEmailAddress" />
 
             </android.support.design.widget.TextInputLayout>
@@ -143,14 +142,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/_5dp"
-                android:layout_marginRight="@dimen/_5dp">
+                android:layout_marginRight="@dimen/_5dp"
 
-
+                >
                 <android.support.design.widget.TextInputEditText
                     android:id="@+id/dob"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="DD-MM-YYYY"
+                    android:hint="YYYY-MM-DD"
                     android:inputType="text" />
 
             </android.support.design.widget.TextInputLayout>
@@ -170,7 +169,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Address"
-
                     android:inputType="textPostalAddress" />
 
             </android.support.design.widget.TextInputLayout>
@@ -192,182 +190,17 @@
                     android:hint="Pincode"
                     android:inputType="number"
                     android:maxLength="6" />
-
             </android.support.design.widget.TextInputLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/_5dp"
-                android:layout_marginRight="@dimen/_5dp"
-                android:layout_marginTop="10dp"
-                android:background="@color/black_divider_rgb">
-
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:gravity="center"
-
-                    android:paddingBottom="@dimen/_5dp"
-                    android:paddingTop="4dp"
-                    android:text="Account Details"
-                    android:textSize="@dimen/margin_20"
-                    android:textStyle="bold" />
-            </LinearLayout>
-
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/_5dp"
-                android:layout_marginRight="@dimen/_5dp"
-                android:layout_marginTop="8dp"
-
-                >
-
-
-                <android.support.design.widget.TextInputEditText
-                    android:id="@+id/edittext_aadharcard"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Aadhar Card Number"
-                    android:inputType="number"
-                    android:maxLength="16" />
-
-            </android.support.design.widget.TextInputLayout>
-
-
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/_5dp"
-                android:layout_marginRight="@dimen/_5dp"
-
-                >
-
-
-                <android.support.design.widget.TextInputEditText
-
-                    android:id="@+id/editext_pancard"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Pan Card Number"
-                    android:inputType="text" />
-
-            </android.support.design.widget.TextInputLayout>
-
-
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/_5dp"
-                android:layout_marginRight="@dimen/_5dp"
-                >
-
-
-                <android.support.design.widget.TextInputEditText
-                    android:id="@+id/edittext_accountnumber"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Account Number"
-
-                    android:inputType="number" />
-
-            </android.support.design.widget.TextInputLayout>
-
-
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/_5dp"
-                android:layout_marginRight="@dimen/_5dp"
-
-                >
-
-
-                <android.support.design.widget.TextInputEditText
-
-                    android:id="@+id/editext_ifsc"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="IFSC Code"
-
-                    android:inputType="text" />
-
-            </android.support.design.widget.TextInputLayout>
-
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/_5dp"
-                android:layout_marginRight="@dimen/_5dp"
-
-                >
-
-
-                <android.support.design.widget.TextInputEditText
-
-                    android:id="@+id/edittext_accountholder"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Account Holder Name"
-
-                    android:inputType="text" />
-
-            </android.support.design.widget.TextInputLayout>
-
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/_5dp"
-                android:layout_marginRight="@dimen/_5dp"
-
-                >
-
-
-                <android.support.design.widget.TextInputEditText
-
-                    android:id="@+id/edittext_branch_name"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Branch Name"
-                    android:inputType="text" />
-
-            </android.support.design.widget.TextInputLayout>
-
-
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/_5dp"
-                android:layout_marginRight="@dimen/_5dp"
-
-                >
-
-
-                <android.support.design.widget.TextInputEditText
-
-                    android:id="@+id/edittext_nomineeAdhar"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Nominee Adhar"
-                    android:inputType="number" />
-
-            </android.support.design.widget.TextInputLayout>
-
-
 
 
             <Button
-                android:id="@+id/button"
+                android:id="@+id/btn_submit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/_15dp"
-                android:layout_marginLeft="@dimen/_15dp"
-                android:layout_marginRight="@dimen/_15dp"
-                android:layout_marginTop="7dp"
-                android:background="@color/black_divider_rgb"
-                android:text="SUBMIT" />
+                android:layout_margin="@dimen/_15dp"
+                android:background="@color/green"
+                android:text="SUBMIT"
+                android:textColor="@color/white" />
 
 
         </LinearLayout>

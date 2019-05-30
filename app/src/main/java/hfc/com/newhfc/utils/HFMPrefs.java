@@ -3,7 +3,7 @@ package hfc.com.newhfc.utils;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-public class HFCPrefs {
+public class HFMPrefs {
     private static final String KENT_SECURITY_PREFS = "HFCSecurity";
     private static SharedPreferences sharedPreferences;
 

@@ -35,9 +35,7 @@ public class AddUser {
     @SerializedName("ReferalCode")
     @Expose
     private String referalCode;
-    @SerializedName("AccountDetail")
-    @Expose
-    private AccountDetail accountDetail;
+
 
     public Boolean getActive() {
         return isActive;
@@ -161,12 +159,5 @@ public class AddUser {
         this.referalCode = referalCode;
     }
 
-    public AccountDetail getAccountDetail() {
-        return accountDetail;
-    }
-
-    public void setAccountDetail(AccountDetail accountDetail) {
-        this.accountDetail = accountDetail;
-    }
 
 }
