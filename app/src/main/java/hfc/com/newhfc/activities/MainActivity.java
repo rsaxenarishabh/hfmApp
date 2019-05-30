@@ -21,6 +21,7 @@ import com.squareup.picasso.Picasso;
 import de.hdodenhof.circleimageview.CircleImageView;
 import hfc.com.newhfc.R;
 import hfc.com.newhfc.fragments.AboutFragment;
+import hfc.com.newhfc.fragments.AddBankDetailFragment;
 import hfc.com.newhfc.fragments.AddUserFragment;
 import hfc.com.newhfc.fragments.CompanyDetail;
 import hfc.com.newhfc.fragments.DashboardFragment;
@@ -33,7 +34,8 @@ import hfc.com.newhfc.utils.HFCPrefs;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-
+    private CircleImageView pro_img;
+    private TextView user;
     NavigationView navigationView;
 
     CircleImageView circleImageView;
@@ -46,8 +48,9 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        user=findViewById(R.id.userName);
 
-
+        pro_img=findViewById(R.id.profile_header_image);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         Fragment fragment = DashboardFragment.newInstance();
@@ -58,10 +61,19 @@ public class MainActivity extends AppCompatActivity
 
          navigationView = findViewById(R.id.nav_view);
 
+
          View headerView = navigationView.inflateHeaderView(R.layout.nav_header_main);
          tvName = headerView.findViewById(R.id.userName);
         tvEmail = headerView.findViewById(R.id.email);
         circleImageView = headerView.findViewById(R.id.profile_header_image);
+
+    /*    user.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(MainActivity.this,ProfileActivity.class);
+                startActivity(intent);
+            }
+        });*/
 
         tvName.setText(loginResponse.getUser().getFirstName() + " " + loginResponse.getUser().getLastName());
         tvEmail.setText(loginResponse.getUser().getEmailAddress());
@@ -117,8 +129,13 @@ public class MainActivity extends AppCompatActivity
             case R.id.addUser:
                 fragment = AddUserFragment.newInstance();
                 replaceFragment(fragment);
-
                 break;
+
+            case R.id.addBankDetail:
+                fragment = AddBankDetailFragment.newInstance();
+                replaceFragment(fragment);
+                break;
+
             case R.id.myContacts:
                 fragment = UserListFragment.newInstance();
                 replaceFragment(fragment);

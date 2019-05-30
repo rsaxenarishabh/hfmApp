@@ -11,6 +11,11 @@
         <item
             android:id="@+id/addUser"
             android:title="Add User" />
+
+        <item
+            android:id="@+id/addBankDetail"
+            android:title="Bank Detail" />
+
         <item
             android:id="@+id/myContacts"
             android:title="My Contacts" />
