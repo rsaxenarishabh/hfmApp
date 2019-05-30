@@ -46,6 +46,9 @@ public class MainActivity extends AppCompatActivity
 
     LoginResponse loginResponse;
 
+    public String date;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,7 +75,7 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onClick(View v) {
 
-                Intent intent=new Intent(MainActivity.this,ProfileActivity.class);
+                Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
                 startActivity(intent);
                 Toast.makeText(MainActivity.this, "Success", Toast.LENGTH_SHORT).show();
 
@@ -80,6 +83,10 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
+        Intent incoming = getIntent();
+        if(getIntent().hasExtra("date")) {
+            date = incoming.getStringExtra("date");
+        }
         if (loginResponse.getUserName() != null) {
             tvName.setText("" + loginResponse.getUserName());
         }

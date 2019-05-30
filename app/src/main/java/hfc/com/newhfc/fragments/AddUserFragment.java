@@ -2,6 +2,7 @@ package hfc.com.newhfc.fragments;
 
 
 import android.Manifest;
+import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -17,6 +18,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -24,9 +26,13 @@ import android.widget.Toast;
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
+import java.text.DateFormat;
+import java.util.Calendar;
 
 import hfc.com.newhfc.R;
 import hfc.com.newhfc.activities.AddUserActivity;
+import hfc.com.newhfc.activities.CalendarActivity;
+import hfc.com.newhfc.activities.DatePickerFragment;
 import hfc.com.newhfc.activities.MainActivity;
 import hfc.com.newhfc.model.adduser.AddUserRequest;
 import hfc.com.newhfc.model.adduser.AddUserResponse;
@@ -43,13 +49,15 @@ import static android.app.Activity.RESULT_OK;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class AddUserFragment extends Fragment {
+public class AddUserFragment extends Fragment implements DatePickerDialog.OnDateSetListener {
 
     private static final int TAKE_PHOTO_CODE = 101;
     ImageView img_profile;
     private EditText editTextFirstname, editTextLastname,
             editTextPhone, editTextEmail, editDOB,
             editTextAddress, editTextPincode;
+
+    MainActivity mainActivity;
     private Button buttonSubmit;
     private String encodedImage;
 
@@ -63,6 +71,7 @@ public class AddUserFragment extends Fragment {
 
         return fragment;
     }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -84,6 +93,15 @@ public class AddUserFragment extends Fragment {
 
         buttonSubmit = view.findViewById(R.id.btn_submit);
 
+      /*  editDOB.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DatePickerFragment datePickerFragment=new DatePickerFragment();
+                datePickerFragment.show(getFragmentManager(),"date Picker");
+
+            }
+        });
+*/
         buttonSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -139,6 +157,8 @@ public class AddUserFragment extends Fragment {
         String address = editTextAddress.getText().toString().trim();
         String pincode = editTextPincode.getText().toString().trim();
 
+
+
         if (firstname.isEmpty()) {
             editTextFirstname.setError("Field can't be empty");
             check = false;
@@ -189,6 +209,7 @@ public class AddUserFragment extends Fragment {
                 addUserRequest.setDateOfBirth(dob);
             } catch (Exception e) {
                 e.printStackTrace();
+                Toast.makeText(mainActivity, "Correct your Date Format", Toast.LENGTH_SHORT).show();
             }
 
             addUserRequest.setEmail(email);
@@ -238,6 +259,7 @@ public class AddUserFragment extends Fragment {
                     public void onFailure(Call<AddUserResponse> call, Throwable t) {
 
                         AppUtils.dismissProgressDialog();
+                        Toast.makeText(mainActivity, "Check Your Details", Toast.LENGTH_SHORT).show();
                         Toast.makeText(getActivity(), R.string.response_failed, Toast.LENGTH_SHORT).show();
 
                     }
@@ -248,46 +270,7 @@ public class AddUserFragment extends Fragment {
                 Toast.makeText(getActivity(), R.string.Internet_failed, Toast.LENGTH_SHORT).show();
             }
         }
-        /*    RestClient.addUser(access_token, addUser, new Callback<ResponseBody>() {
-                @Override
-                public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                    AppUtils.dismissProgressDialog();
-                    if (response.body() != null) {
 
-                        ResponseBody responseBody = response.body();
-                        try {
-                            String responseStringData = responseBody.string();
-                            JSONObject jsonObject = new JSONObject(responseStringData);
-                            if (Integer.parseInt(jsonObject.getString("UserId")) > 0) {
-                                Toast.makeText(getActivity(), "Registered Successfully", Toast.LENGTH_LONG).show();
-                                if (getActivity() instanceof AddUserActivity) {
-                                    getActivity().finish();
-                                } else {
-                                    ((MainActivity) getActivity()).replaceFragment(new DashboardFragment());
-
-                                }
-                            } else {
-
-                                Toast.makeText(getActivity(), jsonObject.getString("Message"), Toast.LENGTH_LONG).show();
-
-                            }
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-
-
-                    }
-
-                }
-
-                @Override
-                public void onFailure(Call<ResponseBody> call, Throwable t) {
-                    AppUtils.dismissProgressDialog();
-
-                }
-            });*/
 
 
     }
@@ -326,11 +309,26 @@ public class AddUserFragment extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
+        mainActivity=(MainActivity)getActivity();
+
     }
 
     @Override
     public void onDetach() {
         super.onDetach();
+
+    }
+
+    @Override
+    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+
+
+        Calendar calendar=Calendar.getInstance();
+        calendar.set(Calendar.YEAR,year);
+        calendar.set(Calendar.MONTH,month);
+        calendar.set(Calendar.DAY_OF_MONTH,dayOfMonth);
+        String currentDate= DateFormat.getDateInstance(DateFormat.FULL).format(calendar.getTime());
+
 
     }
 
