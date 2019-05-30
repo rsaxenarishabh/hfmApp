@@ -7,16 +7,31 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
+
+import com.google.gson.Gson;
 
 import hfc.com.newhfc.R;
+import hfc.com.newhfc.activities.AddUserActivity;
+import hfc.com.newhfc.activities.LoginActivity;
+import hfc.com.newhfc.activities.MainActivity;
+import hfc.com.newhfc.model.bankDetail.BankDetailRequest;
+import hfc.com.newhfc.model.bankDetail.BankDetailResponse;
+import hfc.com.newhfc.retrofit.RestClient;
+import hfc.com.newhfc.utils.AppUtils;
+import hfc.com.newhfc.utils.Constants;
+import hfc.com.newhfc.utils.HFMPrefs;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class AddBankDetailFragment extends Fragment {
 
 
-    private EditText editTextAddhar,editTextPanCard,editTextAccountNumber,editTextIfsc,
-             editTextAccountholderName,editTextBranchName,editTextNominee;
+    private EditText editTextAddhar, editTextPanCard, editTextAccountNumber, editTextIfsc,
+            editTextAccountholderName, editTextBranchName, editTextNominee;
 
-    String aadhar,panCard,accountNumber,ifsc,accountHolder,branchName,nominee;
+    String aadhar, panCard, accountNumber, ifsc, accountHolder, branchName, nominee;
     String userId;
     Button btnAdd;
 
@@ -28,20 +43,20 @@ public class AddBankDetailFragment extends Fragment {
     }
 
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_bank_detail, container, false);
-       // img_profile = view.findViewById(R.id.img_profile);
-        editTextAddhar=view.findViewById(R.id.edittext_aadhar);
-        editTextPanCard=view.findViewById(R.id.edittext_pancard);
-        editTextIfsc=view.findViewById(R.id.edittext_ifsc);
-        editTextAccountholderName=view.findViewById(R.id.edittext_accountholder);
-        editTextNominee=view.findViewById(R.id.edittext_nominee);
-        editTextBranchName=view.findViewById(R.id.edittext_branch);
-        editTextAccountNumber=view.findViewById(R.id.edittext_account);
+        // img_profile = view.findViewById(R.id.img_profile);
+        editTextAddhar = view.findViewById(R.id.edittext_aadhar);
+        editTextPanCard = view.findViewById(R.id.edittext_pancard);
+        editTextIfsc = view.findViewById(R.id.edittext_ifsc);
+        editTextAccountholderName = view.findViewById(R.id.edittext_accountholder);
+        editTextNominee = view.findViewById(R.id.edittext_nominee);
+        editTextBranchName = view.findViewById(R.id.edittext_branch);
+        editTextAccountNumber = view.findViewById(R.id.edittext_account);
+        btnAdd=view.findViewById(R.id.btnSubmit);
 
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,23 +66,20 @@ public class AddBankDetailFragment extends Fragment {
         });
 
 
-
-
-
         return view;
 
     }
 
     private void saveDetail() {
 
-        boolean check=true;
-        aadhar=editTextAddhar.getText().toString().trim();
-        panCard=editTextPanCard.getText().toString().trim();
-        accountNumber=editTextAccountNumber.getText().toString().trim();
-        ifsc=editTextIfsc.getText().toString().trim();
-        accountHolder=editTextAccountholderName.getText().toString().trim();
-        branchName=editTextBranchName.getText().toString().trim();
-        nominee=editTextNominee.getText().toString().trim();
+        boolean check = true;
+        aadhar = editTextAddhar.getText().toString().trim();
+        panCard = editTextPanCard.getText().toString().trim();
+        accountNumber = editTextAccountNumber.getText().toString().trim();
+        ifsc = editTextIfsc.getText().toString().trim();
+        accountHolder = editTextAccountholderName.getText().toString().trim();
+        branchName = editTextBranchName.getText().toString().trim();
+        nominee = editTextNominee.getText().toString().trim();
 
 
         if (aadhar.isEmpty()) {
@@ -111,8 +123,51 @@ public class AddBankDetailFragment extends Fragment {
 
         }
 
-        if(check==true)
-        {
+        if (check == true) {
+            userId = HFMPrefs.getString(getActivity(), Constants.USER_ID);
+            BankDetailRequest bankDetailRequest = new BankDetailRequest();
+            bankDetailRequest.setUserId(Integer.parseInt(userId));
+            bankDetailRequest.setAadharNumber(aadhar);
+            bankDetailRequest.setAccountHolderName(accountHolder);
+            bankDetailRequest.setBranchName(branchName);
+            bankDetailRequest.setIFSCCode(ifsc);
+            bankDetailRequest.setNomineeName(nominee);
+            bankDetailRequest.setPanNumber(panCard);
+
+            if (AppUtils.isInternetConnected(getActivity())) {
+                AppUtils.showProgressDialog(getActivity());
+                RestClient.bankDetailSave(bankDetailRequest, new Callback<BankDetailResponse>() {
+                    @Override
+                    public void onResponse(Call<BankDetailResponse> call, Response<BankDetailResponse> response) {
+                      AppUtils.dismissProgressDialog();
+                        if(response.body()!=null)
+                        {
+                            if (response.body().getStatus())
+                            {
+                               BankDetailResponse bankDetailResponse=response.body();
+                                if (bankDetailResponse.getId() > 0) {
+                                    Toast.makeText(getActivity(), "Bank Detail Saved Successfully", Toast.LENGTH_SHORT).show();
+                                    if (getActivity() instanceof AddUserActivity) {
+                                        getActivity().finish();
+                                    } else {
+                                        ((MainActivity) getActivity()).replaceFragment(new DashboardFragment());
+
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<BankDetailResponse> call, Throwable t) {
+                        AppUtils.dismissProgressDialog();
+                        Toast.makeText(getActivity(), R.string.response_failed, Toast.LENGTH_SHORT).show();
+                    }
+                });
+            } else {
+                AppUtils.dismissProgressDialog();
+                Toast.makeText(getActivity(), R.string.Internet_failed, Toast.LENGTH_SHORT).show();
+            }
 
 
         }

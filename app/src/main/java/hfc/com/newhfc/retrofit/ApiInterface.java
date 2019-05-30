@@ -3,11 +3,11 @@ package hfc.com.newhfc.retrofit;
 
 import java.util.List;
 
-import hfc.com.newhfc.model.LoginRequestModel;
 import hfc.com.newhfc.model.UserList;
-import hfc.com.newhfc.model.adduser.AddUser;
 import hfc.com.newhfc.model.adduser.AddUserRequest;
 import hfc.com.newhfc.model.adduser.AddUserResponse;
+import hfc.com.newhfc.model.bankDetail.BankDetailRequest;
+import hfc.com.newhfc.model.bankDetail.BankDetailResponse;
 import hfc.com.newhfc.model.login.LoginRequest;
 import hfc.com.newhfc.model.login.LoginResponse;
 import okhttp3.ResponseBody;
@@ -36,11 +36,16 @@ public interface ApiInterface {
     Call<AddUserResponse> addUser(@Body AddUserRequest addUserRequest);
 
 
-    @POST("api/account/register")
+    @POST("http://vrok.in/hfm_api/add_bank")
+    Call<BankDetailResponse> bankDetailSave(@Body BankDetailRequest bankDetailRequest);
+
+
+
+    /*@POST("api/account/register")
     @Headers({"Content-Type: application/json", "Accept: application/json"})
     Call<ResponseBody> addUser(@Header("Authorization") String access_token, @Body AddUser addUser);
 
-
+*/
     @POST("api/user/getusersbyuserid")
     @Headers({"Content-Type: application/json", "Accept: application/json"})
     Call<List<UserList>> getUserList(@Body() UserById userById, @Header("Authorization") String access_token);
