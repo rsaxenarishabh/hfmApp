@@ -185,7 +185,12 @@ public class AddUserFragment extends Fragment {
             addUserRequest.setFirstName(firstname);
             addUserRequest.setLastName(lastname);
             addUserRequest.setAddress(address);
-            addUserRequest.setDateOfBirth(dob);
+            try {
+                addUserRequest.setDateOfBirth(dob);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
             addUserRequest.setEmail(email);
             addUserRequest.setPincode(pincode);
             addUserRequest.setPhoneNumber(phone);
