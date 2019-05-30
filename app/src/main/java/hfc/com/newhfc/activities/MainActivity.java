@@ -65,6 +65,15 @@ public class MainActivity extends AppCompatActivity
         tvEmail = headerView.findViewById(R.id.email);
         circleImageView = headerView.findViewById(R.id.profile_header_image);
 
+        circleImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+
+            }
+        });
+
         if (loginResponse.getUserName() != null) {
             tvName.setText("" + loginResponse.getUserName());
         }
