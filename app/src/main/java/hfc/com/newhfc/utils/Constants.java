@@ -1,6 +1,7 @@
 package hfc.com.newhfc.utils;
 
 public class Constants {
+    public static final String USER_ID ="userid" ;
     public static String ACCESS_TOKEN = "access_token";
     public static final int CAPTURE_IMAGE = 101;
     public static final int CONFLICT_CODE = 409;

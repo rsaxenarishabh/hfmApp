@@ -21,26 +21,19 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.io.InputStream;
 
 import hfc.com.newhfc.R;
 import hfc.com.newhfc.activities.AddUserActivity;
-import hfc.com.newhfc.activities.LoginActivity;
 import hfc.com.newhfc.activities.MainActivity;
-import hfc.com.newhfc.model.adduser.AddUser;
 import hfc.com.newhfc.model.adduser.AddUserRequest;
 import hfc.com.newhfc.model.adduser.AddUserResponse;
 import hfc.com.newhfc.retrofit.RestClient;
 import hfc.com.newhfc.utils.AppUtils;
 import hfc.com.newhfc.utils.Constants;
 import hfc.com.newhfc.utils.HFMPrefs;
-import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
