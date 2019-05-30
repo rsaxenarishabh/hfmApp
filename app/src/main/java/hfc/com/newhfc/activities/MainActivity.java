@@ -26,9 +26,9 @@ import hfc.com.newhfc.fragments.CompanyDetail;
 import hfc.com.newhfc.fragments.DashboardFragment;
 import hfc.com.newhfc.fragments.ProfileFragment;
 import hfc.com.newhfc.fragments.UserListFragment;
-import hfc.com.newhfc.model.LoginResponse;
+import hfc.com.newhfc.model.login.LoginResponse;
 import hfc.com.newhfc.utils.Constants;
-import hfc.com.newhfc.utils.HFCPrefs;
+import hfc.com.newhfc.utils.HFMPrefs;
 
 
 public class MainActivity extends AppCompatActivity
@@ -41,6 +41,7 @@ public class MainActivity extends AppCompatActivity
     TextView tvEmail;
 
     LoginResponse loginResponse;
+    //LoginResponse loginResponse;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,19 +54,29 @@ public class MainActivity extends AppCompatActivity
         Fragment fragment = DashboardFragment.newInstance();
         replaceFragment(fragment);
 
-        String data = HFCPrefs.getString(getApplicationContext(), Constants.LOGIN_DATA);
+        String data = HFMPrefs.getString(getApplicationContext(), Constants.LOGIN_DATA);
         loginResponse = new Gson().fromJson(data, LoginResponse.class);
+        // loginResponse = new Gson().fromJson(data, LoginResponse.class);
 
-         navigationView = findViewById(R.id.nav_view);
+        navigationView = findViewById(R.id.nav_view);
 
-         View headerView = navigationView.inflateHeaderView(R.layout.nav_header_main);
-         tvName = headerView.findViewById(R.id.userName);
+        View headerView = navigationView.inflateHeaderView(R.layout.nav_header_main);
+        tvName = headerView.findViewById(R.id.userName);
         tvEmail = headerView.findViewById(R.id.email);
         circleImageView = headerView.findViewById(R.id.profile_header_image);
 
-        tvName.setText(loginResponse.getUser().getFirstName() + " " + loginResponse.getUser().getLastName());
+        if (loginResponse.getUserName() != null) {
+            tvName.setText("" + loginResponse.getUserName());
+        }
+        if (loginResponse.getEmail() != null) {
+            tvEmail.setText("" + loginResponse.getEmail());
+        }
+        Picasso.with(this).load(loginResponse.getImage()).error(R.drawable.profile_pictures).into(circleImageView);
+
+
+   /*     tvName.setText(loginResponse.getUser().getFirstName() + " " + loginResponse.getUser().getLastName());
         tvEmail.setText(loginResponse.getUser().getEmailAddress());
-        Picasso.with(this).load(loginResponse.getUser().getImage()).into(circleImageView);
+        Picasso.with(this).load(loginResponse.getUser().getImage()).into(circleImageView);*/
        /*
         RequestOptions requestOptions = RequestOptions.circleCropTransform().placeholder(R.drawable.user).error(R.drawable.user);
 

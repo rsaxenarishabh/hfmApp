@@ -1,55 +1,35 @@
- package hfc.com.newhfc.activities;
+package hfc.com.newhfc.activities;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.annotation.TargetApi;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.support.annotation.NonNull;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.app.LoaderManager.LoaderCallbacks;
 
-import android.content.CursorLoader;
-import android.content.Loader;
-import android.database.Cursor;
-import android.net.Uri;
-import android.os.AsyncTask;
-
-import android.os.Build;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.inputmethod.EditorInfo;
-import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import butterknife.internal.Utils;
 import hfc.com.newhfc.R;
 import hfc.com.newhfc.model.LoginRequestModel;
-import hfc.com.newhfc.model.LoginResponse;
+import hfc.com.newhfc.model.login.LoginRequest;
+import hfc.com.newhfc.model.login.LoginResponse;
 import hfc.com.newhfc.retrofit.RestClient;
 import hfc.com.newhfc.utils.AppUtils;
 import hfc.com.newhfc.utils.Constants;
-import hfc.com.newhfc.utils.HFCPrefs;
+import hfc.com.newhfc.utils.HFMPrefs;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-
-import static android.Manifest.permission.READ_CONTACTS;
 
 /**
  * A login screen that offers login via email/password.
@@ -62,19 +42,20 @@ public class LoginActivity extends AppCompatActivity {
     private static final int REQUEST_READ_CONTACTS = 0;
 
 
-
-
     // UI references.
-    private AutoCompleteTextView mEmailView;
+    private AutoCompleteTextView mUsername;
     private EditText mPasswordView;
+    private CheckBox checkBox;
+    private Boolean check = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login2);
         // Set up the login form.
-        mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
+        mUsername = (AutoCompleteTextView) findViewById(R.id.username);
         mPasswordView = (EditText) findViewById(R.id.password);
+        checkBox = findViewById(R.id.login_checkbox);
         mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
@@ -103,11 +84,11 @@ public class LoginActivity extends AppCompatActivity {
      */
     private void attemptLogin() {
         // Reset errors.
-        mEmailView.setError(null);
+        mUsername.setError(null);
         mPasswordView.setError(null);
 
         // Store values at the time of the login attempt.
-        String email = mEmailView.getText().toString();
+        String username = mUsername.getText().toString();
         String password = mPasswordView.getText().toString();
 
         boolean cancel = false;
@@ -121,18 +102,19 @@ public class LoginActivity extends AppCompatActivity {
         }
 
         // Check for a valid email address.
-        if (TextUtils.isEmpty(email)) {
-            mEmailView.setError(getString(R.string.error_field_required));
-            focusView = mEmailView;
-            cancel = true;
-        } else if (!isEmailValid(email)) {
-            mEmailView.setError(getString(R.string.error_invalid_email));
-            focusView = mEmailView;
+        if (TextUtils.isEmpty(username)) {
+            mUsername.setError(getString(R.string.error_field_required));
+            focusView = mUsername;
             cancel = true;
         }
 
-
-
+        if (checkBox.isChecked()) {
+            check = true;
+            HFMPrefs.putBoolean(this, Constants.LOGIN_CHECK, check);
+        } else {
+            check = false;
+            HFMPrefs.putBoolean(this, Constants.LOGIN_CHECK, check);
+        }
 
 
         if (cancel) {
@@ -142,10 +124,55 @@ public class LoginActivity extends AppCompatActivity {
         } else {
             // Show a progress spinner, and kick off a background task to
             // perform the user login attempt.
-            LoginRequestModel loginRequestModel = new LoginRequestModel();
-            loginRequestModel.setEmailAddress(email);
-            loginRequestModel.setPassword(password);
+
+            final LoginRequest loginRequest = new LoginRequest();
+            loginRequest.setUserName(username);
+            loginRequest.setPassword(password);
             AppUtils.showProgressDialog(this);
+            if (AppUtils.isInternetConnected(this)) {
+                AppUtils.showProgressDialog(this);
+                RestClient.loginUser(loginRequest, new Callback<LoginResponse>() {
+                    @Override
+                    public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
+                        AppUtils.dismissProgressDialog();
+                        if (response.body() != null) {
+                            LoginResponse loginResponse = response.body();
+                            if (response.code() == 200) {
+                                Toast.makeText(LoginActivity.this, "Successfully", Toast.LENGTH_SHORT).show();
+                                HFMPrefs.putString(LoginActivity.this, Constants.REFERAL, loginResponse.getReferal());
+                                HFMPrefs.putString(LoginActivity.this, Constants.LOGIN_DATA, new Gson().toJson(loginResponse));
+
+                                Intent intent = null;
+                                if (loginResponse.getActiveStatus().equalsIgnoreCase("1")) {
+                                    intent = new Intent(LoginActivity.this, MainActivity.class);
+                                    startActivity(intent);
+                                    finish();
+                                } else {
+                                    Toast.makeText(LoginActivity.this, "User is Not Activate", Toast.LENGTH_SHORT).show();
+                                }
+
+                            }
+
+
+                        }
+
+
+                    }
+
+                    @Override
+                    public void onFailure(Call<LoginResponse> call, Throwable t) {
+                        AppUtils.dismissProgressDialog();
+                        Toast.makeText(LoginActivity.this, R.string.response_failed, Toast.LENGTH_SHORT).show();
+
+                    }
+                });
+
+            } else {
+                AppUtils.dismissProgressDialog();
+                Toast.makeText(this, R.string.Internet_failed, Toast.LENGTH_SHORT).show();
+            }
+
+         /*
             RestClient.login(loginRequestModel, new Callback<LoginResponse>() {
                 @Override
                 public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
@@ -155,12 +182,12 @@ public class LoginActivity extends AppCompatActivity {
                         AppUtils.dismissProgressDialog();
                         if (response.code() == 200) {
                             Toast.makeText(LoginActivity.this, "Logged in succesfully", Toast.LENGTH_LONG).show();
-                            //HFCPrefs.putBoolean(LoginActivity.this, Constants.USER_LOGGED_IN, true);
-                            HFCPrefs.putString(LoginActivity.this, Constants.ACCESS_TOKEN, responseModel.getAccessToken());
-                            HFCPrefs.putString(LoginActivity.this, Constants.USER_NAME, responseModel.getUser().getFirstName());
-                            HFCPrefs.putInt(LoginActivity.this, Constants.LOGGED_IN_USER_ID, responseModel.getUser().getId().intValue());
-                            HFCPrefs.putString(LoginActivity.this, Constants.REFERRAL_CODE, responseModel.getUser().getReferalCode());
-                            HFCPrefs.putString(LoginActivity.this, Constants.LOGIN_DATA, new Gson().toJson(responseModel));
+                            //HFMPrefs.putBoolean(LoginActivity.this, Constants.USER_LOGGED_IN, true);
+                            HFMPrefs.putString(LoginActivity.this, Constants.ACCESS_TOKEN, responseModel.getAccessToken());
+                            HFMPrefs.putString(LoginActivity.this, Constants.USER_NAME, responseModel.getUser().getFirstName());
+                            HFMPrefs.putInt(LoginActivity.this, Constants.LOGGED_IN_USER_ID, responseModel.getUser().getId().intValue());
+                            HFMPrefs.putString(LoginActivity.this, Constants.REFERRAL_CODE, responseModel.getUser().getReferalCode());
+                            HFMPrefs.putString(LoginActivity.this, Constants.LOGIN_DATA, new Gson().toJson(responseModel));
                             Intent intent = null;
                             if (responseModel.getUser().getIsActive()) {
                                 intent = new Intent(LoginActivity.this, MainActivity.class);
@@ -178,10 +205,12 @@ public class LoginActivity extends AppCompatActivity {
                 @Override
                 public void onFailure(Call<LoginResponse> call, Throwable t) {
                     AppUtils.dismissProgressDialog();
-                Log.d(LoginActivity.class.getSimpleName(),"Login failed");
+                    Log.d(LoginActivity.class.getSimpleName(), "Login failed");
                 }
             });
+        }*/
         }
+
     }
 
     private boolean isEmailValid(String email) {

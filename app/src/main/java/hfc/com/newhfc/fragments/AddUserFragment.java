@@ -12,7 +12,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
-import android.support.v4.content.ContextCompat;
 import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,18 +29,17 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 
-import butterknife.internal.Utils;
 import hfc.com.newhfc.R;
 import hfc.com.newhfc.activities.AddUserActivity;
 import hfc.com.newhfc.activities.LoginActivity;
 import hfc.com.newhfc.activities.MainActivity;
-import hfc.com.newhfc.activities.UserListActivity;
-import hfc.com.newhfc.model.adduser.AccountDetail;
 import hfc.com.newhfc.model.adduser.AddUser;
+import hfc.com.newhfc.model.adduser.AddUserRequest;
+import hfc.com.newhfc.model.adduser.AddUserResponse;
 import hfc.com.newhfc.retrofit.RestClient;
 import hfc.com.newhfc.utils.AppUtils;
 import hfc.com.newhfc.utils.Constants;
-import hfc.com.newhfc.utils.HFCPrefs;
+import hfc.com.newhfc.utils.HFMPrefs;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -56,11 +54,9 @@ public class AddUserFragment extends Fragment {
 
     private static final int TAKE_PHOTO_CODE = 101;
     ImageView img_profile;
-    private EditText editTextLIC, editTextFirstname, editTextLastname,
+    private EditText editTextFirstname, editTextLastname,
             editTextPhone, editTextEmail, editDOB,
-            editTextAddress, editTextPincode, editTextAadharcard, editTextPancard,
-            editTextAccountnum, editTextIfsccode, editTextAccountholder,
-            editTextBranchname, editTextAdharNominee, editTextNomineename, editTextJoiningfee;
+            editTextAddress, editTextPincode;
     private Button buttonSubmit;
     private String encodedImage;
 
@@ -92,15 +88,8 @@ public class AddUserFragment extends Fragment {
         editTextAddress = view.findViewById(R.id.edittext_address);
         editDOB = view.findViewById(R.id.dob);
         editTextPincode = view.findViewById(R.id.edittext_pincode);
-        editTextAadharcard = view.findViewById(R.id.edittext_aadharcard);
-        editTextPancard = view.findViewById(R.id.editext_pancard);
-        editTextAccountnum = view.findViewById(R.id.edittext_accountnumber);
-        editTextIfsccode = view.findViewById(R.id.editext_ifsc);
-        editTextBranchname = view.findViewById(R.id.edittext_branch_name);
-        editTextAccountholder = view.findViewById(R.id.edittext_accountholder);
-        editTextAdharNominee = view.findViewById(R.id.edittext_nomineeAdhar);
 
-        buttonSubmit = view.findViewById(R.id.button);
+        buttonSubmit = view.findViewById(R.id.btn_submit);
 
         buttonSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -153,19 +142,9 @@ public class AddUserFragment extends Fragment {
         String lastname = editTextLastname.getText().toString().trim();
         String phone = editTextPhone.getText().toString().trim();
         String email = editTextEmail.getText().toString().trim();
-        String date = editDOB.getText().toString().trim();
+        String dob = editDOB.getText().toString().trim();
         String address = editTextAddress.getText().toString().trim();
         String pincode = editTextPincode.getText().toString().trim();
-        String aadharNumber = editTextAadharcard.getText().toString().trim();
-        String pancard = editTextPancard.getText().toString().trim();
-        String accountnum = editTextAccountnum.getText().toString().trim();
-        String ifsccode = editTextIfsccode.getText().toString().trim();
-        String accountholdername = editTextAccountholder.getText().toString().trim();
-        String branchname = editTextBranchname.getText().toString().trim();
-        String aadharcardnumber = editTextAdharNominee.getText().toString().trim();
-        String nomineedate = "N/A";
-        //String joiningfees=editTextJoiningfee.getText().toString().trim();
-
 
         if (firstname.isEmpty()) {
             editTextFirstname.setError("Field can't be empty");
@@ -186,7 +165,7 @@ public class AddUserFragment extends Fragment {
         }
 
 
-        if (date.isEmpty()) {
+        if (dob.isEmpty()) {
             editDOB.setError("Field can't be empty");
             check = false;
 
@@ -202,79 +181,76 @@ public class AddUserFragment extends Fragment {
             check = false;
 
         }
-        if (aadharNumber.isEmpty()) {
-            editTextAccountnum.setError("Field can't be empty");
-            check = false;
-
-        }
-        if (pancard.isEmpty()) {
-            editTextPancard.setError("Field can't be empty");
-            check = false;
-
-        }
-        if (accountnum.isEmpty()) {
-            editTextAccountnum.setError("Field can't be empty");
-            check = false;
-
-        }
-        if (ifsccode.isEmpty()) {
-            editTextIfsccode.setError("Field can't be empty");
-            check = false;
-
-        }
-        if (accountholdername.isEmpty()) {
-            editTextAccountholder.setError("Field can't be empty");
-            check = false;
-
-        }
-        if (branchname.isEmpty()) {
-            editTextBranchname.setError("Field can't be empty");
-            check = false;
-
-        }
-        if (aadharcardnumber.isEmpty()) {
-            editTextAdharNominee.setError("Field can't be empty");
-            check = false;
-
-        }
 
 
         if (check == true) {
             //TODO add user request
 
-            AddUser addUser = new AddUser();
-            addUser.setFirstName(firstname);
-            addUser.setLastName(lastname);
-            addUser.setPhoneNumber(phone);
-            addUser.setEmailAddress(email);
-            addUser.setAddress(address);
-            addUser.setPinCode(pincode);
-            addUser.setPassword("HFC"+phone.substring(0,4));
-            String myReferalCode = HFCPrefs.getString(getActivity(), Constants.REFERRAL_CODE);
+
+            final AddUserRequest addUserRequest = new AddUserRequest();
+
+            addUserRequest.setFirstName(firstname);
+            addUserRequest.setLastName(lastname);
+            addUserRequest.setAddress(address);
+            addUserRequest.setDateOfBirth(dob);
+            addUserRequest.setEmail(email);
+            addUserRequest.setPincode(pincode);
+            addUserRequest.setPhoneNumber(phone);
+            addUserRequest.setBase64File("");
+            addUserRequest.setUserName("");
+            addUserRequest.setPassword("");
+            String myReferalCode = HFMPrefs.getString(getActivity(), Constants.REFERAL);
+            addUserRequest.setReferalCode(myReferalCode);
+
+/*
+
             if (getActivity() instanceof AddUserActivity) {
                 addUser.setReferalCode(((AddUserActivity) getActivity()).referalCode);
             } else {
                 addUser.setReferalCode(myReferalCode);
             }
+*/
 
-            addUser.setNomineeAadhar(editTextAdharNominee.getText().toString().trim());
-            addUser.setNomineeDOB(editDOB.getText().toString().trim());
-            AccountDetail accountDetail = new AccountDetail();
-            accountDetail.setAadharNumber(editTextAadharcard.getText().toString().trim());
-            accountDetail.setPancardNumber(editTextPancard.getText().toString().trim());
-            accountDetail.setAccountNumber(editTextAccountnum.getText().toString().trim());
-            accountDetail.setIFSCCode(editTextIfsccode.getText().toString().trim());
-            accountDetail.setAccountHolderName(editTextAccountholder.getText().toString().trim());
-            accountDetail.setBranchName(editTextBranchname.getText().toString().trim());
+            if (AppUtils.isInternetConnected(getActivity())) {
+                AppUtils.showProgressDialog(getActivity());
+                RestClient.addUser(addUserRequest, new Callback<AddUserResponse>() {
+                    @Override
+                    public void onResponse(Call<AddUserResponse> call, Response<AddUserResponse> response) {
+                        AppUtils.dismissProgressDialog();
+                        if (response.body() != null) {
+                            if (response.body().getStatus()) {
+                                AddUserResponse addUserResponse = response.body();
+                                if (addUserResponse.getId() > 0) {
+                                    Toast.makeText(getActivity(), "Registration Successfully", Toast.LENGTH_SHORT).show();
+                                    if (getActivity() instanceof AddUserActivity) {
+                                        getActivity().finish();
+                                    } else {
+                                        ((MainActivity) getActivity()).replaceFragment(new DashboardFragment());
 
-//            accountDetail.setCVV(Integer.parseInt(etCVV.getEditText().getText().toString().trim()));
+                                    }
+                                }
 
-            addUser.setAccountDetail(accountDetail);
+                            }
+                        }
 
 
-            String access_token = HFCPrefs.getString(getActivity(), Constants.ACCESS_TOKEN);
-            AppUtils.showProgressDialog(getActivity());
-            RestClient.addUser(access_token, addUser, new Callback<ResponseBody>() {
+                    }
+
+                    @Override
+                    public void onFailure(Call<AddUserResponse> call, Throwable t) {
+
+                        AppUtils.dismissProgressDialog();
+                        Toast.makeText(getActivity(), R.string.response_failed, Toast.LENGTH_SHORT).show();
+
+                    }
+                });
+
+            } else {
+                AppUtils.dismissProgressDialog();
+                Toast.makeText(getActivity(), R.string.Internet_failed, Toast.LENGTH_SHORT).show();
+            }
+        }
+        /*    RestClient.addUser(access_token, addUser, new Callback<ResponseBody>() {
                 @Override
                 public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                     AppUtils.dismissProgressDialog();
@@ -313,11 +289,7 @@ public class AddUserFragment extends Fragment {
                     AppUtils.dismissProgressDialog();
 
                 }
-            });
-
-        } else {
-            Toast.makeText(getActivity(), "Please Fill All Data completed", Toast.LENGTH_SHORT).show();
-        }
+            });*/
 
 
     }

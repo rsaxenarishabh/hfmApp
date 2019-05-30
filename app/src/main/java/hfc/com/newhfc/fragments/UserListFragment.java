@@ -24,13 +24,10 @@ import hfc.com.newhfc.retrofit.RestClient;
 import hfc.com.newhfc.retrofit.UserById;
 import hfc.com.newhfc.utils.AppUtils;
 import hfc.com.newhfc.utils.Constants;
-import hfc.com.newhfc.utils.HFCPrefs;
+import hfc.com.newhfc.utils.HFMPrefs;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-
-import static android.content.Intent.getIntent;
-import static android.content.Intent.getIntentOld;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -83,8 +80,8 @@ public class UserListFragment extends Fragment implements UserListAdaptor.OnUser
         if (AppUtils.isInternetConnected(getActivity())) {
             AppUtils.showProgressDialog(getActivity());
             UserById userById = new UserById();
-            userById.setUserId(HFCPrefs.getInt(getActivity(), Constants.LOGGED_IN_USER_ID, 0));
-            RestClient.getUserList(userById,getString(R.string.bearer) + " " + HFCPrefs.getString(getActivity(), Constants.ACCESS_TOKEN), new Callback<List<UserList>>() {
+            userById.setUserId(HFMPrefs.getInt(getActivity(), Constants.LOGGED_IN_USER_ID, 0));
+            RestClient.getUserList(userById,getString(R.string.bearer) + " " + HFMPrefs.getString(getActivity(), Constants.ACCESS_TOKEN), new Callback<List<UserList>>() {
                         @Override
                         public void onResponse(Call<List<UserList>> call, Response<List<UserList>> response) {
                             AppUtils.dismissProgressDialog();

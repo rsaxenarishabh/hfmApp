@@ -48,4 +48,6 @@
     <string name="bearer">bearer</string>
     <string name="no_internet">no iternet connection</string>
     <string name="text_add_user">Add User</string>
+    <string name="Internet_failed">Internet Connection\'s Failed!!</string>
+    <string name="response_failed">Something went wrong!!</string>
 </resources>
