@@ -14,6 +14,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
@@ -21,6 +22,8 @@ import com.squareup.picasso.Picasso;
 import de.hdodenhof.circleimageview.CircleImageView;
 import hfc.com.newhfc.R;
 import hfc.com.newhfc.fragments.AboutFragment;
+import hfc.com.newhfc.fragments.AddBankDetailFragment;
+import hfc.com.newhfc.fragments.AddBankDetailFragment;
 import hfc.com.newhfc.fragments.AddUserFragment;
 import hfc.com.newhfc.fragments.CompanyDetail;
 import hfc.com.newhfc.fragments.DashboardFragment;
@@ -33,7 +36,8 @@ import hfc.com.newhfc.utils.HFMPrefs;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-
+    private CircleImageView pro_img;
+    private TextView user;
     NavigationView navigationView;
 
     CircleImageView circleImageView;
@@ -41,7 +45,6 @@ public class MainActivity extends AppCompatActivity
     TextView tvEmail;
 
     LoginResponse loginResponse;
-    //LoginResponse loginResponse;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,6 +72,9 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onClick(View v) {
 
+                
+
+                Toast.makeText(MainActivity.this, "Success", Toast.LENGTH_SHORT).show();
 
 
             }
@@ -85,7 +91,7 @@ public class MainActivity extends AppCompatActivity
 
    /*     tvName.setText(loginResponse.getUser().getFirstName() + " " + loginResponse.getUser().getLastName());
         tvEmail.setText(loginResponse.getUser().getEmailAddress());
-        Picasso.with(this).load(loginResponse.getUser().getImage()).into(circleImageView);*/
+        Picasso.with(this).load(loginResponse.getUser().getImage()).into(circleImageView);
        /*
         RequestOptions requestOptions = RequestOptions.circleCropTransform().placeholder(R.drawable.user).error(R.drawable.user);
 
@@ -137,8 +143,13 @@ public class MainActivity extends AppCompatActivity
             case R.id.addUser:
                 fragment = AddUserFragment.newInstance();
                 replaceFragment(fragment);
-
                 break;
+
+            case R.id.addBankDetail:
+                fragment = AddBankDetailFragment.newInstance();
+                replaceFragment(fragment);
+                break;
+
             case R.id.myContacts:
                 fragment = UserListFragment.newInstance();
                 replaceFragment(fragment);
