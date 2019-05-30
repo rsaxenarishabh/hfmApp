@@ -4,6 +4,7 @@
     <string name="text_user_details">User Details</string>
     <string name="text_next">Next</string>
     <string name="text_user_list">User List</string>
+    <string name="alert_text">Are you sure to logout?</string>
     <string name="drawer_open">Open navigation drawer</string>
     <string name="drawer_close">Close navigation drawer</string>
     <string name="text_login">Login</string>
