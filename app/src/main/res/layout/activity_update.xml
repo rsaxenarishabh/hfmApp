@@ -112,9 +112,14 @@
                     android:id="@+id/et_phonenumber"
                     android:layout_marginTop="@dimen/_20dp"
                     android:hint="Phone Number"
+<<<<<<< HEAD
                     android:textSize="16dp"
                     android:textColorHint="@color/black"
                     android:layout_marginLeft="@dimen/_10dp"
+=======
+                    android:maxLength="10"
+                    android:layout_marginLeft="@dimen/_20dp"
+>>>>>>> origin/master
                     android:layout_marginRight="@dimen/_20dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />

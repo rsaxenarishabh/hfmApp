@@ -10,6 +10,8 @@ import hfc.com.newhfc.model.bankDetail.BankDetailRequest;
 import hfc.com.newhfc.model.bankDetail.BankDetailResponse;
 import hfc.com.newhfc.model.login.LoginRequest;
 import hfc.com.newhfc.model.login.LoginResponse;
+import hfc.com.newhfc.model.updateUser.UpdateUserDetail;
+import hfc.com.newhfc.model.updateUser.UpdateUserResponse;
 import okhttp3.ResponseBody;
 import retrofit2.Callback;
 
@@ -28,6 +30,16 @@ public class RestClient {
     public static void bankDetailSave(BankDetailRequest bankDetailRequest, Callback<BankDetailResponse> callback) {
         RetrofitClient.getClient().bankDetailSave(bankDetailRequest).enqueue(callback);
     }
+
+
+    public static void updateUser(UpdateUserDetail updateUserDetail, Callback<UpdateUserResponse> callback) {
+        RetrofitClient.getClient().updateUser(updateUserDetail).enqueue(callback);
+    }
+
+
+
+
+
 /*
 
     public static void login(LoginRequestModel loginRequestModel, Callback<LoginResponse> callback) {
@@ -39,6 +51,9 @@ public class RestClient {
     public static void getUserList(UserById user, String access_token, Callback<List<UserList>> callback) {
         RetrofitClient.getClient().getUserList(user, access_token).enqueue(callback);
     }
+
+
+
 /*
 
     public static void addUser(String access_token, AddUser addUser, Callback<ResponseBody> callback) {

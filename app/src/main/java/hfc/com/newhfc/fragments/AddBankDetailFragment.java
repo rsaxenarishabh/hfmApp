@@ -133,6 +133,7 @@ public class AddBankDetailFragment extends Fragment {
             bankDetailRequest.setIFSCCode(ifsc);
             bankDetailRequest.setNomineeName(nominee);
             bankDetailRequest.setPanNumber(panCard);
+            bankDetailRequest.setAccountNumber(accountNumber);
 
             if (AppUtils.isInternetConnected(getActivity())) {
                 AppUtils.showProgressDialog(getActivity());
