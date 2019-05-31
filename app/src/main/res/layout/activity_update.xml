@@ -28,7 +28,7 @@
             android:gravity="center"
             android:orientation="vertical">
 
-            <ImageView
+           <!-- <ImageView
 
                 android:id="@+id/img_profile"
                 android:layout_width="80dp"
@@ -36,7 +36,7 @@
                 android:layout_marginTop="19dp"
                 android:adjustViewBounds="true"
                 android:scaleType="fitCenter"
-                android:src="@drawable/logo" />
+                android:src="@drawable/logo" />-->
 
 
 
@@ -52,7 +52,7 @@
                     android:layout_height="wrap_content">
 
                     <ImageView
-                        android:background="@drawable/profile"
+                        android:src="@drawable/profile"
                         android:layout_marginTop="30dp"
                         android:layout_marginLeft="@dimen/_20dp"
                         android:layout_width="20dp"
@@ -78,7 +78,7 @@
                     android:layout_height="wrap_content">
 
                     <ImageView
-                        android:background="@drawable/profile"
+                        android:src="@drawable/profile"
                         android:layout_marginTop="30dp"
                         android:layout_marginLeft="@dimen/_20dp"
                         android:layout_width="20dp"
@@ -103,7 +103,7 @@
                     android:layout_height="wrap_content">
 
                     <ImageView
-                        android:background="@drawable/phone"
+                        android:src="@drawable/phone"
                         android:layout_marginTop="30dp"
                         android:layout_marginLeft="@dimen/_20dp"
                         android:layout_width="20dp"
@@ -117,7 +117,7 @@
                     android:textSize="16dp"
                     android:textColorHint="@color/black"
                     android:maxLength="10"
-                    android:layout_marginLeft="@dimen/_20dp"
+                    android:layout_marginLeft="@dimen/_10dp"
                     android:layout_marginRight="@dimen/_20dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
@@ -130,7 +130,7 @@
                     android:layout_height="wrap_content">
 
                     <ImageView
-                        android:background="@drawable/email"
+                        android:src="@drawable/email"
                         android:layout_marginTop="30dp"
                         android:layout_marginLeft="@dimen/_20dp"
                         android:layout_width="20dp"
@@ -156,14 +156,14 @@
                     android:layout_height="wrap_content">
 
                     <ImageView
-                        android:background="@drawable/clender"
+                        android:src="@drawable/clender"
                         android:layout_marginTop="30dp"
                         android:layout_marginLeft="@dimen/_20dp"
                         android:layout_width="20dp"
                         android:layout_height="20dp" />
 
                 <EditText
-                    android:id="@+id/et_dob"
+                    android:id="@+id/edittext_dob"
                     android:layout_marginTop="@dimen/_20dp"
                     android:hint="Date Of Bieth"
                     android:textSize="16dp"
@@ -182,7 +182,7 @@
                     android:layout_height="wrap_content">
 
                     <ImageView
-                        android:background="@drawable/home"
+                        android:src="@drawable/home"
                         android:layout_marginTop="30dp"
                         android:layout_marginLeft="@dimen/_20dp"
                         android:layout_width="20dp"
@@ -207,7 +207,7 @@
                     android:layout_height="wrap_content">
 
                     <ImageView
-                        android:background="@drawable/loction"
+                        android:src="@drawable/loction"
                         android:layout_marginTop="30dp"
                         android:layout_marginLeft="@dimen/_20dp"
                         android:layout_width="20dp"
@@ -234,6 +234,8 @@
                 android:id="@+id/btn_submit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="@dimen/_20dp"
                 android:layout_margin="@dimen/_15dp"
                 android:background="@drawable/login_background_button"
                 android:text="SUBMIT"

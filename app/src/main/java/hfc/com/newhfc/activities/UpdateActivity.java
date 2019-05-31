@@ -1,7 +1,10 @@
 package hfc.com.newhfc.activities;
 
 import android.annotation.SuppressLint;
+import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -9,12 +12,15 @@ import android.util.Patterns;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
 
 import butterknife.internal.Utils;
+import java.util.Calendar;
+
 import hfc.com.newhfc.R;
 import hfc.com.newhfc.model.login.LoginResponse;
 import hfc.com.newhfc.model.updateUser.UpdateUserDetail;
@@ -30,7 +36,8 @@ import retrofit2.Response;
 public class UpdateActivity extends AppCompatActivity {
     private EditText firstname, lastName, phoneNumber, email, dob, address, pinCode;
     private Button submit;
-
+    private Calendar c;
+    private DatePickerDialog dp;
     LoginResponse loginResponse;
 
     String fname, lname, phone, emailId, dateofBirth, adress, pincode;
@@ -51,10 +58,30 @@ public class UpdateActivity extends AppCompatActivity {
         lastName = findViewById(R.id.et_lastname);
         phoneNumber = findViewById(R.id.et_phonenumber);
         email = findViewById(R.id.et_email);
-        dob = findViewById(R.id.et_dob);
+        dob = findViewById(R.id.edittext_dob);
         address = findViewById(R.id.et_address);
         pinCode = findViewById(R.id.et_pincode);
         submit = findViewById(R.id.btn_submit);
+
+        dob.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.N)
+            @Override
+            public void onClick(View v) {
+
+                c=Calendar.getInstance();
+                int day=c.get(Calendar.DAY_OF_MONTH);
+                int month=c.get(Calendar.MONTH);
+                int year=c.get(Calendar.YEAR);
+
+                dp=new DatePickerDialog(UpdateActivity.this, new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int month, int day) {
+                        dob.setText(year + "-" + (month+1) + "-" + day);
+                    }
+                },day,year,month);
+                dp.show();
+            }
+        });
 
         if (getSupportActionBar() != null) {
 
