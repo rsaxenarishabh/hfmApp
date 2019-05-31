@@ -22,8 +22,10 @@ import hfc.com.newhfc.utils.HFMPrefs;
 
 public class ProfileActivity extends AppCompatActivity {
     private ImageView profileImg;
-    private TextView name, userName, gmail, phone, address, pinCode, dob, email, logout;
+    private TextView textViewName, textViewUserName, textViewGmail, textViewPhone, textViewAddress, textViewPinCode, textViewDob, textViewEmail, logout;
 
+
+    String firstname, lastName, userName, gmail, phone, address, pinCode, dob, email;
 
     LoginResponse loginResponse;
 
@@ -33,48 +35,22 @@ public class ProfileActivity extends AppCompatActivity {
         setContentView(R.layout.activity_profile);
 
         logout = findViewById(R.id.log_out);
-        name = findViewById(R.id.tv_Name);
+        textViewName = findViewById(R.id.tv_Name);
         profileImg = findViewById(R.id.profile_img);
-        userName = findViewById(R.id.tv_user_name);
-        gmail = findViewById(R.id.tv_gmail);
-        phone = findViewById(R.id.tv_phone);
-        address = findViewById(R.id.tv_address);
-        pinCode = findViewById(R.id.tv_pin_code);
-        dob = findViewById(R.id.tv_dob);
-        email = findViewById(R.id.tv_Email);
+        textViewUserName = findViewById(R.id.tv_user_name);
+        textViewGmail = findViewById(R.id.tv_gmail);
+        textViewPhone = findViewById(R.id.tv_phone);
+        textViewAddress = findViewById(R.id.tv_address);
+        textViewPinCode = findViewById(R.id.tv_pin_code);
+        textViewDob = findViewById(R.id.tv_dob);
+        textViewEmail = findViewById(R.id.tv_Email);
 
         if (getSupportActionBar() != null) {
 
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setDisplayShowHomeEnabled(true);
         }
-        String data = HFMPrefs.getString(getApplicationContext(), Constants.LOGIN_DATA);
-        loginResponse = new Gson().fromJson(data, LoginResponse.class);
-
-
-        if (loginResponse.getFirstName() != null && loginResponse.getLastName() != null) {
-            name.setText("" + loginResponse.getFirstName() + " " + loginResponse.getLastName());
-        }
-        if (loginResponse.getUserName() != null) {
-            userName.setText("" + loginResponse.getUserName());
-        }
-        if (loginResponse.getEmail() != null) {
-            gmail.setText("" + loginResponse.getEmail());
-            email.setText("" + loginResponse.getEmail());
-        }
-        if (loginResponse.getAddress() != null) {
-            address.setText("" + loginResponse.getAddress());
-        }
-        if (loginResponse.getDateOfBirth() != null) {
-            dob.setText("" + loginResponse.getDateOfBirth());
-        }
-        if (loginResponse.getPincode() != null) {
-            pinCode.setText("" + loginResponse.getPincode());
-        }
-        if (loginResponse.getImage() != null) {
-            Picasso.with(this).load(loginResponse.getImage()).error(R.drawable.header_profile).into(profileImg);
-
-        }
+        profileData();
 
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -84,6 +60,47 @@ public class ProfileActivity extends AppCompatActivity {
                 userlogout();
             }
         });
+
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        profileData();
+    }
+
+    private void profileData() {
+
+        String data = HFMPrefs.getString(getApplicationContext(), Constants.LOGIN_DATA);
+        loginResponse = new Gson().fromJson(data, LoginResponse.class);
+
+
+        if (loginResponse.getFirstName() != null && loginResponse.getLastName() != null) {
+            textViewName.setText("" + loginResponse.getFirstName() + " " + loginResponse.getLastName());
+        }
+        if (loginResponse.getUserName() != null) {
+            textViewUserName.setText("" + loginResponse.getUserName());
+        }
+        if (loginResponse.getEmail() != null) {
+            textViewGmail.setText("" + loginResponse.getEmail());
+            textViewEmail.setText("" + loginResponse.getEmail());
+        }
+        if (loginResponse.getAddress() != null) {
+            textViewAddress.setText("" + loginResponse.getAddress());
+        }
+        if (loginResponse.getDateOfBirth() != null) {
+            textViewDob.setText("" + loginResponse.getDateOfBirth());
+        }
+        if (loginResponse.getPincode() != null) {
+            textViewPinCode.setText("" + loginResponse.getPincode());
+        }
+        if (loginResponse.getImage() != null) {
+            Picasso.with(this).load(loginResponse.getImage()).error(R.drawable.header_profile).into(profileImg);
+        }
+        if (loginResponse.getPhoneNumber() != null) {
+            textViewPhone.setText("" + loginResponse.getPhoneNumber());
+        }
 
 
     }
@@ -137,6 +154,7 @@ public class ProfileActivity extends AppCompatActivity {
         if (item.getItemId() == R.id.edit_user) {
             Intent intent = new Intent(ProfileActivity.this, UpdateActivity.class);
             startActivity(intent);
+            finish();
             return true;
         }
         return super.onOptionsItemSelected(item);

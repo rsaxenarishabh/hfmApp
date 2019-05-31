@@ -14,7 +14,9 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
+import android.text.TextUtils;
 import android.util.Base64;
+import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,6 +33,7 @@ import java.io.InputStream;
 import java.text.DateFormat;
 import java.util.Calendar;
 
+import butterknife.internal.Utils;
 import hfc.com.newhfc.R;
 import hfc.com.newhfc.activities.AddUserActivity;
 import hfc.com.newhfc.activities.CalendarActivity;
@@ -210,6 +213,22 @@ public class AddUserFragment extends Fragment implements DatePickerDialog.OnDate
             editTextPhone.setError("Field can't be empty");
             check = false;
 
+        }
+
+        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            editTextEmail.setError(getString(R.string.invalid_email));
+            Toast.makeText(addUserActivity, R.string.invalid_email, Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if (TextUtils.isEmpty(phone)) {
+            editTextPhone.setError(getString(R.string.invalid_email));
+            return;
+        } else {
+            if (phone.length() < 10) {
+                editTextPhone.setError(getString(R.string.valid_phone));
+                return;
+            }
         }
 
 

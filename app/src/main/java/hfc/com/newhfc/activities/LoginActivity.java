@@ -141,6 +141,7 @@ public class LoginActivity extends AppCompatActivity {
                                 Toast.makeText(LoginActivity.this, "Successfully", Toast.LENGTH_SHORT).show();
                                 HFMPrefs.putString(LoginActivity.this, Constants.REFERAL, loginResponse.getReferal());
                                 HFMPrefs.putString(LoginActivity.this, Constants.USER_ID, loginResponse.getId());
+                                HFMPrefs.putString(LoginActivity.this, Constants.USER_ID, loginResponse.getId());
                                 HFMPrefs.putString(LoginActivity.this, Constants.LOGIN_DATA, new Gson().toJson(loginResponse));
 
                                 Intent intent = null;

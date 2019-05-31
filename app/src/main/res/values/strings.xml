@@ -51,4 +51,6 @@
     <string name="text_add_user">Add User</string>
     <string name="Internet_failed">Internet Connection\'s Failed!!</string>
     <string name="response_failed">Something went wrong!!</string>
+    <string name="invalid_email">Invalid Email!!</string>
+    <string name="valid_phone">Enter 10 Digit Number!!</string>
 </resources>

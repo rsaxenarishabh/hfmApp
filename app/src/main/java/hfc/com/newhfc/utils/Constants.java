@@ -6,7 +6,8 @@ public class Constants {
     public static final int CAPTURE_IMAGE = 101;
     public static final int CONFLICT_CODE = 409;
     public static String EMAIL_ID = "email";
-    public static String NAME = "name";
+    public static String LAST_NAME = "lastname";
+    public static String FIRST_NAME = "firstname";
     public static String USERNAME = "username";
     public static String IMAGE = "image";
     public static String PHONE = "phone";

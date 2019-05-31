@@ -33,6 +33,8 @@ public class UpdateActivity extends AppCompatActivity {
     String fname, lname, phone, emailId, dateofBirth, adress, pincode;
     String userId;
 
+
+
     @SuppressLint("WrongViewCast")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +53,12 @@ public class UpdateActivity extends AppCompatActivity {
         address = findViewById(R.id.et_address);
         pinCode = findViewById(R.id.et_pincode);
         submit = findViewById(R.id.btn_submit);
+
+        if (getSupportActionBar() != null) {
+
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
+        }
 
         if (loginResponse.getFirstName() != null) {
             firstname.setText("" + loginResponse.getFirstName());
@@ -138,7 +146,6 @@ public class UpdateActivity extends AppCompatActivity {
         }
         if (check == true) {
             userId = HFMPrefs.getString(UpdateActivity.this, Constants.USER_ID);
-
             UpdateUserDetail updateUserDetail = new UpdateUserDetail();
             updateUserDetail.setFirstName(fname);
             updateUserDetail.setLastName(lname);
@@ -155,15 +162,17 @@ public class UpdateActivity extends AppCompatActivity {
                 RestClient.updateUser(updateUserDetail, new Callback<UpdateUserResponse>() {
                     @Override
                     public void onResponse(Call<UpdateUserResponse> call, Response<UpdateUserResponse> response) {
-
                         AppUtils.dismissProgressDialog();
                         if (response.body() != null) {
                             if (response.body().getStatus()) {
                                 UpdateUserResponse updateUserResponse = response.body();
                                     Toast.makeText(UpdateActivity.this, "Update Successfully", Toast.LENGTH_SHORT).show();
-                                    Intent intent=new Intent(UpdateActivity.this,MainActivity.class);
+                                HFMPrefs.putString(UpdateActivity.this, Constants.LOGIN_DATA, new Gson().toJson(updateUserResponse));
+
+                                Intent intent=new Intent(UpdateActivity.this,MainActivity.class);
                                     startActivity(intent);
                                     finish();
+
 
                             }
                         }
