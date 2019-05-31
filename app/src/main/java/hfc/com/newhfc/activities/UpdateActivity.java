@@ -4,6 +4,8 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.util.Patterns;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -12,6 +14,7 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 
+import butterknife.internal.Utils;
 import hfc.com.newhfc.R;
 import hfc.com.newhfc.model.login.LoginResponse;
 import hfc.com.newhfc.model.updateUser.UpdateUserDetail;
@@ -32,7 +35,6 @@ public class UpdateActivity extends AppCompatActivity {
 
     String fname, lname, phone, emailId, dateofBirth, adress, pincode;
     String userId;
-
 
 
     @SuppressLint("WrongViewCast")
@@ -129,7 +131,21 @@ public class UpdateActivity extends AppCompatActivity {
             check = false;
 
         }
+        if (!Patterns.EMAIL_ADDRESS.matcher(emailId).matches()) {
+            email.setError(getString(R.string.invalid_email));
+            Toast.makeText(UpdateActivity.this, R.string.invalid_email, Toast.LENGTH_SHORT).show();
+            check=false;
+        }
 
+        if (TextUtils.isEmpty(phone)) {
+            phoneNumber.setError(getString(R.string.invalid_email));
+           check=false;
+        } else {
+            if (phone.length() < 10) {
+                phoneNumber.setError(getString(R.string.valid_phone));
+                check=false;
+            }
+        }
         if (dateofBirth.isEmpty()) {
             dob.setError("Field can't be empty");
             check = false;
@@ -141,6 +157,10 @@ public class UpdateActivity extends AppCompatActivity {
 
         }
         if (pincode.isEmpty()) {
+            pinCode.setError("Field can't be empty");
+            check = false;
+        }
+        if (pincode.length()<6) {
             pinCode.setError("Field can't be empty");
             check = false;
         }
@@ -166,12 +186,12 @@ public class UpdateActivity extends AppCompatActivity {
                         if (response.body() != null) {
                             if (response.body().getStatus()) {
                                 UpdateUserResponse updateUserResponse = response.body();
-                                    Toast.makeText(UpdateActivity.this, "Update Successfully", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(UpdateActivity.this, "Update Successfully", Toast.LENGTH_SHORT).show();
                                 HFMPrefs.putString(UpdateActivity.this, Constants.LOGIN_DATA, new Gson().toJson(updateUserResponse));
 
-                                Intent intent=new Intent(UpdateActivity.this,MainActivity.class);
-                                    startActivity(intent);
-                                    finish();
+                                Intent intent = new Intent(UpdateActivity.this, MainActivity.class);
+                                startActivity(intent);
+                                finish();
 
 
                             }
@@ -189,16 +209,14 @@ public class UpdateActivity extends AppCompatActivity {
                 AppUtils.dismissProgressDialog();
                 Toast.makeText(UpdateActivity.this, R.string.response_failed, Toast.LENGTH_SHORT).show();
 
-        if (getSupportActionBar() != null) {
+                if (getSupportActionBar() != null) {
+                }
+
+                getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+                getSupportActionBar().setDisplayShowHomeEnabled(true);
             }
 
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            getSupportActionBar().setDisplayShowHomeEnabled(true);
         }
-
-        }
-
-
 
 
     }

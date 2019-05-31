@@ -113,7 +113,7 @@
                     android:id="@+id/et_phonenumber"
                     android:layout_marginTop="@dimen/_20dp"
                     android:hint="Phone Number"
-                    android:inputType="text"
+                    android:inputType="phone"
                     android:textSize="16dp"
                     android:textColorHint="@color/black"
                     android:maxLength="10"
@@ -222,6 +222,7 @@
                     android:layout_marginLeft="@dimen/_10dp"
                     android:layout_marginRight="@dimen/_20dp"
                     android:maxLength="6"
+                    android:inputType="number"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 
