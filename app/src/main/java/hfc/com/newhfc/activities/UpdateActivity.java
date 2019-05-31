@@ -33,6 +33,8 @@ public class UpdateActivity extends AppCompatActivity {
     String fname, lname, phone, emailId, dateofBirth, adress, pincode;
     String userId;
 
+
+
     @SuppressLint("WrongViewCast")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +53,12 @@ public class UpdateActivity extends AppCompatActivity {
         address = findViewById(R.id.et_address);
         pinCode = findViewById(R.id.et_pincode);
         submit = findViewById(R.id.btn_submit);
+
+        if (getSupportActionBar() != null) {
+
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
+        }
 
         if (loginResponse.getFirstName() != null) {
             firstname.setText("" + loginResponse.getFirstName());
