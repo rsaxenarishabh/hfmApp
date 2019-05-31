@@ -147,10 +147,7 @@ public class MainActivity extends AppCompatActivity
                 fragment = DashboardFragment.newInstance();
                 replaceFragment(fragment);
                 break;
-            case R.id.addUser:
-                fragment = AddUserFragment.newInstance();
-                replaceFragment(fragment);
-                break;
+
 
             case R.id.addBankDetail:
                 fragment = AddBankDetailFragment.newInstance();

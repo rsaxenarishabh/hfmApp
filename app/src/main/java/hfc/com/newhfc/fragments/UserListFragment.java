@@ -12,6 +12,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +22,10 @@ import hfc.com.newhfc.R;
 import hfc.com.newhfc.activities.UserListActivity;
 import hfc.com.newhfc.adapter.UserListAdaptor;
 import hfc.com.newhfc.model.UserList;
+import hfc.com.newhfc.model.updateUser.UpdateUserResponse;
+import hfc.com.newhfc.model.userlist.Datum;
+import hfc.com.newhfc.model.userlist.UserListRequest;
+import hfc.com.newhfc.model.userlist.UserListResponse;
 import hfc.com.newhfc.retrofit.RestClient;
 import hfc.com.newhfc.retrofit.UserById;
 import hfc.com.newhfc.utils.AppUtils;
@@ -34,9 +40,13 @@ import retrofit2.Response;
  * Activities that contain this fragment must implement the
  * create an instance of this fragment.
  */
-public class UserListFragment extends Fragment implements UserListAdaptor.OnUserClickCallback{
-    List<UserList> userLists = new ArrayList<>();
+public class UserListFragment extends Fragment implements UserListAdaptor.OnUserClickCallback {
+    //List<UserList> userLists = new ArrayList<>();
+    List<Datum> userLists = new ArrayList<>();
+    // UserListResponse userLists;
     RecyclerView recyclerView;
+
+    TextView textView;
 
     public UserListFragment() {
         // Required empty public constructor
@@ -62,6 +72,8 @@ public class UserListFragment extends Fragment implements UserListAdaptor.OnUser
         getActivity().setTitleColor(R.color.white);
         View view = inflater.inflate(R.layout.fragment_user_list, container, false);
         recyclerView = view.findViewById(R.id.recyclerView);
+        textView=view.findViewById(R.id.user);
+
         return view;
     }
 
@@ -76,7 +88,58 @@ public class UserListFragment extends Fragment implements UserListAdaptor.OnUser
         super.onDetach();
     }
 
+
     private void getUserListApiCall() {
+        if (AppUtils.isInternetConnected(getActivity())) {
+            AppUtils.showProgressDialog(getActivity());
+            final UserListRequest userListRequest = new UserListRequest();
+            String referalCode=HFMPrefs.getString(getActivity(),Constants.REFERAL);
+            userListRequest.setReferalCode(""+referalCode);
+            // userListRequest.setReferalCode("HFMMOHAN1");
+            RestClient.userList(userListRequest, new Callback<UserListResponse>() {
+                @Override
+                public void onResponse(Call<UserListResponse> call, Response<UserListResponse> response) {
+                    AppUtils.dismissProgressDialog();
+                    if (response.body() != null) {
+                        if (userLists != null) {
+                            userLists.clear();
+                        }
+                        userLists = response.body().getData();
+                        if (userLists.size() == 0) {
+                            recyclerView.setVisibility(View.GONE);
+                            textView.setVisibility(View.VISIBLE);
+
+                        } else {
+
+                            UserListAdaptor userListAdaptor = new UserListAdaptor(getActivity());
+                            userListAdaptor.setDatumList(userLists);
+                            recyclerView.setHasFixedSize(true);
+                            userListAdaptor.setListener(UserListFragment.this);
+                            RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity().getApplicationContext());
+                            recyclerView.setLayoutManager(layoutManager);
+                            recyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL));
+                            recyclerView.setAdapter(userListAdaptor);
+                            recyclerView.setVisibility(View.VISIBLE);
+                            textView.setVisibility(View.GONE);
+                        }
+                    }
+
+                }
+                @Override
+                public void onFailure(Call<UserListResponse> call, Throwable t) {
+                    AppUtils.dismissProgressDialog();
+                    Toast.makeText(getActivity(), R.string.response_failed, Toast.LENGTH_SHORT).show();
+
+                }
+            });
+        } else {
+            AppUtils.dismissProgressDialog();
+            Toast.makeText(getActivity(), R.string.Internet_failed, Toast.LENGTH_SHORT).show();
+        }
+
+    }
+
+  /*  private void getUserListApiCall() {
         if (AppUtils.isInternetConnected(getActivity())) {
             AppUtils.showProgressDialog(getActivity());
             UserById userById = new UserById();
@@ -114,13 +177,13 @@ public class UserListFragment extends Fragment implements UserListAdaptor.OnUser
         } else {
             AppUtils.showMessage(getActivity(), "Please check internet conection");
         }
-    }
+    }*/
 
     @Override
-    public void onUserClick(int id,String referalCode) {
-        Intent intent=new Intent(getActivity(),UserListActivity.class);
-        intent.putExtra("id",id);
-        intent.putExtra("referalCode",referalCode);
+    public void onUserClick(String referalCode) {
+        Intent intent = new Intent(getActivity(), UserListActivity.class);
+        //intent.putExtra("id", id);
+        intent.putExtra("referalCode", referalCode);
 
         startActivity(intent);
     }

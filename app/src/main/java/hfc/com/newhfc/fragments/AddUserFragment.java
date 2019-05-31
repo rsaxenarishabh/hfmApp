@@ -57,9 +57,10 @@ public class AddUserFragment extends Fragment implements DatePickerDialog.OnDate
             editTextPhone, editTextEmail, editDOB,
             editTextAddress, editTextPincode;
 
-    MainActivity mainActivity;
+    AddUserActivity addUserActivity;
     private Button buttonSubmit;
     private String encodedImage;
+    String myReferalCode;
 
 
     public AddUserFragment() {
@@ -158,7 +159,6 @@ public class AddUserFragment extends Fragment implements DatePickerDialog.OnDate
         String pincode = editTextPincode.getText().toString().trim();
 
 
-
         if (firstname.isEmpty()) {
             editTextFirstname.setError("Field can't be empty");
             check = false;
@@ -209,7 +209,7 @@ public class AddUserFragment extends Fragment implements DatePickerDialog.OnDate
                 addUserRequest.setDateOfBirth(dob);
             } catch (Exception e) {
                 e.printStackTrace();
-                Toast.makeText(mainActivity, "Correct your Date Format", Toast.LENGTH_SHORT).show();
+                Toast.makeText(addUserActivity, "Correct your Date Format", Toast.LENGTH_SHORT).show();
             }
 
             addUserRequest.setEmail(email);
@@ -218,11 +218,15 @@ public class AddUserFragment extends Fragment implements DatePickerDialog.OnDate
             addUserRequest.setBase64File("");
             addUserRequest.setUserName("");
             addUserRequest.setPassword("");
-            String myReferalCode = HFMPrefs.getString(getActivity(), Constants.REFERAL);
+            if (addUserActivity.referalCode != null) {
+                myReferalCode = addUserActivity.referalCode;
+            } else {
+                myReferalCode = HFMPrefs.getString(getActivity(), Constants.REFERAL);
+            }
+
             addUserRequest.setReferalCode(myReferalCode);
 
-/*
-
+       /*
             if (getActivity() instanceof AddUserActivity) {
                 addUser.setReferalCode(((AddUserActivity) getActivity()).referalCode);
             } else {
@@ -259,7 +263,7 @@ public class AddUserFragment extends Fragment implements DatePickerDialog.OnDate
                     public void onFailure(Call<AddUserResponse> call, Throwable t) {
 
                         AppUtils.dismissProgressDialog();
-                        Toast.makeText(mainActivity, "Check Your Details", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(addUserActivity, "Check Your Details", Toast.LENGTH_SHORT).show();
                         Toast.makeText(getActivity(), R.string.response_failed, Toast.LENGTH_SHORT).show();
 
                     }
@@ -270,7 +274,6 @@ public class AddUserFragment extends Fragment implements DatePickerDialog.OnDate
                 Toast.makeText(getActivity(), R.string.Internet_failed, Toast.LENGTH_SHORT).show();
             }
         }
-
 
 
     }
@@ -309,7 +312,7 @@ public class AddUserFragment extends Fragment implements DatePickerDialog.OnDate
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        mainActivity=(MainActivity)getActivity();
+        addUserActivity = (AddUserActivity) getActivity();
 
     }
 
@@ -323,11 +326,11 @@ public class AddUserFragment extends Fragment implements DatePickerDialog.OnDate
     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
 
 
-        Calendar calendar=Calendar.getInstance();
-        calendar.set(Calendar.YEAR,year);
-        calendar.set(Calendar.MONTH,month);
-        calendar.set(Calendar.DAY_OF_MONTH,dayOfMonth);
-        String currentDate= DateFormat.getDateInstance(DateFormat.FULL).format(calendar.getTime());
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.YEAR, year);
+        calendar.set(Calendar.MONTH, month);
+        calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+        String currentDate = DateFormat.getDateInstance(DateFormat.FULL).format(calendar.getTime());
 
 
     }

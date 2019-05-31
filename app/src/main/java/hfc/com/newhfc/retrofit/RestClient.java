@@ -12,6 +12,8 @@ import hfc.com.newhfc.model.login.LoginRequest;
 import hfc.com.newhfc.model.login.LoginResponse;
 import hfc.com.newhfc.model.updateUser.UpdateUserDetail;
 import hfc.com.newhfc.model.updateUser.UpdateUserResponse;
+import hfc.com.newhfc.model.userlist.UserListRequest;
+import hfc.com.newhfc.model.userlist.UserListResponse;
 import okhttp3.ResponseBody;
 import retrofit2.Callback;
 
@@ -36,6 +38,9 @@ public class RestClient {
         RetrofitClient.getClient().updateUser(updateUserDetail).enqueue(callback);
     }
 
+    public static void userList(UserListRequest userListRequest, Callback<UserListResponse> callback) {
+        RetrofitClient.getClient().userList(userListRequest).enqueue(callback);
+    }
 
 
 

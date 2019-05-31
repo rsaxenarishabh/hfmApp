@@ -144,6 +144,7 @@ public class UpdateActivity extends AppCompatActivity {
             updateUserDetail.setEmail(emailId);
             updateUserDetail.setDateOfBirth(dateofBirth);
             updateUserDetail.setAddress(adress);
+            updateUserDetail.setPhoneNumber(phone);
             updateUserDetail.setBase64File("");
             updateUserDetail.setUserId(Integer.parseInt(userId));
             updateUserDetail.setPincode(pincode);

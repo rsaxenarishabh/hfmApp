@@ -5,9 +5,18 @@
     android:layout_height="match_parent"
     tools:context=".fragments.UserListFragment">
 
+    <TextView
+        android:id="@+id/user"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textSize="@dimen/margin_18"
+        android:textColor="@color/green"
+        android:text="No User Register"/>
     <!-- TODO: Update blank fragment layout -->
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerView"
+        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="@dimen/_5dp"/>

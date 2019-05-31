@@ -12,6 +12,8 @@ import hfc.com.newhfc.model.login.LoginRequest;
 import hfc.com.newhfc.model.login.LoginResponse;
 import hfc.com.newhfc.model.updateUser.UpdateUserDetail;
 import hfc.com.newhfc.model.updateUser.UpdateUserResponse;
+import hfc.com.newhfc.model.userlist.UserListRequest;
+import hfc.com.newhfc.model.userlist.UserListResponse;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -52,6 +54,14 @@ public interface ApiInterface {
     Call<ResponseBody> addUser(@Header("Authorization") String access_token, @Body AddUser addUser);
 
 */
+
+
+    @POST("http://vrok.in/hfm_api/list")
+    Call<UserListResponse> userList(@Body UserListRequest userListRequest);
+
+
+
+
     @POST("api/user/getusersbyuserid")
     @Headers({"Content-Type: application/json", "Accept: application/json"})
     Call<List<UserList>> getUserList(@Body() UserById userById, @Header("Authorization") String access_token);

@@ -8,9 +8,6 @@
             android:id="@+id/home"
             android:title="Home"
             />
-        <item
-            android:id="@+id/addUser"
-            android:title="Add User" />
 
         <item
             android:id="@+id/addBankDetail"
