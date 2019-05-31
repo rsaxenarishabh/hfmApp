@@ -112,6 +112,8 @@ public class AddUserFragment extends Fragment implements DatePickerDialog.OnDate
             }
         });
 */
+
+
         buttonSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

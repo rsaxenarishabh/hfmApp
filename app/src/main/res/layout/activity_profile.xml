@@ -10,7 +10,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="180dp"
-            android:background="#8BC34A"
+            android:background="@color/green_color"
             android:gravity="center_horizontal"
             android:orientation="vertical"
             android:paddingLeft="10dp"
@@ -75,7 +75,7 @@
             android:layout_height="wrap_content">
 
             <ImageView
-                android:background="@drawable/profile"
+                android:src="@drawable/profile"
                 android:layout_width="15dp"
                 android:layout_height="15dp" />
 
@@ -98,7 +98,7 @@
             android:layout_height="wrap_content">
 
             <ImageView
-                android:background="@drawable/email"
+                android:src="@drawable/email"
                 android:layout_width="15dp"
                 android:layout_height="15dp" />
 
@@ -122,7 +122,7 @@
             android:layout_height="wrap_content">
 
             <ImageView
-                android:background="@drawable/phone"
+                android:src="@drawable/phone"
                 android:layout_width="15dp"
                 android:layout_height="15dp" />
 
@@ -148,7 +148,7 @@
             <ImageView
                 android:layout_width="15dp"
                 android:layout_height="15dp"
-                android:background="@drawable/home" />
+                android:src="@drawable/home" />
 
             <TextView
                 android:text="Address :"
@@ -172,7 +172,7 @@
             <ImageView
                 android:layout_width="15dp"
                 android:layout_height="15dp"
-                android:background="@drawable/loction" />
+                android:src="@drawable/loction" />
 
             <TextView
                 android:text="Pin Code :"
@@ -194,7 +194,7 @@
             android:layout_height="wrap_content">
 
             <ImageView
-                android:background="@drawable/clender"
+                android:src="@drawable/clender"
                 android:layout_width="15dp"
                 android:layout_height="15dp" />
 
@@ -293,7 +293,7 @@
 
 
         <ImageView
-            android:background="@drawable/logout"
+            android:src="@drawable/logout"
             android:layout_width="20dp"
             android:layout_height="20dp" />
 
