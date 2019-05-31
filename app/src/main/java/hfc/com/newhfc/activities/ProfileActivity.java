@@ -72,7 +72,7 @@ public class ProfileActivity extends AppCompatActivity {
             pinCode.setText("" + loginResponse.getPincode());
         }
         if (loginResponse.getImage() != null) {
-            Picasso.with(this).load(loginResponse.getImage()).error(R.drawable.profile_pictures).into(profileImg);
+            Picasso.with(this).load(loginResponse.getImage()).error(R.drawable.header_profile).into(profileImg);
 
         }
 

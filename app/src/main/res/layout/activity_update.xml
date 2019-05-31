@@ -5,8 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/white"
     tools:context=".activities.UpdateActivity">
-
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="wrap_content"
@@ -38,25 +38,7 @@
                 android:scaleType="fitCenter"
                 android:src="@drawable/logo" />
 
-            <LinearLayout
 
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/_5dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginRight="@dimen/_5dp"
-                android:background="@color/black_divider_rgb">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:gravity="center"
-                    android:paddingTop="4dp"
-                    android:paddingBottom="@dimen/_5dp"
-                    android:text="Update users"
-                    android:textSize="@dimen/margin_20"
-                    android:textStyle="bold" />
-            </LinearLayout>
 
 
             <LinearLayout
@@ -64,73 +46,180 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:background="@drawable/profile"
+                        android:layout_marginTop="30dp"
+                        android:layout_marginLeft="@dimen/_20dp"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp" />
+
                 <EditText
                     android:id="@+id/et_firstname"
                     android:layout_marginTop="@dimen/_20dp"
                     android:hint="First name"
-                    android:layout_marginLeft="@dimen/_20dp"
+                    android:textSize="16dp"
+                    android:textColorHint="@color/black"
+                    android:layout_marginLeft="10dp"
                     android:layout_marginRight="@dimen/_20dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:background="@drawable/profile"
+                        android:layout_marginTop="30dp"
+                        android:layout_marginLeft="@dimen/_20dp"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp" />
 
                 <EditText
                     android:id="@+id/et_lastname"
                     android:layout_marginTop="@dimen/_20dp"
                     android:hint="Last Name"
-                    android:layout_marginLeft="@dimen/_20dp"
+                    android:textSize="16dp"
+                    android:textColorHint="@color/black"
+                    android:layout_marginLeft="@dimen/_10dp"
                     android:layout_marginRight="@dimen/_20dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:background="@drawable/phone"
+                        android:layout_marginTop="30dp"
+                        android:layout_marginLeft="@dimen/_20dp"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp" />
 
                 <EditText
                     android:id="@+id/et_phonenumber"
                     android:layout_marginTop="@dimen/_20dp"
                     android:hint="Phone Number"
+                    android:textSize="16dp"
+                    android:textColorHint="@color/black"
+                    android:layout_marginLeft="@dimen/_10dp"
                     android:maxLength="10"
-                    android:layout_marginLeft="@dimen/_20dp"
                     android:layout_marginRight="@dimen/_20dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 
+                </LinearLayout>
 
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:background="@drawable/email"
+                        android:layout_marginTop="30dp"
+                        android:layout_marginLeft="@dimen/_20dp"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp" />
 
                 <EditText
                     android:id="@+id/et_email"
                     android:layout_marginTop="@dimen/_20dp"
                     android:hint="Email Address"
-                    android:layout_marginLeft="@dimen/_20dp"
+                    android:textSize="16dp"
+                    android:textColorHint="@color/black"
+                    android:layout_marginLeft="@dimen/_10dp"
                     android:layout_marginRight="@dimen/_20dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:background="@drawable/clender"
+                        android:layout_marginTop="30dp"
+                        android:layout_marginLeft="@dimen/_20dp"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp" />
 
                 <EditText
                     android:id="@+id/et_dob"
                     android:layout_marginTop="@dimen/_20dp"
                     android:hint="Date Of Bieth"
-                    android:layout_marginLeft="@dimen/_20dp"
+                    android:textSize="16dp"
+                    android:textColorHint="@color/black"
+                    android:layout_marginLeft="@dimen/_10dp"
                     android:layout_marginRight="@dimen/_20dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:background="@drawable/home"
+                        android:layout_marginTop="30dp"
+                        android:layout_marginLeft="@dimen/_20dp"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp" />
 
                 <EditText
                     android:id="@+id/et_address"
                     android:layout_marginTop="@dimen/_20dp"
                     android:hint="Address"
-                    android:layout_marginLeft="@dimen/_20dp"
+                    android:textSize="16dp"
+                    android:textColorHint="@color/black"
+                    android:layout_marginLeft="@dimen/_10dp"
                     android:layout_marginRight="@dimen/_20dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:background="@drawable/loction"
+                        android:layout_marginTop="30dp"
+                        android:layout_marginLeft="@dimen/_20dp"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp" />
 
                 <EditText
                     android:id="@+id/et_pincode"
                     android:layout_marginTop="@dimen/_20dp"
                     android:hint="PinCode"
-                    android:layout_marginLeft="@dimen/_20dp"
+                    android:textSize="16dp"
+                    android:textColorHint="@color/black"
+                    android:layout_marginLeft="@dimen/_10dp"
                     android:layout_marginRight="@dimen/_20dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 
-
+                </LinearLayout>
             </LinearLayout>
 
             <Button
@@ -139,7 +228,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/_15dp"
-                android:background="@color/green"
+                android:background="@drawable/login_background_button"
                 android:text="SUBMIT"
                 android:textColor="@color/white" />
 

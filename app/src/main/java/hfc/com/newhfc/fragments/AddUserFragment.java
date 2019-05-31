@@ -12,6 +12,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
 import android.util.Base64;
 import android.view.LayoutInflater;
@@ -21,6 +22,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.ByteArrayOutputStream;
@@ -58,6 +60,12 @@ public class AddUserFragment extends Fragment implements DatePickerDialog.OnDate
             editTextAddress, editTextPincode;
 
     AddUserActivity addUserActivity;
+    private TextView mTv;
+    //private Button mbtn;
+    private Calendar c;
+    private DatePickerDialog dp;
+
+    MainActivity mainActivity;
     private Button buttonSubmit;
     private String encodedImage;
     String myReferalCode;
@@ -80,6 +88,9 @@ public class AddUserFragment extends Fragment implements DatePickerDialog.OnDate
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_add_user, container, false);
         img_profile = view.findViewById(R.id.img_profile);
+        editDOB = view.findViewById(R.id.dob);
+       // mTv=findViewById(R.id.textview);
+        //mbtn=findViewById(R.id.btnPick);
 
 
         getActivity().setTitle("Add User");
@@ -109,6 +120,30 @@ public class AddUserFragment extends Fragment implements DatePickerDialog.OnDate
                 Validation();
             }
         });
+
+
+        editDOB.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.N)
+            @Override
+            public void onClick(View v) {
+
+                c=Calendar.getInstance();
+                int day=c.get(Calendar.DAY_OF_MONTH);
+                int month=c.get(Calendar.MONTH);
+                int year=c.get(Calendar.YEAR);
+
+                dp=new DatePickerDialog(getActivity(), new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int month, int day) {
+                        editDOB.setText(year + "-" + (month+1) + "-" + day);
+
+                    }
+                },day,year,month);
+                dp.show();
+            }
+        });
+
+
 
         img_profile.setOnClickListener(new View.OnClickListener() {
             @Override
