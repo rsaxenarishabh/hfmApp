@@ -1,8 +1,10 @@
 package hfc.com.newhfc.activities;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -27,9 +29,31 @@ public class UpdateActivity extends AppCompatActivity {
         pinCode=findViewById(R.id.et_pincode);
         submit=findViewById(R.id.btn_submit);
 
+        if (getSupportActionBar() != null) {
+
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
+        }
+
 
 
 
 
     }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            finish();
+        }
+      /*  if (item.getItemId() == R.id.edit_user) {
+            Intent intent = new Intent(UpdateActivity.this, UpdateActivity.class);
+            startActivity(intent);
+            return true;
+        }*/
+        return super.onOptionsItemSelected(item);
+
+
+    }
+
 }

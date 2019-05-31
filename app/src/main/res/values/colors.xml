@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#2E7D32</color>
+    <color name="colorPrimary">#388E3C</color>
     <color name="colorPrimaryDark">#388E3C</color>
     <color name="colorAccent">#388E3C</color>
     <color name="white">#ffffff</color>
@@ -43,8 +43,10 @@
 
     <color name="tabtextcolor">#fff</color>
     <color name="tabindiacatorcolor">#2d2d2d</color>
+    <color name="green_color">#8BC34A</color>
 
     <color name="bike_color">#3ab77f</color>
+    <color name="col_white">#FCFCFC</color>
     <color name="car_color">#f88a00</color>
     <color name="dashboard3">#24418d</color>
     <color name="money_color">#a723cc</color>
