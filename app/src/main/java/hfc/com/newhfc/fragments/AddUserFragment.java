@@ -60,15 +60,15 @@ public class AddUserFragment extends Fragment implements DatePickerDialog.OnDate
     ImageView img_profile;
     private EditText editTextFirstname, editTextLastname,
             editTextPhone, editTextEmail, editDOB,
-            editTextAddress, editTextPincode;
+            editTextAddress, editTextPincode,editTextUsername;
 
     AddUserActivity addUserActivity;
+    AddUserResponse addUserResponse;
     private TextView mTv;
     //private Button mbtn;
     private Calendar c;
     private DatePickerDialog dp;
 
-    MainActivity mainActivity;
     private Button buttonSubmit;
     private String encodedImage;
     String myReferalCode;
@@ -92,12 +92,13 @@ public class AddUserFragment extends Fragment implements DatePickerDialog.OnDate
         View view = inflater.inflate(R.layout.fragment_add_user, container, false);
         img_profile = view.findViewById(R.id.img_profile);
         editDOB = view.findViewById(R.id.dob);
-       // mTv=findViewById(R.id.textview);
+        // mTv=findViewById(R.id.textview);
         //mbtn=findViewById(R.id.btnPick);
 
 
         getActivity().setTitle("Add User");
 
+        editTextUsername=view.findViewById(R.id.edittext_username);
         editTextFirstname = view.findViewById(R.id.edittext_firstname);
         editTextLastname = view.findViewById(R.id.edittext_lastname);
         editTextPhone = view.findViewById(R.id.edittext_phonenumber);
@@ -132,22 +133,21 @@ public class AddUserFragment extends Fragment implements DatePickerDialog.OnDate
             @Override
             public void onClick(View v) {
 
-                c=Calendar.getInstance();
-                int day=c.get(Calendar.DAY_OF_MONTH);
-                int month=c.get(Calendar.MONTH);
-                int year=c.get(Calendar.YEAR);
+                c = Calendar.getInstance();
+                int day = c.get(Calendar.DAY_OF_MONTH);
+                int month = c.get(Calendar.MONTH);
+                int year = c.get(Calendar.YEAR);
 
-                dp=new DatePickerDialog(getActivity(), new DatePickerDialog.OnDateSetListener() {
+                dp = new DatePickerDialog(getActivity(), new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int day) {
-                        editDOB.setText(year + "-" + (month+1) + "-" + day);
+                        editDOB.setText(year + "-" + (month + 1) + "-" + day);
 
                     }
-                },day,year,month);
+                }, day, year, month);
                 dp.show();
             }
         });
-
 
 
         img_profile.setOnClickListener(new View.OnClickListener() {
@@ -197,7 +197,7 @@ public class AddUserFragment extends Fragment implements DatePickerDialog.OnDate
         String dob = editDOB.getText().toString().trim();
         String address = editTextAddress.getText().toString().trim();
         String pincode = editTextPincode.getText().toString().trim();
-
+        String username=editTextUsername.getText().toString().trim();
 
         if (firstname.isEmpty()) {
             editTextFirstname.setError("Field can't be empty");
@@ -250,6 +250,12 @@ public class AddUserFragment extends Fragment implements DatePickerDialog.OnDate
             check = false;
 
         }
+        if (username.isEmpty()) {
+            editTextPincode.setError("Field can't be empty");
+            check = false;
+
+        }
+
 
 
         if (check == true) {
@@ -272,7 +278,7 @@ public class AddUserFragment extends Fragment implements DatePickerDialog.OnDate
             addUserRequest.setPincode(pincode);
             addUserRequest.setPhoneNumber(phone);
             addUserRequest.setBase64File("");
-            addUserRequest.setUserName("");
+            addUserRequest.setUserName(username);
             addUserRequest.setPassword("");
             if (addUserActivity.referalCode != null) {
                 myReferalCode = addUserActivity.referalCode;
@@ -297,8 +303,17 @@ public class AddUserFragment extends Fragment implements DatePickerDialog.OnDate
                     public void onResponse(Call<AddUserResponse> call, Response<AddUserResponse> response) {
                         AppUtils.dismissProgressDialog();
                         if (response.body() != null) {
+                            if (!(response.body().getStatus())) {
+                                Toast.makeText(addUserActivity, "You Can Add Only 3 Users", Toast.LENGTH_SHORT).show();
+                                if (getActivity() instanceof AddUserActivity) {
+                                    getActivity().finish();
+                                } else {
+                                    ((MainActivity) getActivity()).replaceFragment(new DashboardFragment());
+
+                                }
+                            }
                             if (response.body().getStatus()) {
-                                AddUserResponse addUserResponse = response.body();
+                                addUserResponse = response.body();
                                 if (addUserResponse.getId() > 0) {
                                     Toast.makeText(getActivity(), "Registration Successfully", Toast.LENGTH_SHORT).show();
                                     if (getActivity() instanceof AddUserActivity) {
@@ -310,6 +325,7 @@ public class AddUserFragment extends Fragment implements DatePickerDialog.OnDate
                                 }
 
                             }
+
                         }
 
 

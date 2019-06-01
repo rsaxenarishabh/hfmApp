@@ -54,11 +54,19 @@ public class UserListActivity extends AppCompatActivity implements UserListAdapt
             referalCode = getIntent().getStringExtra("referalCode");
         }
 
+        userlistData();
+
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main, menu);
+        if (userLists != null && userLists.size() >= 3) {
+            menu.findItem(R.id.addUser).setVisible(false);
+        } else {
+            menu.findItem(R.id.addUser).setVisible(true);
+        }
+
         return true;
     }
 
@@ -77,7 +85,10 @@ public class UserListActivity extends AppCompatActivity implements UserListAdapt
     @Override
     protected void onResume() {
         super.onResume();
+        userlistData();
+    }
 
+    private void userlistData() {
         if (AppUtils.isInternetConnected(this)) {
             AppUtils.showProgressDialog(this);
             final UserListRequest userListRequest = new UserListRequest();
@@ -102,6 +113,8 @@ public class UserListActivity extends AppCompatActivity implements UserListAdapt
                             recyclerView.setVisibility(GONE);
 
                         }*/ else {
+                               invalidateOptionsMenu();
+
                             UserListAdaptor userListAdaptor = new UserListAdaptor(getApplicationContext());
                             userListAdaptor.setDatumList(userLists);
                             userListAdaptor.setListener(UserListActivity.this);
@@ -127,6 +140,7 @@ public class UserListActivity extends AppCompatActivity implements UserListAdapt
         } else {
             AppUtils.dismissProgressDialog();
             Toast.makeText(UserListActivity.this, R.string.Internet_failed, Toast.LENGTH_SHORT).show();
+
         }
 
        /* if (AppUtils.isInternetConnected(getApplicationContext())) {
