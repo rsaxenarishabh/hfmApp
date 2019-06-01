@@ -19,6 +19,7 @@ import android.widget.Toast;
 import com.google.gson.Gson;
 
 import butterknife.internal.Utils;
+
 import java.util.Calendar;
 
 import hfc.com.newhfc.R;
@@ -68,17 +69,17 @@ public class UpdateActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                c=Calendar.getInstance();
-                int day=c.get(Calendar.DAY_OF_MONTH);
-                int month=c.get(Calendar.MONTH);
-                int year=c.get(Calendar.YEAR);
+                c = Calendar.getInstance();
+                int day = c.get(Calendar.DAY_OF_MONTH);
+                int month = c.get(Calendar.MONTH);
+                int year = c.get(Calendar.YEAR);
 
-                dp=new DatePickerDialog(UpdateActivity.this, new DatePickerDialog.OnDateSetListener() {
+                dp = new DatePickerDialog(UpdateActivity.this, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int day) {
-                        dob.setText(year + "-" + (month+1) + "-" + day);
+                        dob.setText(year + "-" + (month + 1) + "-" + day);
                     }
-                },day,year,month);
+                }, day, year, month);
                 dp.show();
             }
         });
@@ -161,16 +162,16 @@ public class UpdateActivity extends AppCompatActivity {
         if (!Patterns.EMAIL_ADDRESS.matcher(emailId).matches()) {
             email.setError(getString(R.string.invalid_email));
             Toast.makeText(UpdateActivity.this, R.string.invalid_email, Toast.LENGTH_SHORT).show();
-            check=false;
+            check = false;
         }
 
         if (TextUtils.isEmpty(phone)) {
             phoneNumber.setError(getString(R.string.invalid_email));
-           check=false;
+            check = false;
         } else {
             if (phone.length() < 10) {
                 phoneNumber.setError(getString(R.string.valid_phone));
-                check=false;
+                check = false;
             }
         }
         if (dateofBirth.isEmpty()) {
@@ -187,7 +188,7 @@ public class UpdateActivity extends AppCompatActivity {
             pinCode.setError("Field can't be empty");
             check = false;
         }
-        if (pincode.length()<6) {
+        if (pincode.length() < 6) {
             pinCode.setError("Field can't be empty");
             check = false;
         }
@@ -197,7 +198,11 @@ public class UpdateActivity extends AppCompatActivity {
             updateUserDetail.setFirstName(fname);
             updateUserDetail.setLastName(lname);
             updateUserDetail.setEmail(emailId);
-            updateUserDetail.setDateOfBirth(dateofBirth);
+            try {
+                updateUserDetail.setDateOfBirth(dateofBirth);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
             updateUserDetail.setAddress(adress);
             updateUserDetail.setPhoneNumber(phone);
             updateUserDetail.setBase64File("");
@@ -236,13 +241,15 @@ public class UpdateActivity extends AppCompatActivity {
                 AppUtils.dismissProgressDialog();
                 Toast.makeText(UpdateActivity.this, R.string.response_failed, Toast.LENGTH_SHORT).show();
 
-                if (getSupportActionBar() != null) {
-                }
 
-                getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-                getSupportActionBar().setDisplayShowHomeEnabled(true);
             }
 
+        }
+        if (getSupportActionBar() != null) {
+
+
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
         }
 
 

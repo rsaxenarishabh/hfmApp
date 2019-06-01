@@ -72,7 +72,7 @@ public class UserListFragment extends Fragment implements UserListAdaptor.OnUser
         getActivity().setTitleColor(R.color.white);
         View view = inflater.inflate(R.layout.fragment_user_list, container, false);
         recyclerView = view.findViewById(R.id.recyclerView);
-        textView=view.findViewById(R.id.user);
+        textView = view.findViewById(R.id.user);
 
         return view;
     }
@@ -88,13 +88,18 @@ public class UserListFragment extends Fragment implements UserListAdaptor.OnUser
         super.onDetach();
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        getUserListApiCall();
+    }
 
     private void getUserListApiCall() {
         if (AppUtils.isInternetConnected(getActivity())) {
             AppUtils.showProgressDialog(getActivity());
             final UserListRequest userListRequest = new UserListRequest();
-            String referalCode=HFMPrefs.getString(getActivity(),Constants.REFERAL);
-            userListRequest.setReferalCode(""+referalCode);
+            String referalCode = HFMPrefs.getString(getActivity(), Constants.REFERAL);
+            userListRequest.setReferalCode("" + referalCode);
             // userListRequest.setReferalCode("HFMMOHAN1");
             RestClient.userList(userListRequest, new Callback<UserListResponse>() {
                 @Override
@@ -110,7 +115,9 @@ public class UserListFragment extends Fragment implements UserListAdaptor.OnUser
                             textView.setVisibility(View.VISIBLE);
 
                         } else {
-
+                            if(getActivity()!=null) {
+                                getActivity().invalidateOptionsMenu();
+                            }
                             UserListAdaptor userListAdaptor = new UserListAdaptor(getActivity());
                             userListAdaptor.setDatumList(userLists);
                             recyclerView.setHasFixedSize(true);
@@ -125,6 +132,7 @@ public class UserListFragment extends Fragment implements UserListAdaptor.OnUser
                     }
 
                 }
+
                 @Override
                 public void onFailure(Call<UserListResponse> call, Throwable t) {
                     AppUtils.dismissProgressDialog();

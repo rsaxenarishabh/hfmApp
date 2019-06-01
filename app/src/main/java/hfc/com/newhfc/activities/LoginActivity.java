@@ -138,7 +138,6 @@ public class LoginActivity extends AppCompatActivity {
                         if (response.body() != null) {
                             LoginResponse loginResponse = response.body();
                             if (response.code() == 200) {
-                                Toast.makeText(LoginActivity.this, "Successfully", Toast.LENGTH_SHORT).show();
                                 HFMPrefs.putString(LoginActivity.this, Constants.REFERAL, loginResponse.getReferal());
                                 HFMPrefs.putString(LoginActivity.this, Constants.USER_ID, loginResponse.getId());
                                 HFMPrefs.putString(LoginActivity.this, Constants.USER_ID, loginResponse.getId());

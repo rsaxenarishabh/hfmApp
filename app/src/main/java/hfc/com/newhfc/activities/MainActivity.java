@@ -84,7 +84,7 @@ public class MainActivity extends AppCompatActivity
         });
 
         Intent incoming = getIntent();
-        if(getIntent().hasExtra("date")) {
+        if (getIntent().hasExtra("date")) {
             date = incoming.getStringExtra("date");
         }
         if (loginResponse.getUserName() != null) {
@@ -147,7 +147,10 @@ public class MainActivity extends AppCompatActivity
                 fragment = DashboardFragment.newInstance();
                 replaceFragment(fragment);
                 break;
-
+            case R.id.addUser:
+                Intent intent = new Intent(MainActivity.this, AddUserActivity.class);
+                startActivity(intent);
+                break;
 
             case R.id.addBankDetail:
                 fragment = AddBankDetailFragment.newInstance();

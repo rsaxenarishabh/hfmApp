@@ -34,21 +34,10 @@ public class UserListAdaptor extends RecyclerView.Adapter<UserListAdaptor.ViewHo
     private Context context;
 
 
-    // boolean isUserSelected;
-    // private String color;
     private List<Datum> userList;
 
 
-    //private List<UserList> userLists;
     OnUserClickCallback onUserClickCallback;
-/*
-
-    public UserListAdaptor(List<UserList> userLists, Context context) {
-        this.userLists = userLists;
-        this.context = context;
-        this.color = color;
-    }
-*/
 
     public UserListAdaptor(Context context) {
         this.context = context;
@@ -76,6 +65,9 @@ public class UserListAdaptor extends RecyclerView.Adapter<UserListAdaptor.ViewHo
         final Datum userlist = userList.get(position);
         if (userlist.getFirstName() != null) {
             holder.tvName.setText("" + userlist.getFirstName());
+        }
+        if (userlist.getAddress() != null) {
+            holder.tvAddress.setText("" + userlist.getAddress());
         }
         if (userlist.getStatus().equalsIgnoreCase("1")) {
             holder.activeImage.setImageResource(R.drawable.ic_activated);
@@ -148,7 +140,7 @@ public class UserListAdaptor extends RecyclerView.Adapter<UserListAdaptor.ViewHo
     public class ViewHolder extends RecyclerView.ViewHolder {
         private CircleImageView imageView;
         private TextView tvName;
-        private TextView tvDesc;
+        private TextView tvAddress;
         private ImageView activeImage;
         private CardView cardViewList;
 
@@ -156,7 +148,7 @@ public class UserListAdaptor extends RecyclerView.Adapter<UserListAdaptor.ViewHo
             super(view);
             imageView = view.findViewById(R.id.image);
             tvName = view.findViewById(R.id.tvName);
-            tvDesc = view.findViewById(R.id.tvDesc);
+            tvAddress = view.findViewById(R.id.tvDesc);
             activeImage = view.findViewById(R.id.tvDelete);
             cardViewList = view.findViewById(R.id.deviceInfoView);
         }
