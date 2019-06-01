@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/green"
+    android:background="@color/white"
     tools:context=".fragments.AboutFragment">
 
 
@@ -22,7 +22,7 @@
 
             android:layout_marginTop="@dimen/_15dp"
             android:textSize="@dimen/margin_20"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textStyle="bold"
             android:gravity="center"
             android:layout_width="wrap_content"
@@ -34,7 +34,7 @@
 
             android:layout_marginTop="@dimen/_15dp"
             android:textSize="@dimen/margin_20"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textStyle="bold"
             android:gravity="center"
             android:layout_marginBottom="@dimen/_10dp"

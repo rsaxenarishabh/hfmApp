@@ -37,7 +37,8 @@
             android:layout_alignTop="@+id/money"
             android:layout_gravity="center"
             android:background="@drawable/bike_button"
-            android:src="@drawable/bike" />
+            android:src="@drawable/bike"
+            android:layout_alignLeft="@+id/dooler" />
 
         <ImageView
             android:id="@+id/car"
@@ -47,7 +48,8 @@
             android:layout_alignStart="@+id/money"
             android:layout_marginBottom="95dp"
             android:background="@drawable/car_button"
-            android:src="@drawable/car" />
+            android:src="@drawable/car"
+            android:layout_alignLeft="@+id/money" />
 
         <ImageView
             android:id="@+id/gift"
@@ -79,7 +81,9 @@
 
             android:layout_marginTop="119dp"
             android:background="@drawable/money_button"
-            android:src="@drawable/money" />
+            android:src="@drawable/money"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="36dp" />
 
         <ImageView
             android:id="@+id/dooler"

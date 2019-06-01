@@ -95,7 +95,7 @@ public class AddUserFragment extends Fragment implements DatePickerDialog.OnDate
         // mTv=findViewById(R.id.textview);
         //mbtn=findViewById(R.id.btnPick);
 
-
+        //show toolbar
         getActivity().setTitle("Add User");
 
         editTextUsername=view.findViewById(R.id.edittext_username);

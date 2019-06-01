@@ -48,6 +48,7 @@ public class AddBankDetailFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_bank_detail, container, false);
+        getActivity().setTitle("Bank Details");
         // img_profile = view.findViewById(R.id.img_profile);
         editTextAddhar = view.findViewById(R.id.edittext_aadhar);
         editTextPanCard = view.findViewById(R.id.edittext_pancard);
