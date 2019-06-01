@@ -237,7 +237,7 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="@dimen/_20dp"
                 android:layout_margin="@dimen/_15dp"
-                android:background="@drawable/login_background_button"
+                android:background="@drawable/oval"
                 android:text="SUBMIT"
                 android:textColor="@color/white" />
 
