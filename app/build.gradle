@@ -36,7 +36,7 @@ android {
 
             minifyEnabled false
             signingConfig uatSigningKey
-            buildConfigField "String", "API_BASEURL", "\"http://api.hindustanfundscarrier.com/\""
+            buildConfigField "String", "API_BASEURL", "\"http://vrok.in/hfm_api/\""
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
 
@@ -45,7 +45,7 @@ android {
             useProguard false
             shrinkResources false
             minifyEnabled false
-            buildConfigField "String", "API_BASEURL", "\"http://api.hindustanfundscarrier.com/\""
+            buildConfigField "String", "API_BASEURL", "\"http://vrok.in/hfm_api/\""
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }

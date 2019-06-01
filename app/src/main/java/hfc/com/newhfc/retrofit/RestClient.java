@@ -52,11 +52,14 @@ public class RestClient {
 
     }
 */
+/*
 
     public static void getUserList(UserById user, String access_token, Callback<List<UserList>> callback) {
-        RetrofitClient.getClient().getUserList(user, access_token).enqueue(callback);
+        RetrofitClient.getClient().getUserList(user, access_token).enq
+        ueue(callback);
     }
 
+*/
 
 
 /*
