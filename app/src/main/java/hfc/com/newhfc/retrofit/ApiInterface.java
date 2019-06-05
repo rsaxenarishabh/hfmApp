@@ -28,7 +28,7 @@ public interface ApiInterface {
             "User-Agent: Your-App-Name"
     })
 
-    @POST("http://vrok.in/hfm_api/login")
+    @POST("login")
     Call<LoginResponse> loginUser(@Body LoginRequest loginRequest);
 /*
 
@@ -36,15 +36,15 @@ public interface ApiInterface {
     Call<LoginResponse> login(@Body LoginRequestModel requestModel);*/
 
 
-    @POST("http://vrok.in/hfm_api/signup")
+    @POST("signup")
     Call<AddUserResponse> addUser(@Body AddUserRequest addUserRequest);
 
 
-    @POST("http://vrok.in/hfm_api/add_bank")
+    @POST("add_bank")
     Call<BankDetailResponse> bankDetailSave(@Body BankDetailRequest bankDetailRequest);
 
 
-    @POST("http://vrok.in/hfm_api/update")
+    @POST("update")
     Call<UpdateUserResponse> updateUser(@Body UpdateUserDetail updateUserDetail);
 
 
@@ -56,15 +56,10 @@ public interface ApiInterface {
 */
 
 
-    @POST("http://vrok.in/hfm_api/list")
+    @POST("list")
     Call<UserListResponse> userList(@Body UserListRequest userListRequest);
 
 
-
-
-    @POST("api/user/getusersbyuserid")
-    @Headers({"Content-Type: application/json","Accept: application/json"})
-    Call<List<UserList>> getUserList(@Body() UserById userById, @Header("Authorization") String access_token);
 
 
 }

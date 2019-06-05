@@ -33,16 +33,13 @@ import java.io.InputStream;
 import java.text.DateFormat;
 import java.util.Calendar;
 
-import butterknife.internal.Utils;
 import hfc.com.newhfc.R;
 import hfc.com.newhfc.activities.AddUserActivity;
-import hfc.com.newhfc.activities.CalendarActivity;
-import hfc.com.newhfc.activities.DatePickerFragment;
 import hfc.com.newhfc.activities.MainActivity;
 import hfc.com.newhfc.model.adduser.AddUserRequest;
 import hfc.com.newhfc.model.adduser.AddUserResponse;
 import hfc.com.newhfc.retrofit.RestClient;
-import hfc.com.newhfc.utils.AppUtils;
+import hfc.com.newhfc.utils.Utils;
 import hfc.com.newhfc.utils.Constants;
 import hfc.com.newhfc.utils.HFMPrefs;
 import retrofit2.Call;
@@ -295,12 +292,12 @@ public class AddUserFragment extends Fragment implements DatePickerDialog.OnDate
             }
 */
 
-            if (AppUtils.isInternetConnected(getActivity())) {
-                AppUtils.showProgressDialog(getActivity());
+            if (Utils.isInternetConnected(getActivity())) {
+                Utils.showProgressDialog(getActivity());
                 RestClient.addUser(addUserRequest, new Callback<AddUserResponse>() {
                     @Override
                     public void onResponse(Call<AddUserResponse> call, Response<AddUserResponse> response) {
-                        AppUtils.dismissProgressDialog();
+                        Utils.dismissProgressDialog();
                         if (response.body() != null) {
                             if (!(response.body().getStatus())) {
                                 Toast.makeText(addUserActivity, "You Can Add Only 3 Users", Toast.LENGTH_SHORT).show();
@@ -333,7 +330,7 @@ public class AddUserFragment extends Fragment implements DatePickerDialog.OnDate
                     @Override
                     public void onFailure(Call<AddUserResponse> call, Throwable t) {
 
-                        AppUtils.dismissProgressDialog();
+                        Utils.dismissProgressDialog();
                         Toast.makeText(addUserActivity, "Check Your Details", Toast.LENGTH_SHORT).show();
                         Toast.makeText(getActivity(), R.string.response_failed, Toast.LENGTH_SHORT).show();
 
@@ -341,7 +338,7 @@ public class AddUserFragment extends Fragment implements DatePickerDialog.OnDate
                 });
 
             } else {
-                AppUtils.dismissProgressDialog();
+                Utils.dismissProgressDialog();
                 Toast.makeText(getActivity(), R.string.Internet_failed, Toast.LENGTH_SHORT).show();
             }
         }

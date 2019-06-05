@@ -5,7 +5,6 @@ import android.support.v7.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -20,11 +19,10 @@ import android.widget.Toast;
 import com.google.gson.Gson;
 
 import hfc.com.newhfc.R;
-import hfc.com.newhfc.model.LoginRequestModel;
 import hfc.com.newhfc.model.login.LoginRequest;
 import hfc.com.newhfc.model.login.LoginResponse;
 import hfc.com.newhfc.retrofit.RestClient;
-import hfc.com.newhfc.utils.AppUtils;
+import hfc.com.newhfc.utils.Utils;
 import hfc.com.newhfc.utils.Constants;
 import hfc.com.newhfc.utils.HFMPrefs;
 import retrofit2.Call;
@@ -134,13 +132,13 @@ public class LoginActivity extends AppCompatActivity {
             final LoginRequest loginRequest = new LoginRequest();
             loginRequest.setUserName(username);
             loginRequest.setPassword(password);
-            AppUtils.showProgressDialog(this);
-            if (AppUtils.isInternetConnected(this)) {
-                AppUtils.showProgressDialog(this);
+            Utils.showProgressDialog(this);
+            if (Utils.isInternetConnected(this)) {
+                Utils.showProgressDialog(this);
                 RestClient.loginUser(loginRequest, new Callback<LoginResponse>() {
                     @Override
                     public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
-                        AppUtils.dismissProgressDialog();
+                        Utils.dismissProgressDialog();
                         if (response.body() != null) {
                             LoginResponse loginResponse = response.body();
                             if (response.code() == 200) {
@@ -168,14 +166,14 @@ public class LoginActivity extends AppCompatActivity {
 
                     @Override
                     public void onFailure(Call<LoginResponse> call, Throwable t) {
-                        AppUtils.dismissProgressDialog();
+                        Utils.dismissProgressDialog();
                         Toast.makeText(LoginActivity.this, R.string.response_failed, Toast.LENGTH_SHORT).show();
 
                     }
                 });
 
             } else {
-                AppUtils.dismissProgressDialog();
+                Utils.dismissProgressDialog();
                 Toast.makeText(this, R.string.Internet_failed, Toast.LENGTH_SHORT).show();
             }
 
@@ -186,7 +184,7 @@ public class LoginActivity extends AppCompatActivity {
                     if (response.isSuccessful()) {
                         LoginResponse responseModel = response.body();
 
-                        AppUtils.dismissProgressDialog();
+                        Utils.dismissProgressDialog();
                         if (response.code() == 200) {
                             Toast.makeText(LoginActivity.this, "Logged in succesfully", Toast.LENGTH_LONG).show();
                             //HFMPrefs.putBoolean(LoginActivity.this, Constants.USER_LOGGED_IN, true);
@@ -211,7 +209,7 @@ public class LoginActivity extends AppCompatActivity {
 
                 @Override
                 public void onFailure(Call<LoginResponse> call, Throwable t) {
-                    AppUtils.dismissProgressDialog();
+                    Utils.dismissProgressDialog();
                     Log.d(LoginActivity.class.getSimpleName(), "Login failed");
                 }
             });
