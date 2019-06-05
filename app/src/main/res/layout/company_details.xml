@@ -135,7 +135,7 @@ tools:context=".fragments.CompanyDetail">
                     android:textColor="@color/white"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text=""/>
+                    android:text="+91-9001768074"/>
 
             </LinearLayout>
 
@@ -162,34 +162,13 @@ tools:context=".fragments.CompanyDetail">
                     android:textColor="@color/white"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text=""/>
+                    android:text="@string/address"/>
 
             </LinearLayout>
 
 
 
 
-            <LinearLayout
-
-                android:layout_marginLeft="@dimen/_10dp"
-                android:orientation="horizontal"
-                android:gravity="center"
-                android:layout_gravity="center"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:layout_marginTop="@dimen/_10dp"
-                    android:textSize="15dp"
-                    android:textStyle="bold"
-                    android:textColor="@color/white"
-                    android:layout_marginBottom="@dimen/_20dp"
-
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Android version 1.0"/>
-
-            </LinearLayout>
         </LinearLayout>
     </RelativeLayout>
 </LinearLayout>

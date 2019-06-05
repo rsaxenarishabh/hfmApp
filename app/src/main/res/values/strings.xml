@@ -53,4 +53,8 @@
     <string name="response_failed">Something went wrong!!</string>
     <string name="invalid_email">Invalid Email!!</string>
     <string name="valid_phone">Enter 10 Digit Number!!</string>
+
+    <string name="address">1,1 Sikshak Colony,Behror,Alwar,Rajyasthan,301701</string>
+
+
 </resources>

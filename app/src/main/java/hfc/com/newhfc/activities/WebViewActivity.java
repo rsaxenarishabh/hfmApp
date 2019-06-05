@@ -96,7 +96,7 @@ public class WebViewActivity extends AppCompatActivity {
 
             case "Privacy Policy":
                 progressBar.setVisibility(View.VISIBLE);
-                mWebView.loadUrl("http://reddyenterprise.com/education/privacy-policy.php");
+                mWebView.loadUrl("http://vrok.in/hfm_dev/index.html");
                 break;
 
 

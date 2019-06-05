@@ -100,7 +100,7 @@
             android:layout_marginLeft="40dp"
             android:layout_gravity="center"
             android:textColor="@color/black"
-            android:text="Term and Condition"
+            android:text="Privacy and Policy"
             android:textStyle="bold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
