@@ -27,6 +27,8 @@ public class DocumentActivity extends AppCompatActivity {
         {
             finish();
         }
+
+
         return super.onOptionsItemSelected(item);
     }
 
