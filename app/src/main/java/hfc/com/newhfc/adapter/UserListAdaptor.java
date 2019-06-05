@@ -67,7 +67,7 @@ public class UserListAdaptor extends RecyclerView.Adapter<UserListAdaptor.ViewHo
             holder.tvName.setText("" + userlist.getFirstName());
         }
         if (userlist.getAddress() != null) {
-            holder.tvAddress.setText("" + userlist.getAddress());
+            holder.tvAddress.setText("" + userlist.getEmail());
         }
         if (userlist.getStatus().equalsIgnoreCase("1")) {
             holder.activeImage.setImageResource(R.drawable.ic_activated);
