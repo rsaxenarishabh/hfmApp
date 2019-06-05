@@ -18,12 +18,16 @@
         android:roundIcon="@drawable/logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".activities.DocumentActivity"
+            android:theme="@style/AppTheme2"
+            android:label="Document"
+            android:screenOrientation="portrait"></activity>
         <activity
             android:name=".activities.CalendarActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".activities.AccountDetailUpdateActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".activities.UpdateActivity"
             android:label="Update users"

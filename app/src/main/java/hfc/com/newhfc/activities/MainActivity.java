@@ -184,7 +184,10 @@ public class MainActivity extends AppCompatActivity
                 fragment = AboutFragment.newInstance();
                 replaceFragment(fragment);
                 break;
-
+            case R.id.nav_document:
+                Intent intent1=new Intent(MainActivity.this,DocumentActivity.class);
+                startActivity(intent1);
+                break;
         }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

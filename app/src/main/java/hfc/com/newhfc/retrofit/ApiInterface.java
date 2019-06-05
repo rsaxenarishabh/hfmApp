@@ -63,7 +63,7 @@ public interface ApiInterface {
 
 
     @POST("api/user/getusersbyuserid")
-    @Headers({"Content-Type: application/json", "Accept: application/json"})
+    @Headers({"Content-Type: application/json","Accept: application/json"})
     Call<List<UserList>> getUserList(@Body() UserById userById, @Header("Authorization") String access_token);
 
 
