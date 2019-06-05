@@ -9,16 +9,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.google.gson.Gson;
-
 import hfc.com.newhfc.R;
 import hfc.com.newhfc.activities.AddUserActivity;
-import hfc.com.newhfc.activities.LoginActivity;
 import hfc.com.newhfc.activities.MainActivity;
 import hfc.com.newhfc.model.bankDetail.BankDetailRequest;
 import hfc.com.newhfc.model.bankDetail.BankDetailResponse;
 import hfc.com.newhfc.retrofit.RestClient;
-import hfc.com.newhfc.utils.AppUtils;
+import hfc.com.newhfc.utils.Utils;
 import hfc.com.newhfc.utils.Constants;
 import hfc.com.newhfc.utils.HFMPrefs;
 import retrofit2.Call;
@@ -136,12 +133,12 @@ public class AddBankDetailFragment extends Fragment {
             bankDetailRequest.setPanNumber(panCard);
             bankDetailRequest.setAccountNumber(accountNumber);
 
-            if (AppUtils.isInternetConnected(getActivity())) {
-                AppUtils.showProgressDialog(getActivity());
+            if (Utils.isInternetConnected(getActivity())) {
+                Utils.showProgressDialog(getActivity());
                 RestClient.bankDetailSave(bankDetailRequest, new Callback<BankDetailResponse>() {
                     @Override
                     public void onResponse(Call<BankDetailResponse> call, Response<BankDetailResponse> response) {
-                      AppUtils.dismissProgressDialog();
+                      Utils.dismissProgressDialog();
                         if(response.body()!=null)
                         {
                             if (response.body().getStatus())
@@ -162,12 +159,12 @@ public class AddBankDetailFragment extends Fragment {
 
                     @Override
                     public void onFailure(Call<BankDetailResponse> call, Throwable t) {
-                        AppUtils.dismissProgressDialog();
+                        Utils.dismissProgressDialog();
                         Toast.makeText(getActivity(), R.string.response_failed, Toast.LENGTH_SHORT).show();
                     }
                 });
             } else {
-                AppUtils.dismissProgressDialog();
+                Utils.dismissProgressDialog();
                 Toast.makeText(getActivity(), R.string.Internet_failed, Toast.LENGTH_SHORT).show();
             }
 

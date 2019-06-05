@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -18,16 +17,11 @@ import java.util.List;
 
 import hfc.com.newhfc.R;
 import hfc.com.newhfc.adapter.UserListAdaptor;
-import hfc.com.newhfc.fragments.UserListFragment;
-import hfc.com.newhfc.model.UserList;
 import hfc.com.newhfc.model.userlist.Datum;
 import hfc.com.newhfc.model.userlist.UserListRequest;
 import hfc.com.newhfc.model.userlist.UserListResponse;
 import hfc.com.newhfc.retrofit.RestClient;
-import hfc.com.newhfc.retrofit.UserById;
-import hfc.com.newhfc.utils.AppUtils;
-import hfc.com.newhfc.utils.Constants;
-import hfc.com.newhfc.utils.HFMPrefs;
+import hfc.com.newhfc.utils.Utils;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -89,8 +83,8 @@ public class UserListActivity extends AppCompatActivity implements UserListAdapt
     }
 
     private void userlistData() {
-        if (AppUtils.isInternetConnected(this)) {
-            AppUtils.showProgressDialog(this);
+        if (Utils.isInternetConnected(this)) {
+            Utils.showProgressDialog(this);
             final UserListRequest userListRequest = new UserListRequest();
             //userListRequest.setReferalCode(HFMPrefs.getString(UserListActivity.this, Constants.REFERAL));
             //userListRequest.setReferalCode("HFMMOHAN1");
@@ -98,7 +92,7 @@ public class UserListActivity extends AppCompatActivity implements UserListAdapt
             RestClient.userList(userListRequest, new Callback<UserListResponse>() {
                 @Override
                 public void onResponse(Call<UserListResponse> call, Response<UserListResponse> response) {
-                    AppUtils.dismissProgressDialog();
+                    Utils.dismissProgressDialog();
                     if (response.body() != null) {
                         if (userLists != null) {
                             userLists.clear();
@@ -132,19 +126,19 @@ public class UserListActivity extends AppCompatActivity implements UserListAdapt
 
                 @Override
                 public void onFailure(Call<UserListResponse> call, Throwable t) {
-                    AppUtils.dismissProgressDialog();
+                    Utils.dismissProgressDialog();
                     Toast.makeText(UserListActivity.this, R.string.response_failed, Toast.LENGTH_SHORT).show();
 
                 }
             });
         } else {
-            AppUtils.dismissProgressDialog();
+            Utils.dismissProgressDialog();
             Toast.makeText(UserListActivity.this, R.string.Internet_failed, Toast.LENGTH_SHORT).show();
 
         }
 
-       /* if (AppUtils.isInternetConnected(getApplicationContext())) {
-            AppUtils.showProgressDialog(getApplicationContext());
+       /* if (Utils.isInternetConnected(getApplicationContext())) {
+            Utils.showProgressDialog(getApplicationContext());
             Intent intent=getIntent();
             int userId=intent.getIntExtra("id",0);
             UserById userById = new UserById();
@@ -152,7 +146,7 @@ public class UserListActivity extends AppCompatActivity implements UserListAdapt
             RestClient.getUserList(userById,getString(R.string.bearer) + " " + HFMPrefs.getString(getApplicationContext(), Constants.ACCESS_TOKEN), new Callback<List<UserList>>() {
                 @Override
                 public void onResponse(Call<List<UserList>> call, Response<List<UserList>> response) {
-                    AppUtils.dismissProgressDialog();
+                    Utils.dismissProgressDialog();
                     if (response.body() != null) {
                         Log.e("UserList Api Response", "" + response.body().size());
                         if (userLists != null) {
@@ -174,13 +168,13 @@ public class UserListActivity extends AppCompatActivity implements UserListAdapt
 
                 @Override
                 public void onFailure(Call<List<UserList>> call, Throwable t) {
-                    AppUtils.dismissProgressDialog();
+                    Utils.dismissProgressDialog();
                     Log.e("UserList Api Response", "" + t.getMessage());
-                    AppUtils.showMessage(getApplicationContext(), getString(R.string.unable_to_get_user));
+                    Utils.showMessage(getApplicationContext(), getString(R.string.unable_to_get_user));
                 }
             });
         } else {
-            AppUtils.showMessage(getApplicationContext(), "Please check internet conection");
+            Utils.showMessage(getApplicationContext(), "Please check internet conection");
         }*/
     }
 

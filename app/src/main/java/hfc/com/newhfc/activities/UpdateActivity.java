@@ -18,8 +18,6 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 
-import butterknife.internal.Utils;
-
 import java.util.Calendar;
 
 import hfc.com.newhfc.R;
@@ -27,7 +25,7 @@ import hfc.com.newhfc.model.login.LoginResponse;
 import hfc.com.newhfc.model.updateUser.UpdateUserDetail;
 import hfc.com.newhfc.model.updateUser.UpdateUserResponse;
 import hfc.com.newhfc.retrofit.RestClient;
-import hfc.com.newhfc.utils.AppUtils;
+import hfc.com.newhfc.utils.Utils;
 import hfc.com.newhfc.utils.Constants;
 import hfc.com.newhfc.utils.HFMPrefs;
 import retrofit2.Call;
@@ -209,12 +207,12 @@ public class UpdateActivity extends AppCompatActivity {
             updateUserDetail.setUserId(Integer.parseInt(userId));
             updateUserDetail.setPincode(pincode);
 
-            if (AppUtils.isInternetConnected(this)) {
-                AppUtils.showProgressDialog(this);
+            if (Utils.isInternetConnected(this)) {
+                Utils.showProgressDialog(this);
                 RestClient.updateUser(updateUserDetail, new Callback<UpdateUserResponse>() {
                     @Override
                     public void onResponse(Call<UpdateUserResponse> call, Response<UpdateUserResponse> response) {
-                        AppUtils.dismissProgressDialog();
+                        Utils.dismissProgressDialog();
                         if (response.body() != null) {
                             if (response.body().getStatus()) {
                                 UpdateUserResponse updateUserResponse = response.body();
@@ -233,12 +231,12 @@ public class UpdateActivity extends AppCompatActivity {
 
                     @Override
                     public void onFailure(Call<UpdateUserResponse> call, Throwable t) {
-                        AppUtils.dismissProgressDialog();
+                        Utils.dismissProgressDialog();
                         Toast.makeText(UpdateActivity.this, R.string.response_failed, Toast.LENGTH_SHORT).show();
                     }
                 });
             } else {
-                AppUtils.dismissProgressDialog();
+                Utils.dismissProgressDialog();
                 Toast.makeText(UpdateActivity.this, R.string.response_failed, Toast.LENGTH_SHORT).show();
 
 

@@ -13,7 +13,7 @@ import hfc.com.newhfc.R;
 
 import static android.content.Context.CONNECTIVITY_SERVICE;
 
-public class AppUtils {
+public class Utils {
 
 
 
