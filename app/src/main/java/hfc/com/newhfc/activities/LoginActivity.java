@@ -42,6 +42,8 @@ public class LoginActivity extends AppCompatActivity {
     private static final int REQUEST_READ_CONTACTS = 0;
 
 
+    private  TextView textViewPrivacy;
+
     // UI references.
     private AutoCompleteTextView mUsername;
     private EditText mPasswordView;
@@ -53,6 +55,8 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login2);
         // Set up the login form.
+
+        textViewPrivacy=findViewById(R.id.privacy_policy);
         mUsername = (AutoCompleteTextView) findViewById(R.id.username);
         mPasswordView = (EditText) findViewById(R.id.password);
         checkBox = findViewById(R.id.login_checkbox);
@@ -66,6 +70,8 @@ public class LoginActivity extends AppCompatActivity {
                 return false;
             }
         });
+
+        Intent intent=new Intent(LoginActivity.this,Webview);
 
         Button mEmailSignInButton = (Button) findViewById(R.id.email_sign_in_button);
         mEmailSignInButton.setOnClickListener(new OnClickListener() {
