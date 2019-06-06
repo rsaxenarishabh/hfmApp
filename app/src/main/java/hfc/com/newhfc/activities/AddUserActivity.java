@@ -18,12 +18,12 @@ public class AddUserActivity extends AppCompatActivity {
             referalCode = getIntent().getStringExtra("referalCode");
         }
 
-        if (getSupportActionBar() != null) {
+       /* if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setDisplayShowHomeEnabled(true);
-        }
+        }*/
     }
-    @Override
+    /*@Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
             finish();
@@ -32,5 +32,5 @@ public class AddUserActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
 
 
-    }
+    }*/
 }
