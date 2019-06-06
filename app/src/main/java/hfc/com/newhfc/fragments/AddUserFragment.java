@@ -103,6 +103,8 @@ public class AddUserFragment extends Fragment implements DatePickerDialog.OnDate
         //show toolbar
         getActivity().setTitle("Add User");
 
+
+
         editTextUsername=view.findViewById(R.id.edittext_username);
         editTextFirstname = view.findViewById(R.id.edittext_firstname);
         editTextLastname = view.findViewById(R.id.edittext_lastname);
@@ -112,8 +114,6 @@ public class AddUserFragment extends Fragment implements DatePickerDialog.OnDate
         editDOB = view.findViewById(R.id.dob);
         editTextPincode = view.findViewById(R.id.edittext_pincode);
         buttonSubmit = view.findViewById(R.id.btn_submit);
-
-
 
       /*  editDOB.setOnClickListener(new View.OnClickListener() {
             @Override
