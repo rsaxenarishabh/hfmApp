@@ -74,14 +74,32 @@
 
         </android.support.design.widget.TextInputLayout>
 
-        <CheckBox
-            android:id="@+id/login_checkbox"
+        <LinearLayout
+            android:orientation="horizontal"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/_10dp"
-            android:padding="@dimen/padding_5"
-            android:text="Remember me"
-            android:textColor="@color/green" />
+            android:layout_height="wrap_content">
+
+            <CheckBox
+                android:id="@+id/login_checkbox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_10dp"
+                android:textColor="@color/green" />
+
+
+            <TextView
+                android:id="@+id/privacy_policy"
+                android:layout_gravity="center"
+                android:textColor="@color/green"
+                android:text="Privacy and Policy"
+                android:textSize="@dimen/size_16"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+
+        </LinearLayout>
+
+
 
         <android.support.v7.widget.AppCompatButton
             android:id="@+id/email_sign_in_button"
@@ -93,17 +111,6 @@
             android:text="@string/action_sign_in"
             android:textColor="@color/white"
             android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/privacy_policy"
-            android:layout_gravity="center"
-
-            android:textColor="@color/green"
-            android:text="Privacy and Policy"
-            android:textSize="@dimen/size_16"
-            android:layout_margin="@dimen/_15dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
 
     </LinearLayout>
 </LinearLayout>
