@@ -71,10 +71,10 @@ public class DashboardFragment extends Fragment implements BaseSliderView.OnSlid
 //        url_maps.put("Game of Thrones", "http://images.boomsbeat.com/data/images/full/19640/game-of-thrones-season-4-jpg.jpg");
 
         HashMap<String,Integer> file_maps = new HashMap<String, Integer>();
-        file_maps.put("HFC Flight",R.drawable.banner1);
-        file_maps.put("HFC Wealth",R.drawable.banner2);
-        file_maps.put("HFC Customer Care",R.drawable.banner3);
-        file_maps.put("HFC BUS", R.drawable.banner5);
+        file_maps.put("HFM Flight",R.drawable.banner1);
+        file_maps.put("HFM Wealth",R.drawable.banner2);
+        file_maps.put("HFM Customer Care",R.drawable.banner3);
+        file_maps.put("HFM BUS", R.drawable.banner5);
 
         for(String name : file_maps.keySet()){
             TextSliderView textSliderView = new TextSliderView(getActivity());
