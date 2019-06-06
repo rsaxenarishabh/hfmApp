@@ -72,7 +72,7 @@ public class WebViewActivity extends AppCompatActivity {
 
 
         getSupportActionBar().setTitle(title);
-        if (Utils.isInternetConnected(this)) {
+        if (!Utils.isInternetConnected(this)) {
             rlWebView.setVisibility(GONE);
             rlNetworkUI.setVisibility(View.VISIBLE);
 //            rlNetworkUI.setOnClickListener(new View.OnClickListener() {
