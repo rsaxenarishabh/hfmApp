@@ -4,7 +4,10 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.text.SpannableString;
+import android.text.Spanned;
 import android.text.TextUtils;
+import android.text.style.UnderlineSpan;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -69,6 +72,12 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+
+
+
+        SpannableString spannableString = new SpannableString(getString(R.string.terms));
+        spannableString.setSpan(new UnderlineSpan(), 0, spannableString.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        textViewPrivacy.setText(spannableString);
         textViewPrivacy.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -136,54 +145,60 @@ public class LoginActivity extends AppCompatActivity {
         } else {
             // Show a progress spinner, and kick off a background task to
             // perform the user login attempt.
+             if(check)
+             {
+                 final LoginRequest loginRequest = new LoginRequest();
+                 loginRequest.setUserName(username);
+                 loginRequest.setPassword(password);
+                 Utils.showProgressDialog(this);
+                 if (Utils.isInternetConnected(this)) {
+                     Utils.showProgressDialog(this);
+                     RestClient.loginUser(loginRequest, new Callback<LoginResponse>() {
+                         @Override
+                         public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
+                             Utils.dismissProgressDialog();
+                             if (response.body() != null) {
+                                 LoginResponse loginResponse = response.body();
+                                 if (response.code() == 200) {
+                                     HFMPrefs.putString(LoginActivity.this, Constants.REFERAL, loginResponse.getReferal());
+                                     HFMPrefs.putString(LoginActivity.this, Constants.USER_ID, loginResponse.getId());
+                                     HFMPrefs.putString(LoginActivity.this, Constants.USER_ID, loginResponse.getId());
+                                     HFMPrefs.putString(LoginActivity.this, Constants.LOGIN_DATA, new Gson().toJson(loginResponse));
 
-            final LoginRequest loginRequest = new LoginRequest();
-            loginRequest.setUserName(username);
-            loginRequest.setPassword(password);
-            Utils.showProgressDialog(this);
-            if (Utils.isInternetConnected(this)) {
-                Utils.showProgressDialog(this);
-                RestClient.loginUser(loginRequest, new Callback<LoginResponse>() {
-                    @Override
-                    public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
-                        Utils.dismissProgressDialog();
-                        if (response.body() != null) {
-                            LoginResponse loginResponse = response.body();
-                            if (response.code() == 200) {
-                                HFMPrefs.putString(LoginActivity.this, Constants.REFERAL, loginResponse.getReferal());
-                                HFMPrefs.putString(LoginActivity.this, Constants.USER_ID, loginResponse.getId());
-                                HFMPrefs.putString(LoginActivity.this, Constants.USER_ID, loginResponse.getId());
-                                HFMPrefs.putString(LoginActivity.this, Constants.LOGIN_DATA, new Gson().toJson(loginResponse));
+                                     Intent intent = null;
+                                     if (loginResponse.getActiveStatus().equalsIgnoreCase("1")) {
+                                         intent = new Intent(LoginActivity.this, MainActivity.class);
+                                         startActivity(intent);
+                                         finish();
+                                     } else {
+                                         Toast.makeText(LoginActivity.this, "User is Not Activate", Toast.LENGTH_SHORT).show();
+                                     }
 
-                                Intent intent = null;
-                                if (loginResponse.getActiveStatus().equalsIgnoreCase("1")) {
-                                    intent = new Intent(LoginActivity.this, MainActivity.class);
-                                    startActivity(intent);
-                                    finish();
-                                } else {
-                                    Toast.makeText(LoginActivity.this, "User is Not Activate", Toast.LENGTH_SHORT).show();
-                                }
-
-                            }
-
-
-                        }
+                                 }
 
 
-                    }
+                             }
 
-                    @Override
-                    public void onFailure(Call<LoginResponse> call, Throwable t) {
-                        Utils.dismissProgressDialog();
-                        Toast.makeText(LoginActivity.this, R.string.response_failed, Toast.LENGTH_SHORT).show();
 
-                    }
-                });
+                         }
 
-            } else {
-                Utils.dismissProgressDialog();
-                Toast.makeText(this, R.string.Internet_failed, Toast.LENGTH_SHORT).show();
-            }
+                         @Override
+                         public void onFailure(Call<LoginResponse> call, Throwable t) {
+                             Utils.dismissProgressDialog();
+                             Toast.makeText(LoginActivity.this, R.string.response_failed, Toast.LENGTH_SHORT).show();
+
+                         }
+                     });
+
+                 } else {
+                     Utils.dismissProgressDialog();
+                     Toast.makeText(this, R.string.Internet_failed, Toast.LENGTH_SHORT).show();
+                 }
+             }
+             else {
+                 Toast.makeText(this, "Please Select the Remember Check Box", Toast.LENGTH_SHORT).show();
+             }
+
 
          /*
             RestClient.login(loginRequestModel, new Callback<LoginResponse>() {

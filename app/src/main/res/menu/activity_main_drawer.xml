@@ -26,8 +26,13 @@
         <item
             android:icon="@drawable/companies"
             android:id="@+id/bankDetails"
-            android:title="Company Dteails" />
+            android:title="Company Details" />
 
+        <item
+
+            android:icon="@drawable/company"
+            android:id="@+id/nav_document"
+            android:title="Company Document" />
         <item
             android:icon="@drawable/ic_userss"
             android:id="@+id/myProfile"
@@ -46,12 +51,6 @@
                 android:id="@+id/nav_send"
                 android:title="Send"
                 android:icon="@drawable/send"/>
-
-            <item
-                android:visible="false"
-                android:icon="@drawable/company"
-                android:id="@+id/nav_document"
-                android:title="Document" />
 
             <item
                 android:id="@+id/nav_about"
