@@ -18,6 +18,7 @@ import android.text.TextUtils;
 import android.util.Base64;
 import android.util.Patterns;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -81,6 +82,13 @@ public class AddUserFragment extends Fragment implements DatePickerDialog.OnDate
         return fragment;
     }
 
+/*
+      if (addUserActivity. != null){
+     addUserActivity.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        addUserActivity.getSupportActionBar().setDisplayShowHomeEnabled(true);
+    }*/
+
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -104,6 +112,8 @@ public class AddUserFragment extends Fragment implements DatePickerDialog.OnDate
         editDOB = view.findViewById(R.id.dob);
         editTextPincode = view.findViewById(R.id.edittext_pincode);
         buttonSubmit = view.findViewById(R.id.btn_submit);
+
+
 
       /*  editDOB.setOnClickListener(new View.OnClickListener() {
             @Override
