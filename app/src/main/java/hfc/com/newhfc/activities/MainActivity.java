@@ -172,10 +172,9 @@ public class MainActivity extends AppCompatActivity
                 break;
 
             case R.id.nav_share:
-
                 Intent share = new Intent(Intent.ACTION_SEND);
                 share.setType("text/plain");
-                String text = "Join Hurry Future Marketing Private Limited ,click below to download\nhttps://play.google.com/store/apps/details?id=hfc.com.newhfc&hl=en";
+                String text = "Join Hurry Founder Marketing Private Limited ,click below to download\nhttps://play.google.com/store/apps/details?id=hfc.com.newhfc&hl=en";
                 share.putExtra(Intent.EXTRA_SUBJECT, "HFM");
                 share.putExtra(Intent.EXTRA_TEXT, text);
                 startActivity(Intent.createChooser(share, "share via"));
