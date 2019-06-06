@@ -105,6 +105,8 @@ public class AddUserFragment extends Fragment implements DatePickerDialog.OnDate
         editTextPincode = view.findViewById(R.id.edittext_pincode);
         buttonSubmit = view.findViewById(R.id.btn_submit);
 
+        
+
       /*  editDOB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
