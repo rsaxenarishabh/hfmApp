@@ -58,7 +58,7 @@ public class AddUserFragment extends Fragment implements DatePickerDialog.OnDate
     ImageView img_profile;
     private EditText editTextFirstname, editTextLastname,
             editTextPhone, editTextEmail, editDOB,
-            editTextAddress, editTextPincode,editTextUsername;
+            editTextAddress, editTextPincode, editTextUsername;
 
     AddUserActivity addUserActivity;
     AddUserResponse addUserResponse;
@@ -89,7 +89,6 @@ public class AddUserFragment extends Fragment implements DatePickerDialog.OnDate
     }*/
 
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -104,8 +103,7 @@ public class AddUserFragment extends Fragment implements DatePickerDialog.OnDate
         getActivity().setTitle("Add User");
 
 
-
-        editTextUsername=view.findViewById(R.id.edittext_username);
+        editTextUsername = view.findViewById(R.id.edittext_username);
         editTextFirstname = view.findViewById(R.id.edittext_firstname);
         editTextLastname = view.findViewById(R.id.edittext_lastname);
         editTextPhone = view.findViewById(R.id.edittext_phonenumber);
@@ -203,7 +201,7 @@ public class AddUserFragment extends Fragment implements DatePickerDialog.OnDate
         String dob = editDOB.getText().toString().trim();
         String address = editTextAddress.getText().toString().trim();
         String pincode = editTextPincode.getText().toString().trim();
-        String username=editTextUsername.getText().toString().trim();
+        String username = editTextUsername.getText().toString().trim();
 
         if (firstname.isEmpty()) {
             editTextFirstname.setError("Field can't be empty");
@@ -263,7 +261,6 @@ public class AddUserFragment extends Fragment implements DatePickerDialog.OnDate
         }
 
 
-
         if (check == true) {
             //TODO add user request
 
@@ -318,6 +315,7 @@ public class AddUserFragment extends Fragment implements DatePickerDialog.OnDate
 
                                 }
                             }
+
                             if (response.body().getStatus()) {
                                 addUserResponse = response.body();
                                 if (addUserResponse.getId() > 0) {
@@ -333,9 +331,8 @@ public class AddUserFragment extends Fragment implements DatePickerDialog.OnDate
                             }
 
                         }
-
-
                     }
+
 
                     @Override
                     public void onFailure(Call<AddUserResponse> call, Throwable t) {
