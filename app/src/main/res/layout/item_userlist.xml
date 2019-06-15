@@ -44,9 +44,6 @@
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:padding="@dimen/_5dp"
-                    android:src="@drawable/profile_pictures"
-
-
                     />
                 <hfc.com.newhfc.views.CircleImageView
                     android:id="@+id/image"
@@ -54,7 +51,6 @@
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:tint="@color/black_disabled"
-                    app:srcCompat="@drawable/ic_default_image"
                     android:padding="@dimen/_5dp"/>
 
                 <LinearLayout
